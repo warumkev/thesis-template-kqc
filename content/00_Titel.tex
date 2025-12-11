@@ -1,3 +1,4 @@
+% !TEX root = ../Bachelor-Thesis.tex
 % \subject{Diplomarbeit \\ Universität <einfügen>}
 % \title{<Titel einfügen>}
 % \author{Alexander Becker}
@@ -11,16 +12,14 @@
 \par\end{center}
 
 
-\noindent \begin{center}
 \vspace{1cm}
 
-\par\end{center}
-
-\noindent \begin{center}
+\begin{center}
 \textsf{\textbf{\huge \theThesis}}\textsf{}\\
 \textsf{}\\
 \textsf{\Large \theTitle}
-\par\end{center}{\Large \par}
+\end{center}
+{\Large \par}
 
 \vspace{1cm}
 
@@ -30,11 +29,11 @@
 {zur Erlangung des akademischen Grades}
 {for the Degree of}
 
-\par\end{center}
+\end{center}
 
 \begin{center}
 {\textsf{\large \theAcedemicTitle}}
-\par\end{center}{\large \par}
+\end{center}{\large \par}
 
 \begin{center}
 \ifthenelse{\equal{\lang}{ngerman}}
@@ -43,30 +42,32 @@
 
 {\large \vspace{1cm}
 }
-\par\end{center}{\large \par}
+\end{center}{\large \par}
 
 \begin{center}
 \ifthenelse{\equal{\lang}{ngerman}}
 {von}{by}
-\par\end{center}
+\end{center}
 
 \begin{center}
 \theAuthor
-\par\end{center}
+\end{center}
 
 \begin{center}
 \today
-\par\end{center}
+\end{center}
 
 \vspace{1.5cm}
 
+\begin{center}
 \ifthenelse{\equal{\lang}{ngerman}}
 {Referent}
 {Referee}: \theFirstReferee
-
+\par\vspace{1em}
 \ifthenelse{\equal{\lang}{ngerman}}
 {Korreferent}
 {Co-Referee}: \theSecondReferee
+\end{center}
 
 \end{titlepage}
 
@@ -83,4 +84,3 @@
 
 \clearpage
 \mbox{}\thispagestyle{empty}
-

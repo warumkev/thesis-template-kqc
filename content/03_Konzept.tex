@@ -1,3 +1,4 @@
+% !TEX root = ../Bachelor-Thesis.tex
 \chapter{Konzept}
 
 % Beispiel: Bild + Infobox nebeneinander
@@ -5,13 +6,13 @@
 \begin{tcbraster}[raster columns=2, raster height=13.5cm, raster column skip=5mm]
 \begin{tcolorbox}[colback=white, colframe=white, boxrule=0pt]
 \centering
-\fbox{\includegraphics[width=\textwidth, height=6cm, keepaspectratio]{images/Logo_THM_MNI}}
-\\ \vspace{0.2cm}
+\fbox{\includegraphics[width=\dimexpr\textwidth-2\fboxsep-2\fboxrule\relax, height=6cm, keepaspectratio]{images/Logo_THM_MNI}}
+\\[0.2cm]
 \textit{Bildunterschrift}
 \end{tcolorbox}
 \begin{tcolorbox}[colback=white, arc=3mm, boxrule=1.5pt]
-\textbf{Bild + Infobox} \\
-\\
+\textbf{Bild + Infobox}
+\par\medskip
 Diese Art der Darstellung eignet sich besonders gut, um kurze Inhalte übersichtlich und visuell begleitet zu präsentieren.
 \begin{itemize}[leftmargin=*, itemsep=4pt]
 \item Visualisierung
@@ -21,4 +22,5 @@ Diese Art der Darstellung eignet sich besonders gut, um kurze Inhalte übersicht
 \end{itemize}
 \end{tcolorbox}
 \end{tcbraster}
+\caption{Konzeptdarstellung}
 \end{figure}

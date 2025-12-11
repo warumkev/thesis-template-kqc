@@ -624,9 +624,8 @@
 
 %%% Bibliography styles created with custombib
 %%% Doc: ftp://tug.ctan.org/pub/tex-archive/macros/latex/contrib/custom-bib/makebst.pdf
-\bibliographystyle{bib/bst/AlphaDINFirstName}
-
-% other BibTeX styles: http://www.cs.stir.ac.uk/~kjt/software/latex/showbst.html
+\usepackage[style=alphabetic, backend=biber]{biblatex}
+\addbibresource{bib/BibtexDatabase.bib}
 
 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -650,7 +649,7 @@
 %
 %%% Doc: ftp://tug.ctan.org/pub/tex-archive/macros/latex/contrib/subfig/subfig.pdf
 % Incompatible: loads package capt-of. Loading of 'capt-of' afterwards will fail therefor
-\usepackage{subfig} % Layout wird weiter unten festgelegt !
+\usepackage{subcaption} % Layout wird weiter unten festgelegt !
 
 %%% Bilder von Text Umfliessen lassen : (empfehle wrapfig)
 %
@@ -801,7 +800,7 @@
 \usepackage{caption}
  \DeclareCaptionFont{white}{\color{white}}
   \DeclareCaptionFormat{listing}{\colorbox[cmyk]{0.43, 0.35, 0.35,0.01}{\parbox{\textwidth}{\hspace{15pt}#1#2#3}}}
- \captionsetup[lstlisting]{format=listing,labelfont=white,textfont=white, singlelinecheck=false, margin=0pt, font={bf,footnotesize}}
+ %\captionsetup[lstlisting]{format=listing,labelfont=white,textfont=white, singlelinecheck=false, margin=0pt, font={bf,footnotesize}}
 
 %%% Doc: ftp://tug.ctan.org/pub/tex-archive/macros/latex/contrib/examplep/eurotex_2005_examplep.pdf
 % LaTeX Code und Ergebnis nebeneinander darstellen
@@ -811,7 +810,7 @@
 % science packages
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-\usepackage{units}
+\usepackage[locale=DE]{siunitx}
 
 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -1075,11 +1074,11 @@
    % olines,
    automark,
    % autooneside,% ignore optional argument in automark at oneside
-   komastyle,
+   pagestyleset=KOMA-Script,
    % standardstyle,
    % markuppercase,
    % markusedcase,
-   nouppercase,
+   markcase=ignoreuppercase,
 ]{scrlayer-scrpage}
 
 %\usepackage[%
@@ -1099,8 +1098,8 @@
 %\pagestyle{empty} % Seiten ohne Header
 %
 % loescht voreingestellte Stile
-\clearscrheadings
-\clearscrplain
+\clearmainofpairofpagestyles
+\clearplainofpairofpagestyles
 %
 % Was steht wo...
 \IfElseChapterDefined{
@@ -1152,7 +1151,8 @@
 \IfChapterDefined{
    %\setheadtopline{}     % modifiziert die Parameter fuer die Linie ueber dem
    							  %	 Seitenkopf
-   \setheadsepline{.4pt}[\color{black}]
+   \KOMAoptions{headsepline=.4pt}
+   \addtokomafont{headsepline}{\color{black}}
                          % modifiziert die Parameter fuer die Linie zwischen
                          % Kopf und Textkörper
    %\setfootsepline{}    % modifiziert die Parameter fuer die Linie zwischen
@@ -1175,8 +1175,8 @@
 % textwithmarginpar - die Breite des Textbereichs inklusive dem Seitenrand
 % head - die aktuelle Breite des Seitenkopfes
 % foot - die aktuelle Breite des Seitenfusses
-\setheadwidth[0pt]{text}
-\setfootwidth[0pt]{text}
+\KOMAoptions{headwidth=text:0pt}
+\KOMAoptions{footwidth=text:0pt}
 
 %\setheadwidth[]%
 %{%
@@ -1338,19 +1338,19 @@
 \DeclareCaptionOption{parindent}[]{}
 
 % Aussehen der Captions fuer subfigures (subfig-Paket)
-\IfPackageLoaded{subfig}{
- \captionsetup[subfloat]{%
-   margin = 10pt,
-   font = {small,rm},
-   labelfont = {small,bf},
-   format = plain, % oder 'hang'
-   indention = 0em,  % Einruecken der Beschriftung
-   labelsep = space, %period, space, quad, newline
-   justification = RaggedRight, % justified, centering
-   singlelinecheck = true, % false (true=bei einer Zeile immer zentrieren)
-   position = bottom, %top
-   labelformat = parens % simple, empty % Wie die Bezeichnung gesetzt wird
- }
+\IfPackageLoaded{subcaption}{
+ %\captionsetup[subfigure]{%
+ %  margin = 10pt,
+ %  font = {small,rm},
+ %  labelfont = {small,bf},
+ %  format = plain, % oder 'hang'
+ %  indention = 0em,  % Einruecken der Beschriftung
+ %  labelsep = space, %period, space, quad, newline
+ %  justification = RaggedRight, % justified, centering
+ %  singlelinecheck = true, % false (true=bei einer Zeile immer zentrieren)
+ %  position = bottom, %top
+ %  labelformat = parens % simple, empty % Wie die Bezeichnung gesetzt wird
+ %}
 }
 
 % Aendern der Bezeichnung fuer Abbildung und Tabelle
@@ -1393,11 +1393,6 @@
 \setcounter{secnumdepth}{2}    % Abbildungsnummerierung mit groesserer Tiefe
 \setcounter{tocdepth}{2}		 % Inhaltsverzeichnis mit groesserer Tiefe
 %
-
-% Inhalte von List of Figures
-\IfPackageLoaded{subfig}{
-	\setcounter{lofdepth}{1}  %1 = nur figures, 2 = figures + subfigures
-}
 
 % -------------------------------------------------------
 

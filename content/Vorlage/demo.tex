@@ -255,9 +255,9 @@ lacinia.
 %
 } % Endif
 % ------------------------------------------------------------
-\IfDefined{subfloat}{%
+\IfPackageLoaded{subcaption}{%
 %
-\subsection{Normale figure Umgebung mit subfloat}
+\subsection{Normale figure Umgebung mit subcaption}
 Nam ipsum ligula, eleifend at, accumsan nec, suscipit a,
 ipsum. Morbi blandit ligula feugiat magna. Nunc eleifend consequat
 lorem. Sed lacinia nulla vitae enim. Pellentesque tincidunt purus
@@ -268,10 +268,16 @@ massa.
 %
 \begin{figure}[H]
    \centering
-   \subfloat[Erste Bild]{\includegraphics[width=0.3\textwidth]{images/latex}}
-      \hspace{0.1\textwidth}
-   \subfloat[Zweites Bild]{\includegraphics[width=0.3\textwidth]{images/latex}}
-   \caption{Ein Beispiel f�r subfigures}
+   \begin{subfigure}[b]{0.3\textwidth}
+       \includegraphics[width=\textwidth]{images/latex}
+       \caption{Erstes Bild}
+   \end{subfigure}
+   \hspace{0.1\textwidth}
+   \begin{subfigure}[b]{0.3\textwidth}
+       \includegraphics[width=\textwidth]{images/latex}
+       \caption{Zweites Bild}
+   \end{subfigure}
+   \caption{Ein Beispiel für subfigures}
 \end{figure}
 
 } % Endif
@@ -340,26 +346,31 @@ Ut vulputate lorem a ante. Praesent risus purus, feugiat ac, dignissim at, scele
 
 } % Endif
 % ------------------------------------------------------------
+\IfPackageLoaded{subcaption}{
 \IfDefined{wrapfloat}{
 
 %
-\subsection{wrapfloat mit subfloat}
+\subsection{wrapfloat mit subcaption}
 
 \begin{wrapfloat}{figure}{r}{0.22\textwidth}
    \centering
    \vspace{-\baselineskip}
-   \subfloat[erste Bild]%
-      {\includegraphics[width=0.22\textwidth]{images/latex}}
+   \begin{subfigure}[b]{0.22\textwidth}
+      \includegraphics[width=\textwidth]{images/latex}
+      \caption{erstes Bild}
+   \end{subfigure}
    \vspace{1em}
-   \subfloat[zweite Bild]%
-      {\includegraphics[width=0.22\textwidth]{images/latex}}
+   \begin{subfigure}[b]{0.22\textwidth}
+      \includegraphics[width=\textwidth]{images/latex}
+      \caption{zweites Bild}
+   \end{subfigure}
    \caption{zwei Bilder}
     \vspace{-1\baselineskip}
 \end{wrapfloat}
 
 Pellentesque mollis nunc sed mauris tempor molestie. Aliquam adipiscing nisi eu metus. Proin viverra odio ac lorem consequat condimentum. Suspendisse bibendum tellus. Duis non diam. Aliquam sodales sapien in mauris. Sed euismod adipiscing lorem. Pellentesque nulla augue, nonummy vel, tincidunt at, blandit non, erat. Ut sodales, est non semper placerat, velit est lacinia orci, quis auctor nisl elit vel mi. Vivamus elementum turpis in ligula. Nunc dui sem, mattis et, rutrum sit amet, iaculis eu, urna. Praesent quis nunc. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos hymenaeos. Suspendisse justo purus, lacinia et, iaculis ac, sagittis at, enim. Nulla placerat, massa iaculis imperdiet tristique, dolor libero laoreet risus, ac sollicitudin enim sem vel ante. Nam dignissim sem eu dui. Fusce et leo eu est vehicula ultricies. Aenean laoreet, enim vel bibendum malesuada, mauris est dictum velit, vitae suscipit augue ligula pharetra enim.
 
-} % Endif
+}} % Endif
 % ------------------------------------------------------------
  \IfDefined{SCfigure}{
 \subsection{SCfigure}
