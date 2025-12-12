@@ -435,4 +435,3 @@ Verbesserungen sind willkommen! Bitte:
 
 - **KOMA-Script Team** - Exzellente Dokumentenklasse
 - **Markus Kohm** - KOMA-Script Dokumentation
-- **THM MNI II** - Für Support und Feedback
