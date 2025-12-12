@@ -167,22 +167,20 @@ Alle kritischen Funktionen wurden durch automatisierte Tests validiert. Die Test
 % Benchmark-Ergebnisse mit longtable
 \begin{table}[ht]
 \centering
-\caption{Mini-Benchmark: Agentische Läufe mit Evaluationsmetriken (Beispiel-Longtable)}
+\caption{Mini-Benchmark: Agentische Läufe mit Evaluationsmetriken (Beispiel-Tabelle)}
 \label{tab:benchmark-results}
-\begin{tabular}{|p{2.5cm}|p{1.8cm}|p{1.8cm}|p{1.8cm}|p{1.5cm}|p{2.2cm}|}
-\hline
-\textbf{Aufgabe} & \textbf{Success} & \textbf{Token} & \textbf{Zeit (s)} & \textbf{Tools} & \textbf{Kosten (¢)} \\
-\hline
+\begin{tabular}{L{2.5cm}C{1.8cm}C{1.8cm}C{1.8cm}C{1.5cm}C{2.2cm}}
+\toprule
+\cellcolor{headercolor}\textcolor{white}{\textbf{Aufgabe}} & \cellcolor{headercolor}\textcolor{white}{\textbf{Success}} & \cellcolor{headercolor}\textcolor{white}{\textbf{Token}} & \cellcolor{headercolor}\textcolor{white}{\textbf{Zeit (s)}} & \cellcolor{headercolor}\textcolor{white}{\textbf{Tools}} & \cellcolor{headercolor}\textcolor{white}{\textbf{Kosten (¢)}} \\
+\midrule
 Format Code & OK & 342 & 2.1 & 2 & 3.2 \\
-\hline
+\rowcolor{rowcolorgray}
 Run Tests & OK & 521 & 5.8 & 1 & 4.9 \\
-\hline
 Review Code & OK & 891 & 8.3 & 3 & 8.4 \\
-\hline
+\rowcolor{rowcolorgray}
 Fix Lint Errors & OK & 612 & 3.5 & 2 & 5.8 \\
-\hline
 Generate Docs & FAIL & 445 & 4.2 & 2 & 4.2 \\
-\hline
+\bottomrule
 \end{tabular}
 \end{table}
 
@@ -191,20 +189,18 @@ Generate Docs & FAIL & 445 & 4.2 & 2 & 4.2 \\
 \centering
 \caption{Evaluationsmetriken für agentische SE-Workflows (Beispieltabelle)}
 \label{tab:eval-metrics}
-\begin{tabular}{|p{3.5cm}|p{10.5cm}|}
-\hline
-\textbf{Kategorie} & \textbf{Metriken / Beschreibung} \\
-\hline
+\begin{tabular}{L{3.5cm}L{10.5cm}}
+\toprule
+\cellcolor{headercolor}\textcolor{white}{\textbf{Kategorie}} & \cellcolor{headercolor}\textcolor{white}{\textbf{Metriken / Beschreibung}} \\
+\midrule
 Qualität & Task-Success-Rate, Patch-Korrektheit (Tests/Lint), Review-Akzeptanz, Regressionen (\#) \\
-\hline
+\rowcolor{rowcolorgray}
 Kosten & Token-/API-Kosten (EUR), Tool-Aufrufkosten, Compute-Zeit \\
-\hline
 Latenz & End-to-End-Laufzeit (s), Tool-Roundtrips (\#), Wartezeit auf CI \\
-\hline
+\rowcolor{rowcolorgray}
 Sicherheit & Policy-Verstöße (\#), Risk Flags, sand-boxed I/O, PII-Leaks (\#) \\
-\hline
 Nachvollziehbarkeit & Trace-Länge (\#Events), Artefakte (Patches, Logs), Reproduzierbarkeit (Seeds) \\
-\hline
+\bottomrule
 \end{tabular}
 \end{table}
 

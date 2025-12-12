@@ -130,12 +130,11 @@
 \usepackage{dcolumn}   % Ausrichtung an Komma/Punkt
 \usepackage{ltxtable}  % Tabellen über mehrere Seiten (Longtable + Tabularx)
 \usepackage{array}     % Erweiterte Spalten-Befehle
-\usepackage{xcolor}    % Farben für alternierende Zeilen
+\usepackage{colortbl}  % Färbung von Zellen und Reihen
 
 % Farben für alternierende Zeilen
 \definecolor{rowcolorgray}{gray}{0.92}      % Hellgrau für jeden 2. Zeile
 \definecolor{headercolor}{RGB}{70,130,180}  % Stahlblau für Header
-\definecolor{headertext}{white}{1.0}        % Weiß für Header-Text
 
 % Erweiterte Spalten-Definition mit Padding
 \newcolumntype{L}[1]{>{\raggedright\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
@@ -145,16 +144,6 @@
 % Tabellen-Einstellungen mit besserem Padding
 \renewcommand{\arraystretch}{1.5}           % Zeilenhöhe erhöht
 \setlength{\tabcolsep}{8pt}                 % Padding links/rechts von Zellen
-
-% Befehl für alternierende Zeilen-Färbung
-\newcommand{\rowcolor}[1]{\gdef\currentrowcolor{#1}}
-\newcommand{\cellcolor}[2]{\multicolumn{1}{>{\columncolor{#1}}l}{#2}}
-
-% Alternative: Verwende \rowcolors aus xcolor
-\usepackage{tabu}
-\let\oldtabular\tabular
-\let\endoldtabular\endtabular
-\renewenvironment{tabular}{\rowcolors{2}{rowcolorgray}{white}\oldtabular}{\endoldtabular}
 
 %%% Abbildungen & Floats
 \usepackage{float}     % Option [H] für feste Platzierung

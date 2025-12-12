@@ -35,18 +35,17 @@ Tabelle \ref{tab:agententypen} vergleicht typische Agententypen. Für Software-E
 \centering
 \caption{Agententypen und Fähigkeiten (Beispieltabelle)}
 \label{tab:agententypen}
-\begin{tabular}{|p{3.5cm}|p{9.5cm}|}
-\hline
-	extbf{Agententyp} & \textbf{Kurzbeschreibung} \\
-\hline
+\begin{tabular}{L{3.5cm}L{9.5cm}}
+\toprule
+\cellcolor{headercolor}\textcolor{white}{\textbf{Agententyp}} & \cellcolor{headercolor}\textcolor{white}{\textbf{Kurzbeschreibung}} \\
+\midrule
 Reaktiver Agent & Einzelne Schritte ohne längerfristige Planung; geeignet für klar definierte Aufgaben mit geringer Komplexität. \\
-\hline
+\rowcolor{rowcolorgray}
 Planender Agent & Erstellt und aktualisiert Pläne; gut für mehrschrittige Aufgaben mit Abhängigkeiten. \\
-\hline
 Werkzeugnutzender Agent & Ruft externe Tools (z.\,B. Linter, Tests, VCS) auf; hohe praktische Nützlichkeit im Software Engineering. \\
-\hline
+\rowcolor{rowcolorgray}
 Mehragentensystem & Rollenbasierte Zusammenarbeit (z.\,B. Reviewer, Coder, Tester); skaliert bei größeren Projekten. \\
-\hline
+\bottomrule
 \end{tabular}
 \end{table}
 
