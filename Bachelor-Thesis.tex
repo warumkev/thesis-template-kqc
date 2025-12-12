@@ -30,7 +30,9 @@
 \studentID{1234567}
 \studentAddress{Musterstraße 1, 12345 Musterstadt}
 \thesis{Bachelor-Thesis}
-\title{Titel der Abschlussarbeit}
+\title{Entwicklung und Evaluation
+agentenbasierter Systeme im Software Engineering:
+Ein Ansatz zur Automatisierung von Entwicklungsprozessen mittels Large Language Models}
 \academicTitle{Bachelor of Science}
 \firstReferee{Prof.~Dr.~Klaus Quibeldey-Cirkel}
 \secondReferee{Prof.~Dr.~Philipp Diebold}
@@ -51,6 +53,9 @@
 % Deckblatt
 \input{content/00_Titel}
 
+% Frontmatter beginnt hier (römische Seitenzahlen)
+\frontmatter{}
+
 % Abstract - Kurzfassung der Arbeit ohne Wertung
 \input{content/00_Abstract}
 \cleardoublepage{}
@@ -58,10 +63,12 @@
 % Danksagung
 \input{content/00_Danksagung}
 
+% Hinweis zur geschlechtergerechten Sprache
+\input{content/00_GenderErklaerung}
+
 % Ab hier pageanchor aktivieren für korrekte PDF-Links
 \hypersetup{pageanchor=true}
 
-\frontmatter{}
 \cleardoublepage{}
 % Inhaltsverzeichnis in den PDF-Links eintragen
 \pdfbookmark[1]{Inhaltsverzeichnis}{toc}
@@ -72,7 +79,7 @@
 \input{content/00_Abkuerzungen}
 \cleardoublepage
 
-% Hauptteil
+% Hauptteil beginnt hier (arabische Seitenzahlen ab 1)
 \mainmatter{}
 \input{content/01_Einfuehrung}
 \input{content/02_Hintergrund}
@@ -98,6 +105,12 @@
 \appendix
 
 \input{content/Z-Anhang}
+
+% Erklärungen am Ende der Arbeit
+\cleardoublepage
+\printGenerativeAIDeclaration
+\cleardoublepage
+\printDeclarationOfIndependence
 
 %% Dokument ENDE %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \end{document}
