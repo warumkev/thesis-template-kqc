@@ -70,36 +70,8 @@ Abbildung \ref{fig:agent-workflow} illustriert den typischen Ablauf einer agenti
 
 \begin{figure}[ht]
 \centering
-\begin{tikzpicture}[
-  node distance=10mm and 18mm,
-  every node/.style={font=\small},
-  actor/.style={draw, rectangle, align=center, inner sep=4pt, minimum width=28mm, minimum height=8mm},
-  action/.style={draw, diamond, aspect=2, align=center, inner sep=3pt},
-  >={Stealth[length=2.2mm]}
-]
-% Actors/Components
-\node[actor] (agent) {Agent};
-\node[actor, right=of agent] (tools) {Tools};
-\node[actor, below=of agent] (feedback) {Feedback};
-
-% Sequence of actions
-\node[action, below=of tools, xshift=-10mm] (plan) {\small Plan};
-\node[below=of plan, yshift=2mm] (call) {\small Call Tool};
-\node[below=of call, yshift=2mm] (result) {\small Result};
-\node[below=of result, yshift=2mm] (decide) {\small Entscheiden};
-
-% Arrows showing sequence
-\draw[->] (agent.south) -- (plan.north) node[midway, right, font=\tiny] {1};
-\draw[->] (plan.east) -- (tools.west) node[midway, above, font=\tiny] {2};
-\draw[->] (tools.south) -- (result.north) node[midway, right, font=\tiny] {3};
-\draw[->] (result.west) -- (decide.east) node[midway, below, font=\tiny] {4};
-\draw[->] (decide.south) -- (feedback.east) node[midway, left, font=\tiny] {5};
-
-% Loop indication
-\draw[->, dashed] (feedback.north) -| (agent.south) node[midway, left, font=\tiny] {Schleife};
-
-\end{tikzpicture}
-\caption{Workflow eines agentischen Systems: Planung, Tool-Ausführung, Feedback-Schleife}
+\includegraphics[width=0.9\textwidth]{images/agent-workflow.png}
+\caption{Workflow eines agentischen Systems: Planung, Tool-Ausführung, Feedback-Schleife (Mermaid-Diagramm)}
 \label{fig:agent-workflow}
 \end{figure}
 

@@ -1,0 +1,10 @@
+sequenceDiagram
+    participant Agent
+    participant Tools
+    participant Feedback
+    
+    Agent->>Tools: 1. Plan
+    Tools->>Tools: 2. Call Tool
+    Tools->>Feedback: 3. Result
+    Feedback->>Feedback: 4. Entscheiden
+    Feedback-->>Agent: 5. Schleife (nächste Iteration)
