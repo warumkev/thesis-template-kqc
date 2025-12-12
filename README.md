@@ -175,7 +175,7 @@ cd thesis-template
 
 Option B: **Ohne Git** (manuell):
 
-- Besuchen Sie: [GitHub Repo](https://github.com/thm-mni-ii/thesis-template)
+- Besuchen Sie: [GitHub Repo](https://github.com/kqc-real/thesis-template)
 - Klicken Sie auf grünen **Code** Button
 - Wählen Sie **"Download ZIP"**
 - Entpacken Sie die ZIP-Datei auf Ihrem Computer
@@ -335,6 +335,35 @@ git commit -m "Kapitel 1: Einführung überarbeitet"
 # Generierte Dateien ignorieren
 # (.gitignore ist bereits konfiguriert)
 ```
+
+## Git-Workflow für Ihre Thesis
+
+### 1. Repository forken
+
+- Gehen Sie zu [thesis-template](https://github.com/kqc-real/thesis-template)
+- Klicken Sie auf den Button **"Fork"** oben rechts, um das Repository in Ihr GitHub-Konto zu kopieren.
+
+### 2. Eigenes Repository klonen
+
+- Öffnen Sie Ihr Terminal und führen Sie den folgenden Befehl aus:
+
+```bash
+# Ersetzen Sie <Ihr-GitHub-Username> durch Ihren GitHub-Benutzernamen
+# und <Ihr-Repo-Name> durch den Namen Ihres geforkten Repositories
+
+git clone https://github.com/<Ihr-GitHub-Username>/thesis-template.git
+cd thesis-template
+```
+
+### 3. In VS Code importieren
+
+- Öffnen Sie VS Code.
+- Wählen Sie `Datei` → `Ordner öffnen` und wählen Sie den Ordner `thesis-template` aus.
+
+### 4. Schreiben Sie Ihre Thesis
+
+- Bearbeiten Sie die Dateien in `content/` und fügen Sie Ihre Inhalte hinzu.
+- Speichern Sie Ihre Änderungen (`Cmd+S` / `Ctrl+S`), und das PDF wird automatisch aktualisiert.
 
 ## Troubleshooting (für Anfänger)
 
