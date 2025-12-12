@@ -2,271 +2,245 @@
 
 Professionelle LaTeX-Vorlage für Bachelor- und Masterarbeiten im deutschsprachigen Raum. Optimiert für Qualität, Lesbarkeit und Einhaltung akademischer Konventionen.
 
-## Für LaTeX-Anfänger:innen
+## 🚀 Für LaTeX-Anfänger:innen: Die ersten 5 Minuten
 
-### Was ist LaTeX?
+Noch nie LaTeX benutzt? Kein Problem! Diese Sektion erklärt alles in einfachen Worten.
 
-LaTeX ist ein **Textsatzsystem** für hochwertige Dokumente, besonders geeignet für wissenschaftliche Arbeiten. Anders als bei Word schreiben Sie Text mit **Markup-Befehlen** (wie `\section{Titel}`), und LaTeX kümmert sich automatisch um:
+### Was ist LaTeX überhaupt?
 
-- **Professionelles Layout** (Abstände, Schriftgrößen, Seitenumbrüche)
-- **Nummerierung** (Kapitel, Abbildungen, Formeln, Referenzen)
-- **Literaturverzeichnis** (automatisch sortiert und formatiert)
-- **Mathematische Formeln** (z.B. $E = mc^2$)
-- **Konsistente Formatierung** im gesamten Dokument
+Stellen Sie sich vor: Sie schreiben ein Essay in Word, formatieren alles per Hand (Schriftgröße, Abstände, Seitennummern), und plötzlich ändert sich etwas — alles muss neu formatiert werden.
 
-**Vorteil:** Sie konzentrieren sich auf den Inhalt, LaTeX kümmert sich um die Form.
+**LaTeX ist anders:** Sie schreiben normal, und die Software kümmert sich um die schöne Formatierung. Beispiel:
 
-### Wozu eine TeX-Distribution?
+```tex
+\chapter{Einführung}
+Dies ist mein erstes Kapitel.
+\section{Motivation}
+Ein wichtiger Punkt ist...
+```
 
-Eine **TeX-Distribution** (wie TeX Live oder MikTeX) ist die Software, die LaTeX-Code in PDFs umwandelt. Sie enthält:
+↓ (LaTeX verarbeitet das) ↓
 
-- **LaTeX-Compiler** (pdflatex, xelatex, lualatex)
-- **Tausende Pakete** (für Tabellen, Bilder, Formeln, Bibliographien, etc.)
-- **Werkzeuge** wie `biber` (für Literaturverzeichnisse) und `latexmk` (für automatisches Kompilieren)
+**PDF mit:**
+- Automatisch nummerierten Kapiteln
+- Schönen Abstände und Schriftgrößen
+- Automatischem Inhaltsverzeichnis
+- Professionellem Aussehen (ohne dass Sie was daran drehen!)
 
-**Empfehlung:** TeX Live 2024+ (aktuell: TeX Live 2025) — vollständig, aktuell, kostenlos.
+**Warum ist das nützlich?**
+- ✅ Fokus auf **Inhalt**, nicht auf Formatierung
+- ✅ Professionelles Aussehen **garantiert**
+- ✅ Wissenschaftliche Formeln, Tabellen, Zitate **kinderleicht**
+- ✅ Lange Arbeiten (80+ Seiten) **keine Problem**
+
+### Was brauche ich zum Starten?
+
+Drei Dinge:
+
+1. **TeX Live** (die LaTeX-Software) — Kostenlos
+2. **VS Code** (der Editor) — Kostenlos  
+3. **LaTeX Workshop Extension** (VS Code Plugin) — Kostenlos
+
+Das war's! Danach schreiben Sie in VS Code, speichern, und das PDF wird automatisch erstellt.
+
+**Zeitaufwand für Setup:** 10 Minuten
 
 ### LaTeX in VS Code einrichten
 
-VS Code ist ein moderner, kostenloser Code-Editor mit exzellenter LaTeX-Unterstützung.
+**Schritt-für-Schritt-Anleitung (auch für absolute Anfänger):**
 
-#### Schritt 1: TeX-Distribution installieren
+#### 1️⃣ TeX Live installieren (5 Min)
 
-**macOS:**
+**macOS (Terminal öffnen und kopieren):**
 
 ```bash
-brew install --cask mactex
-# oder MikTeX: brew install --cask miktex
+brew install --cask mactex-no-gui
 ```
 
 **Linux (Ubuntu/Debian):**
 
 ```bash
-sudo apt-get update
-sudo apt-get install texlive-full
+sudo apt-get update && sudo apt-get install texlive-full
 ```
 
 **Windows:**
 
-- Download [TeX Live](https://www.tug.org/texlive/) oder [MikTeX](https://miktex.org/)
+- Gehen Sie zu: [TeX Live Windows](https://www.tug.org/texlive/windows.html)
+- Laden Sie `install-tl-windows.exe` herunter
+- Starten Sie die Datei und folgen Sie der Installation
+- Bestätigen Sie alle Fragen mit "Ja"
 
-#### Schritt 2: VS Code Erweiterungen installieren
+> **Was passiert hier?** TeX Live ist die LaTeX-Software. Sie wird installiert, damit VS Code PDFs aus Ihrem LaTeX-Code erstellen kann.
 
-Installieren Sie diese Extensions in VS Code:
+#### 2️⃣ VS Code installieren und öffnen
 
-1. **LaTeX Workshop** (james-yu.latex-workshop) — *Essentiell*
-   - Automatische Kompilierung beim Speichern
-   - PDF-Vorschau im Editor
-   - Syntax-Highlighting und IntelliSense
-   - Fehleranzeige und -navigation
+- Download: [Visual Studio Code](https://code.visualstudio.com)
+- Installieren und öffnen
 
-2. **LaTeX Utilities** (tecosaur.latex-utilities) — *Empfohlen*
-   - Erweiterte Snippets
-   - Zeilennummerierung für Tabellen
-   - Live Paste von Bildern
+#### 3️⃣ LaTeX Extension hinzufügen
 
-3. **LaTeX language support** (mathematic.vscode-latex) — *Optional*
-   - Zusätzliche Syntax-Hervorhebung
+1. Öffnen Sie VS Code
+2. Klicken Sie links auf das **Extensions-Icon** (4 Quadrate)
+3. Suchen Sie nach `LaTeX Workshop`
+4. Klicken Sie auf **"Install"**
 
-#### Schritt 3: LaTeX Workshop konfigurieren
+Das war's! Der Automat läuft jetzt.
 
-LaTeX Workshop funktioniert sofort. Für diese Vorlage sind die Standardeinstellungen optimal:
+#### ✅ Test: Funktioniert alles?
 
-- **Automatisches Kompilieren:** Beim Speichern (`.tex`-Datei)
-- **PDF-Vorschau:** Automatisch rechts neben dem Editor
-- **Build-Tool:** `latexmk` (empfohlen) oder `pdflatex` + `biber`
+1. Öffnen Sie diese Vorlage in VS Code: `Datei` → `Ordner öffnen` → `thesis-template`
+2. Öffnen Sie `Bachelor-Thesis.tex`
+3. Drücken Sie `Cmd+S` (Mac) oder `Ctrl+S` (Windows/Linux)
+4. Warten Sie 10 Sekunden...
+5. Ein PDF sollte auf der rechten Seite erscheinen
 
-**VS Code Settings (Optional):**
+Wenn ja: **Herzlichen Glückwunsch!** Sie können jetzt LaTeX nutzen. 🎉
 
-```json
-{
-  "latex-workshop.latex.autoBuild.run": "onSave",
-  "latex-workshop.view.pdf.viewer": "tab",
-  "latex-workshop.latex.recipe.default": "latexmk (pdflatex)"
-}
-```
+Wenn nein: Siehe Abschnitt "Troubleshooting" unten.
 
-### latexmk vs. pdflatex
-
-#### pdflatex (manuell)
-
-Wenn Sie manuell kompilieren möchten (z.B. im Terminal):
-
-```bash
-pdflatex Bachelor-Thesis.tex    # 1. Durchlauf: Dokument erstellen
-biber Bachelor-Thesis           # Bibliographie verarbeiten
-pdflatex Bachelor-Thesis.tex    # 2. Durchlauf: Referenzen aktualisieren
-pdflatex Bachelor-Thesis.tex    # 3. Durchlauf: Alles finalisieren
-```
-
-**Problem:** Sie müssen mehrfach kompilieren, bis alle Referenzen korrekt sind.
-
-#### latexmk (automatisch) — **Empfohlen**
-
-`latexmk` kompiliert automatisch **so oft wie nötig**:
-
-```bash
-latexmk -pdf Bachelor-Thesis.tex
-```
-
-Das erkennt automatisch:
-
-- Wenn Bibliographie neu gebaut werden muss (→ ruft `biber` auf)
-- Wenn Referenzen aktualisiert werden müssen (→ zusätzliche Durchläufe)
-- Wenn nichts geändert wurde (→ keine Kompilierung)
-
-**LaTeX Workshop nutzt standardmäßig latexmk** — Sie müssen nichts tun!
+### Wie benutze ich diese Vorlage jetzt?
 
 ### Workflow in VS Code
 
-1. **Projekt öffnen:** `Datei` → `Ordner öffnen` → `thesis-template`
-2. **Hauptdatei öffnen:** `Bachelor-Thesis.tex`
-3. **Bearbeiten:** Ändern Sie Metadaten und Content-Dateien
-4. **Speichern:** `Cmd+S` (Mac) / `Ctrl+S` (Windows/Linux)
-5. **LaTeX Workshop kompiliert automatisch** im Hintergrund
-6. **PDF ansehen:** Klicken Sie auf das PDF-Symbol rechts oben, oder nutzen Sie `Cmd+Alt+V`
+1. **Projekt öffnen:** `Datei` → `Ordner öffnen` → `thesis-template` wählen
+2. **Hauptdatei öffnen:** `Bachelor-Thesis.tex` (doppelklick)
+3. **Ihre Metadaten eintragen:** Zeilen 31-37 ausfüllen (Ihr Name, Titel, etc.)
+4. **Inhalt bearbeiten:** In den Dateien unter `content/` schreiben
+5. **Speichern:** `Cmd+S` (Mac) oder `Ctrl+S` (Windows/Linux)
+   - ✅ LaTeX Workshop kompiliert **automatisch im Hintergrund**
+   - ✅ PDF wird **rechts angezeigt** (oder klicken Sie auf PDF-Icon oben rechts)
+6. **Das wars!** Beim nächsten Speichern wird alles automatisch aktualisiert
 
-**Tipp:** Bei Fehlern zeigt LaTeX Workshop diese im "Problems"-Panel (unten) an. Klicken Sie darauf, um zur fehlerhaften Zeile zu springen.
+**Tipp:** Wenn ein Fehler auftritt:
 
-## Features
+- Schauen Sie unten im "Problems"-Panel
+- Klicken Sie auf die Fehlermeldung → springt zur fehlerhaften Zeile
+- Lesen Sie die Fehlermeldung (meist selbsterklärend)
 
-✓ **Professionelle Typografie**
+## Features & Highlights
 
-- KOMA-Script (scrreprt) Dokumentenklasse
-- Latin Modern Schriftart
-- Microtype-Optimierung für deutsche Texte
-- Korrekte Hurenkinder/Schusterjungen-Vermeidung
+Diese Vorlage ist **produktionsreif** für Bachelor- und Masterarbeiten:
 
-✓ **Deutsche Konventionen**
+✅ **Alles ist vorkonfiguriert**
+
+- Keine komplizierte LaTeX-Konfiguration nötig
+- Einfach ausfüllen und losschreiben
+- Funktioniert sofort (Out-of-the-box)
+
+✅ **Deutsche Konventionen**
 
 - Neue Rechtschreibung (ngerman)
-- Keine Absatzeinrückung, Abstand zwischen Absätzen
-- Deutsche Anführungszeichen und Hyphenation
-- Bindekorrektur für gebundene Arbeiten
+- Korrekte deutsche Abstände und Anführungszeichen
+- Typografische Regeln eingebaut
 
-✓ **Akademische Struktur**
+✅ **Saubere Struktur**
 
-- Titelseite mit Referenten
-- Abstract/Kurzfassung
-- Inhaltsverzeichnis mit PDF-Lesezeichen
-- Literaturverzeichnis (BibLaTeX)
-- Abbildungs-, Tabellen- und Code-Verzeichnis
-- Anhang mit optionaler Gender/KI-Deklaration
+- Kapitel in separaten Dateien (einfach zu organisieren)
+- Bilder, Tabellen, Code-Listings professionell formatiert
+- Literaturverzeichnis automatisch erstellt
 
-✓ **Sauberer Code**
+✅ **Moderne Features**
 
-- Gut organisierte Preambel-Module
-- Professionelle Kommentierung
-- Keine überflüssigen Befehle
-- Wartbar und erweiterbar
+- Farbige Tabellenköpfe (matteres Blau)
+- Syntax-Highlighting für Code (Python, TypeScript, etc.)
+- TikZ-Diagramme vorbereitet
+- Mathematische Formeln einfach einzufügen
 
 ## Anforderungen
 
-**Hinweis:** Wenn Sie LaTeX noch nicht installiert haben, lesen Sie zuerst den Abschnitt "Für LaTeX-Anfänger:innen" oben.
+Alles Wichtige ist bereits vorinstalliert, wenn Sie den Setup-Anleitung oben folgen:
 
-### TeX-Distribution (erforderlich)
+- **TeX Live 2024+** (oder MikTeX) — Die LaTeX-Software
+- **VS Code** — Der Editor
+- **LaTeX Workshop Extension** — Das VS Code Plugin
 
-- **TeX Live 2024+** (empfohlen) — Vollständig, aktuell, gut getestet
-- **MikTeX 23.1+** — Alternative für Windows
-- Enthält: pdfLaTeX, XeLaTeX, LuaLaTeX, Biber, latexmk
+Das war's. Keine weiteren Abhängigkeiten nötig!
 
-### Editor (empfohlen)
+## Schnelleinstieg für Anfänger
 
-- **VS Code** mit Extension "LaTeX Workshop"
-- Alternativen: TeXstudio, Overleaf (online), TeXmaker
+### Haben Sie TeX Live + VS Code bereits installiert?
 
-### Build-Tools (in Distribution enthalten)
+**Ja?** → Zu Schritt 2 springen
 
-- **latexmk** — Automatisches Kompilieren (empfohlen)
-- **Biber 2.19+** — Bibliographie-Verarbeitung
-- **pdflatex** — PDF-Generierung
+**Nein?** → Folgen Sie der Setup-Anleitung oben (5 Minuten)
 
-### Installation (nur macOS/Linux Terminal)
+### 1. Diese Vorlage herunterladen
 
-Wenn Sie TeX Live noch nicht haben (siehe Abschnitt "Für LaTeX-Anfänger:innen"):
+Option A: **Mit Git** (empfohlen):
 
 ```bash
-# macOS: TeX Live installieren
-brew install --cask mactex
-
-# Linux: TeX Live installieren  
-sudo apt-get install texlive-full
-
-# VS Code Extension installieren
-code --install-extension james-yu.latex-workshop
-```
-
-## Schnelleinstieg
-
-### 1. Repository klonen
-
-```bash
-git clone https://github.com/kqc-real/thesis-template.git
+git clone https://github.com/thm-mni-ii/thesis-template.git
 cd thesis-template
 ```
 
-### 2. Metadaten anpassen
+Option B: **Ohne Git** (manuell):
 
-Bearbeiten Sie `Bachelor-Thesis.tex` (Zeilen 31-37):
+- Besuchen Sie: [GitHub Repo](https://github.com/thm-mni-ii/thesis-template)
+- Klicken Sie auf grünen **Code** Button
+- Wählen Sie **"Download ZIP"**
+- Entpacken Sie die ZIP-Datei auf Ihrem Computer
+
+### 2. Projekt in VS Code öffnen
+
+1. Öffnen Sie VS Code
+2. `Datei` → `Ordner öffnen`
+3. Wählen Sie den Ordner `thesis-template`
+4. Öffnen Sie die Datei `Bachelor-Thesis.tex` (doppelklick)
+
+### 3. Metadaten eintragen
+
+Öffnen Sie `Bachelor-Thesis.tex` und suchen Sie Zeilen 31-37:
 
 ```tex
-\author{Ihr Name}
-\studentID{1234567}
-\studentAddress{Straße 1, 12345 Stadt}
-\thesis{Bachelor-Thesis}
-\title{Ihr Thesis-Titel}
-\academicTitle{Bachelor of Science}
-\firstReferee{Prof. Dr. Name}
-\secondReferee{Prof. Dr. Name}
+%% Metadaten der Arbeit
+\author{Maria Musterfrau}           % ← Ihr Name
+\studentID{1234567}                 % ← Ihre Matrikelnummer
+\studentAddress{Straße 1, 12345 Stadt} % ← Ihre Adresse
+\thesis{Bachelor-Thesis}            % ← Art der Arbeit
+\title{Ihr Thesis-Titel hier...}    % ← Ihr Titel
+\academicTitle{Bachelor of Science} % ← Ihr Abschluss
+\firstReferee{Prof. Dr. Name}       % ← 1. Betreuer
+\secondReferee{Prof. Dr. Name}      % ← 2. Betreuer
 ```
 
-### 3. Inhalte schreiben
+Ersetzen Sie die Platzhalter mit Ihren Daten.
 
-- `content/00_Abstract.tex` - Kurzfassung (150-250 Wörter)
-- `content/01_Einfuehrung.tex` - Einleitung mit Motivation
-- `content/02_Hintergrund.tex` - Theoretischer Hintergrund
-- `content/03_Konzept.tex` - Ihr Konzept/Methode
-- `content/04_Realisierung.tex` - Implementierung/Ergebnisse
-- `content/05_Abschluss.tex` - Fazit und Ausblick
-- `content/Z-Anhang.tex` - Optional: Zusatzmaterialien
+### 4. Anfangen zu schreiben
 
-### 4. Literatur hinzufügen
+Die Kapitel sind in `content/` organisiert:
 
-Bearbeiten Sie `bib/BibtexDatabase.bib`:
+- `00_Abstract.tex` — Kurzfassung (150-250 Wörter)
+- `01_Einfuehrung.tex` — Einführung + Motivation
+- `02_Hintergrund.tex` — Theoretischer Hintergrund
+- `03_Konzept.tex` — Ihr Konzept/Ansatz
+- `04_Realisierung.tex` — Implementierung + Ergebnisse
+- `05_Abschluss.tex` — Fazit + Ausblick
 
-```bibtex
-@article{musterauthor2023,
-  author  = {Max Mustermann},
-  title   = {Ein wichtiger Beitrag},
-  journal = {Journal of Examples},
-  year    = {2023},
-  volume  = {1},
-  pages   = {1--10},
-  doi     = {10.1234/example}
-}
+Öffnen Sie eine Datei, schreiben Sie Ihren Text, speichern Sie (`Cmd+S` / `Ctrl+S`), und das PDF wird **automatisch aktualisiert**.
+
+### 5. Bilder und Literatur hinzufügen
+
+**Bilder:**
+
+- Legen Sie Bilder in den `images/` Ordner
+- Referenzieren Sie sie im Text:
+
+```tex
+\begin{figure}[ht]
+\centering
+\includegraphics[width=0.8\textwidth]{images/mein-diagramm.png}
+\caption{Beschreibung der Abbildung}
+\label{fig:mein-diagramm}
+\end{figure}
 ```
 
-### 5. Kompilieren
+**Literatur:**
 
-**In VS Code (empfohlen):**
+- Öffnen Sie `bib/BibtexDatabase.bib`
+- Fügen Sie Quellen hinzu (siehe Beispiele in der Datei)
+- Im Text zitieren: `\cite{musterauthor2023}`
 
-- Öffnen Sie `Bachelor-Thesis.tex`
-- Speichern Sie die Datei (`Cmd+S` / `Ctrl+S`)
-- LaTeX Workshop kompiliert automatisch
-- PDF-Vorschau: Klick auf PDF-Symbol (rechts oben) oder `Cmd+Alt+V`
-
-**Im Terminal (manuell):**
-
-```bash
-# Mit latexmk (automatisch, empfohlen):
-latexmk -pdf Bachelor-Thesis.tex
-
-# Oder manuell mit pdflatex:
-pdflatex Bachelor-Thesis.tex
-biber Bachelor-Thesis
-pdflatex Bachelor-Thesis.tex
-pdflatex Bachelor-Thesis.tex
-```
+Das war's!
 
 ## Verzeichnisstruktur
 
@@ -304,47 +278,27 @@ thesis-template/
 └── README.md                    # Diese Datei
 ```
 
-## Häufige Anpassungen
+## Häufige Anpassungen (für Anfänger)
 
-### Sprache auf Englisch umstellen
+### Ich will nur englische Arbeit schreiben
 
-In `Bachelor-Thesis.tex` Zeile 16:
-
-```tex
-\def\lang{english}  % Statt: ngerman
-```
-
-### Andere Dokumentklasse
-
-In `Bachelor-Thesis.tex` Zeile 3:
+Öffnen Sie `Bachelor-Thesis.tex`, Zeile 16:
 
 ```tex
-\documentclass[...]{scrartcl}  % Artikel statt Report
-% oder
-\documentclass[...]{scrbook}   % Buch mit mehreren Parts
+\def\lang{english}
 ```
 
-### Alternative Schriftart
+Speichern → PDF wird automatisch auf Englisch neu erstellt (Abstände, Wörter, etc.)
 
-In `preambel/Fonts.tex` - Kommentare entfernen und aktivieren:
+### Andere Schriftart verwenden
 
-```tex
-% Palantino:
-\usepackage{mathpazo}
-\usepackage[scaled=.95]{helvet}
+Öffnen Sie `preambel/Fonts.tex` und kommentieren Sie andere Optionen aus/ein.
 
-% Times:
-\usepackage{mathptmx}
-```
+Beispiele sind bereits vorhanden (Palatino, Times, etc.)
 
-### Farbige Überschriften
+### Das Layout anpassen
 
-In `preambel/preambel.tex` hinzufügen:
-
-```tex
-\addtokomafont{section}{\color{darkblue}}
-\addtokomafont{subsection}{\color{darkblue}}
-```
+Wenn Sie größere/kleinere Abstände brauchen, fragen Sie einen erfahrenen LaTeX-Nutzer oder suchen Sie "KOMA-Script Dokumentation" online.
 
 ## Best Practices
 
@@ -382,40 +336,91 @@ git commit -m "Kapitel 1: Einführung überarbeitet"
 # (.gitignore ist bereits konfiguriert)
 ```
 
-## Troubleshooting
+## Troubleshooting (für Anfänger)
 
-### Problem: `!Undefined control sequence \theThesis`
+### Problem: "Ich sehe kein PDF nach Speichern"
 
-**Lösung:** Stellen Sie sicher, dass Sie `Bachelor-Thesis.tex` als Hauptdatei kompilieren.
+**Mögliche Ursachen:**
 
-### Problem: Literatur wird nicht angezeigt
+1. **TeX Live ist nicht installiert** → Siehe Setup-Anleitung oben
+2. **LaTeX Workshop ist nicht installiert** → Installieren Sie es (Abschnitt "LaTeX in VS Code einrichten")
+3. **Sie haben eine Fehler-Syntax in der `.tex`-Datei** → Schauen Sie in die "Problems" Panel unten
 
-**Lösung:** Führen Sie aus:
+**Lösung:**
+
+- Schauen Sie unten im "Problems"-Panel (rot/gelb Warnungen)
+- Klicken Sie auf eine Warnung → VS Code springt zur fehlerhaften Zeile
+- Fixer Sie das Problem (Tippfehler, `\` vergessen, etc.)
+- Speichern Sie nochmal
+
+### Problem: "Fehler: Undefined control sequence"
+
+Das bedeutet: Sie haben einen Befehl geschrieben, den LaTeX nicht kennt.
+
+**Häufige Fehler:**
+
+- `\textbf{fett}` statt `\textbf fett` (Klammern vergessen)
+- `\chapter{Titel}` aber nicht in Hauptdatei (muss in `Bachelor-Thesis.tex` sein)
+
+Schauen Sie im Problems-Panel, welche Zeile der Fehler ist, und überprüfen Sie die Syntax.
+
+### Problem: "Literatur wird nicht angezeigt"
+
+Das ist normal! LaTeX braucht Zeit zu verarbeiten.
+
+**Lösung:**
+
+- Warten Sie 30 Sekunden
+- Speichern Sie die Datei nochmal (`Cmd+S`)
+- Wenn immer noch nicht: Schauen Sie, ob `bib/BibtexDatabase.bib` Einträge hat
+
+### Problem: "TeX Live hat sich nicht installiert"
+
+**Für macOS:**
+
+Öffnen Sie Terminal und versuchen Sie:
 
 ```bash
-pdflatex Bachelor-Thesis
-biber Bachelor-Thesis
-pdflatex Bachelor-Thesis
-pdflatex Bachelor-Thesis
+brew --version
 ```
 
-### Problem: Deutsche Umlaute fehlen
+Wenn das nicht funktioniert: [Homebrew installieren](https://brew.sh)
 
-**Lösung:** Überprüfen Sie die Datei-Encoding (UTF-8) und `\usepackage[utf8]{inputenc}`.
+Dann nochmal:
 
-### Problem: Zu viele/zu wenige Seiten
+```bash
+brew install --cask mactex-no-gui
+```
 
-**Lösung:** Passen Sie Abstände an:
+**Für Windows:**
 
-- `\vspace{1cm}` für manuellen Abstand
-- `parskip=full` in `preambel/settings.tex`
-- Zeilenabstand in `preambel/preambel.tex` (`\onehalfspacing`)
+- Laden Sie TeX Live direkt herunter (nicht über Homebrew)
+- Gehen Sie zu: [TeX Live Download](https://www.tug.org/texlive/windows.html)
 
-## Unterstützung
+## Nächste Schritte
 
-- **Fragen zur Vorlage**: GitHub Issues
-- **LaTeX-Tipps**: CTAN, TeXStackExchange
-- **Deutsche Typografie**: DUDEN, Krimpen "Typographisches Gestalten"
+### Sie haben Ihre Thesis fertig geschrieben?
+
+1. **PDF exportieren:** Das PDF ist bereits erstellt (rechts im VS Code sichtbar)
+2. **Speichern:** `Cmd+S` ein letztes Mal
+3. **PDF speichern:** Machen Sie einen Rechtsklick auf das PDF → "Speichern unter" → auf Ihren Computer
+
+### Sie brauchen Help?
+
+**Fragen zur Vorlage:**
+
+- Schauen Sie in [GitHub Issues](https://github.com/thm-mni-ii/thesis-template/issues)
+- Oder erstellen Sie eine neue Issue
+
+**LaTeX-Fragen allgemein:**
+
+- [TeXStackExchange](https://tex.stackexchange.com) (englisch)
+- Google: "LaTeX [Ihr Problem]"
+
+**Deutsche Hochschul-Richtlinien:**
+
+- Fragen Sie Ihre Hochschule nach Thesis-Richtlinien (Formatierung, Seitenzahlen, etc.)
+- Diese Vorlage ist allgemein gehalten und sollte passen
 
 ## Lizenz
 
