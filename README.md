@@ -365,6 +365,48 @@ cd thesis-template
 - Bearbeiten Sie die Dateien in `content/` und fügen Sie Ihre Inhalte hinzu.
 - Speichern Sie Ihre Änderungen (`Cmd+S` / `Ctrl+S`), und das PDF wird automatisch aktualisiert.
 
+## Kompilierung: So füllen Sie alle Verzeichnisse korrekt
+
+LaTeX benötigt **mehrere Durchläufe**, um alle Verzeichnisse (Inhaltsverzeichnis, Tabellen, Abbildungen, Literatur) korrekt zu füllen. 
+
+### In VS Code (Automatisch - Empfohlen)
+
+LaTeX Workshop kompiliert automatisch beim Speichern, aber nicht immer oft genug. Wenn Verzeichnisse leer sind:
+
+1. Speichern Sie die Datei **3-4 Mal hintereinander** (`Cmd+S` / `Ctrl+S`)
+2. Warten Sie jeweils ~10 Sekunden zwischen den Speichervorgängen
+3. Alle Verzeichnisse sollten jetzt gefüllt sein
+
+### Im Terminal (Manuell - Volle Kontrolle)
+
+Für **garantiert vollständige** Verzeichnisse und Literatur:
+
+```bash
+cd /pfad/zu/thesis-template
+
+# Schritt 1: Erste Kompilierung (erstellt .aux, .toc, .lot, .lof Dateien)
+pdflatex Thesis.tex
+
+# Schritt 2: Literatur verarbeiten (nur wenn Sie Zitate haben)
+biber Thesis
+
+# Schritt 3: Zweite Kompilierung (integriert Literaturverzeichnis)
+pdflatex Thesis.tex
+
+# Schritt 4: Dritte Kompilierung (aktualisiert alle Verzeichnisse und Referenzen)
+pdflatex Thesis.tex
+```
+
+**Ergebnis:** Thesis.pdf mit vollständig gefüllten Verzeichnissen (Inhalt, Tabellen, Abbildungen, Literatur).
+
+### Warum mehrere Durchläufe?
+
+- **1. Durchlauf:** LaTeX sammelt alle Kapitel, Tabellen, Abbildungen und schreibt sie in Hilfsdateien (.toc, .lot, .lof)
+- **2. Durchlauf:** LaTeX liest diese Hilfsdateien und baut die Verzeichnisse
+- **3. Durchlauf:** LaTeX aktualisiert alle Seitenzahlen und Querverweise
+
+**Faustregel:** Nach größeren Änderungen (neue Kapitel, Tabellen, Abbildungen) → 3× kompilieren
+
 ## Troubleshooting (für Anfänger)
 
 ### Problem: "Ich sehe kein PDF nach Speichern"
@@ -381,6 +423,22 @@ cd thesis-template
 - Klicken Sie auf eine Warnung → VS Code springt zur fehlerhaften Zeile
 - Fixer Sie das Problem (Tippfehler, `\` vergessen, etc.)
 - Speichern Sie nochmal
+
+### Problem: "Inhaltsverzeichnis / Tabellenverzeichnis ist leer"
+
+**Ursache:** LaTeX braucht mehrere Durchläufe, um Verzeichnisse zu füllen.
+
+**Lösung:**
+
+1. Speichern Sie die Datei **3× hintereinander** (`Cmd+S`)
+2. Warten Sie jeweils ~10 Sekunden
+3. Verzeichnisse sollten jetzt gefüllt sein
+
+**Alternative (Terminal):**
+
+```bash
+pdflatex Thesis.tex && pdflatex Thesis.tex && pdflatex Thesis.tex
+```
 
 ### Problem: "Fehler: Undefined control sequence"
 
