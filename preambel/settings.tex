@@ -1,55 +1,32 @@
 %%% === Textbody ==============================================================
 \KOMAoptions{%
-   DIV=11,% (Size of Text Body, higher values = greater textbody)
-   % DIV=calc % (also areaset/classic/current/default/last) 
-   % -> after setting of spacing necessary!   
-   BCOR=5mm% (Bindekorrektur)
+   DIV=11,%        % Größe des Satzspiegels (höher = größer)
+   BCOR=5mm%       % Bindekorrektur für gebundene Arbeiten
 }%
-%%% === Headings ==============================================================
+
+%%% === Überschriften ==========================================================
 \KOMAoptions{%
-   %%%% headings
-	% headings=small,  % Small Font Size, thin spacing above and below
-   % headings=normal, % Medium Font Size, medium spacing above and below
-   headings=big, % Big Font Size, large spacing above and below
-   %
-   headings=noappendixprefix, % chapter in appendix as in body text
-	headings=nochapterprefix,  % no prefix at chapters
-   % headings=appendixprefix,   % inverse of 'noappendixprefix'
-   % headings=chapterprefix,    % inverse of 'nochapterprefix'
-   % headings=openany,   % Chapters start at any side
-   % headings=openleft,  % Chapters start at left side
-   headings=openright, % Chapters start at right side      
-   %%% Add/Dont/Auto Dot behind section numbers 
-   %%% (see DUDEN as reference)
-   % numbers=autoenddot
-   % numbers=enddot
-   numbers=noenddot
-   % secnumdepth=3 % depth of sections numbering (???)
+   headings=big,%             % Große Überschriften mit viel Abstand
+   headings=noappendixprefix,% Keine speziellen Anhang-Präfixe
+   headings=nochapterprefix,%  % Keine Nummern-Präfixe bei Kapiteln
+   headings=openright,%        % Kapitel starten auf rechter Seite
+   numbers=noenddot%           % Kein Punkt nach Kapitelnummern
 }%
 \setcounter{secnumdepth}{3}
-%%% === Page Layout ===========================================================
-\KOMAoptions{% (most options are for package typearea)
-   twoside=true, % two side layout (alternating margins, standard in books)
-   % twoside=false, % single side layout 
-   % twoside=semi,  % two side layout (non alternating margins!)
-   %
-   twocolumn=false, % (true)
-   %
+
+%%% === Seitenlayout ===========================================================
+\KOMAoptions{%
+   twoside=true,%      % Zweiseitige Darstellung (Buch-Standard)
+   twocolumn=false,%   % Einspaltig
    headinclude=false,%
    footinclude=false,%
-   mpinclude=false,%      
-   %
-   headlines=2.1,%
-	% headheight=2em,%
-   headsepline=true,%
-   footsepline=false,%
-   cleardoublepage=empty %plain, headings
+   headsepline=true,%  % Linie unter Kopfzeile
+   cleardoublepage=empty%
 }%
-%%% === Paragraph Separation ==================================================
+
+%%% === Absatzformatierung =====================================================
 \KOMAoptions{%
-   parskip=full, % full line spacing between paragraphs (German convention)
-   % parskip=half, % half line spacing alternative
-   % parskip=relative, % adjust according to fontsize
+   parskip=full%  % Deutsche Konvention: Keine Einrückung, Abstand zwischen Absätzen
 }%
 %%% === Table of Contents =====================================================
 \setcounter{tocdepth}{3} % Depth of TOC Display

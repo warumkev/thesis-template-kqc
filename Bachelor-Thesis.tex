@@ -1,33 +1,31 @@
-%% Dokumentenklasse (Koma Script) -----------------------------------------
+%% Dokumentenklasse (KOMA-Script) ==========================================
+%% scrreprt: Report-Klasse mit Chaptern, ideal für Abschlussarbeiten
 \documentclass[%
-   %draft,     % Entwurfsstadium
-   final,      % fertiges Dokument
-	 % --- Paper Settings ---
-   paper=a4,% [Todo: add alternatives]
-   paper=portrait, % landscape
-   pagesize=auto, % driver
-   % --- Base Font Size ---
-   fontsize=12pt,%
-	 % --- Koma Script Version ---
-   version=last, %
- ]{scrreprt} % Classes: scrartcl, scrreprt, scrbook
+   final,%              % Finales Dokument (vs. draft)
+   paper=a4,%           % DIN A4 Papierformat
+   pagesize=auto,%      % PDF-Seitengröße automatisch einstellen
+   fontsize=12pt,%      % Schriftgröße 12pt (Standard für Abschlussarbeiten)
+   version=last%        % Neueste KOMA-Script Version
+]{scrreprt}
 
 
-% Encoding der Dateien (sonst funktionieren Umlaute nicht)
+% Text-Encoding für UTF-8 Umlaute und Sonderzeichen
 \usepackage[utf8]{inputenc}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%
-%    SET LANGUAGE       %
-%%%%%%%%%%%%%%%%%%%%%%%%%
-\def\lang{ngerman} % Options: english or ngerman
+%% Spracheinstellung ========================================================
+%% Options: ngerman (Deutsch, neue Rechtschreibung), english (Englisch)
+\def\lang{ngerman}
 
-% The used tool and the reason; remove command if it does not apply
-\def\declareUseOfGenerativeAITool{ChatGPT~4}
+%% KI-Tools Declaration (optional) ==========================================
+%% Bitte ausfüllen, wenn KI-Tools bei der Erstellung verwendet wurden
+%% \def\declareUseOfGenerativeAITool{ChatGPT~4}
 
-%%% Preambel
+%% Preambel laden ===========================================================
 \input{preambel/settings}
 \input{preambel/preambel}
 
+%% Metadaten der Arbeit ====================================================
+%% Bitte alle Felder ausfüllen für korrekte Anzeige im PDF
 \author{Maria Musterfrau}
 \studentID{1234567}
 \studentAddress{Musterstraße 1, 12345 Musterstadt}
@@ -37,8 +35,7 @@
 \firstReferee{Prof. Dr. Klaus Quibeldey-Cirkel}
 \secondReferee{Prof. Dr. Philipp Diebold}
 
-%
-%%%% Neue Befehle
+%% Makros und benutzerdefinierte Befehle ====================================
 \input{macros/newcommands}
 \input{macros/TableCommands}
 
