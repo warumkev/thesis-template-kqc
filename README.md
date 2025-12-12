@@ -89,7 +89,7 @@ Das war's! Der Automat läuft jetzt.
 #### ✅ Test: Funktioniert alles?
 
 1. Öffnen Sie diese Vorlage in VS Code: `Datei` → `Ordner öffnen` → `thesis-template`
-2. Öffnen Sie `Bachelor-Thesis.tex`
+2. Öffnen Sie `Thesis.tex`
 3. Drücken Sie `Cmd+S` (Mac) oder `Ctrl+S` (Windows/Linux)
 4. Warten Sie 10 Sekunden...
 5. Ein PDF sollte auf der rechten Seite erscheinen
@@ -103,7 +103,7 @@ Wenn nein: Siehe Abschnitt "Troubleshooting" unten.
 ### Workflow in VS Code
 
 1. **Projekt öffnen:** `Datei` → `Ordner öffnen` → `thesis-template` wählen
-2. **Hauptdatei öffnen:** `Bachelor-Thesis.tex` (doppelklick)
+2. **Hauptdatei öffnen:** `Thesis.tex` (doppelklick)
 3. **Ihre Metadaten eintragen:** Zeilen 31-37 ausfüllen (Ihr Name, Titel, etc.)
 4. **Inhalt bearbeiten:** In den Dateien unter `content/` schreiben
 5. **Speichern:** `Cmd+S` (Mac) oder `Ctrl+S` (Windows/Linux)
@@ -185,11 +185,11 @@ Option B: **Ohne Git** (manuell):
 1. Öffnen Sie VS Code
 2. `Datei` → `Ordner öffnen`
 3. Wählen Sie den Ordner `thesis-template`
-4. Öffnen Sie die Datei `Bachelor-Thesis.tex` (doppelklick)
+4. Öffnen Sie die Datei `Thesis.tex` (doppelklick)
 
 ### 3. Metadaten eintragen
 
-Öffnen Sie `Bachelor-Thesis.tex` und suchen Sie Zeilen 31-37:
+Öffnen Sie `Thesis.tex` und suchen Sie die Metadaten-Sektion:
 
 ```tex
 %% Metadaten der Arbeit
@@ -246,7 +246,7 @@ Das war's!
 
 ```text
 thesis-template/
-├── Bachelor-Thesis.tex          # Hauptdatei
+├── Thesis.tex                   # Hauptdatei
 ├── preambel/
 │   ├── settings.tex             # KOMA-Script Konfiguration
 │   ├── preambel.tex             # Paket-Definitionen
@@ -282,7 +282,7 @@ thesis-template/
 
 ### Ich will nur englische Arbeit schreiben
 
-Öffnen Sie `Bachelor-Thesis.tex`, Zeile 16:
+Öffnen Sie `Thesis.tex`, Spracheinstellung:
 
 ```tex
 \def\lang{english}
@@ -389,7 +389,7 @@ Das bedeutet: Sie haben einen Befehl geschrieben, den LaTeX nicht kennt.
 **Häufige Fehler:**
 
 - `\textbf{fett}` statt `\textbf fett` (Klammern vergessen)
-- `\chapter{Titel}` aber nicht in Hauptdatei (muss in `Bachelor-Thesis.tex` sein)
+- `\chapter{Titel}` aber nicht in Hauptdatei (muss in `Thesis.tex` sein)
 
 Schauen Sie im Problems-Panel, welche Zeile der Fehler ist, und überprüfen Sie die Syntax.
 

@@ -198,6 +198,14 @@
 %%% Komma als Dezimaltrennzeichen im Mathe-Modus
 \usepackage{icomma}
 
+%%% Maßeinheiten & Zahlenformatierung (korrekter Abstand bei Prozentangaben)
+\usepackage{siunitx}
+\sisetup{
+	detect-all = true,
+	locale = DE,        % Deutsche Konventionen (Dezimal-Komma)
+	per-mode = symbol   % Prozent als Symbol mit korrekt gesetztem Abstand
+}
+
 %%% Einheiten und Zahlen formatieren (WICHTIG!)
 \usepackage[locale=DE]{siunitx}
 

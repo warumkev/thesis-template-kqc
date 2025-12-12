@@ -41,13 +41,13 @@
   >
 ]>
 <requests version="1.0">
-  <internal package="biblatex" priority="9" active="1">
+  <internal package="biblatex" priority="9" active="0">
     <generic>latex</generic>
     <provides type="dynamic">
-      <file>Bachelor-Thesis.bcf</file>
+      <file>Thesis.bcf</file>
     </provides>
     <requires type="dynamic">
-      <file>Bachelor-Thesis.bbl</file>
+      <file>Thesis.bbl</file>
     </requires>
     <requires type="static">
       <file>blx-dm.def</file>
@@ -61,23 +61,23 @@
       <file>ngerman.lbx</file>
     </requires>
   </internal>
-  <external package="biblatex" priority="5" active="1">
+  <external package="biblatex" priority="5" active="0">
     <generic>biber</generic>
     <cmdline>
       <binary>biber</binary>
-      <infile>Bachelor-Thesis</infile>
+      <infile>Thesis</infile>
     </cmdline>
     <input>
-      <file>Bachelor-Thesis.bcf</file>
+      <file>Thesis.bcf</file>
     </input>
     <output>
-      <file>Bachelor-Thesis.bbl</file>
+      <file>Thesis.bbl</file>
     </output>
     <provides type="dynamic">
-      <file>Bachelor-Thesis.bbl</file>
+      <file>Thesis.bbl</file>
     </provides>
     <requires type="dynamic">
-      <file>Bachelor-Thesis.bcf</file>
+      <file>Thesis.bcf</file>
     </requires>
     <requires type="editable">
       <file>bib/BibtexDatabase.bib</file>

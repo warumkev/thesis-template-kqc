@@ -90,8 +90,8 @@
 \nocite{*}
 \printbibliography[heading=bibintoc, title=Literaturverzeichnis]
 
-% Symbolverzeichnis (Begriffserklärung)
-\IfDefined{printindex}{\newpage\printindex{}}
+% Index (Sachregister) inhaltlich nach dem Literaturverzeichnis und im TOC aufführen
+\IfDefined{printindex}{\cleardoublepage\addcontentsline{toc}{chapter}{Index}\printindex{}}
 \IfDefined{printnomenclature}{\printnomenclature{}}
 % 'Symbolverzeichnis' ins Inhaltsverzeichnis
 \addcontentsline{toc}{chapter}{Abkürzungsverzeichnis}
