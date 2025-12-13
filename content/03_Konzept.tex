@@ -8,30 +8,65 @@
 
 \section{Übersicht des Lösungsansatzes}
 
-Aus Kapitel \ref{ch:hintergrund} abgeleitet entwerfen wir eine referenzierbare Agentenarchitektur für Software Engineering. Sie kombiniert Planung (Policy), Werkzeugnutzung (z.\,B. Linter, Tests, VCS), Gedächtnis (episodisch/semantisch) und Sicherheitsmechanismen (Filter, Sandboxing, Quoten).\footnote{\emph{Referenzierbar} bedeutet hier, dass die Architektur dokumentiert und in anderen Projekten anwendbar ist.}
+Aus Kapitel \ref{ch:hintergrund} abgeleitet entwerfen wir eine referenzierbare Agentenarchitektur für Software Engineering. Sie kombiniert Planung (ReAct-basierte Policy), Werkzeugnutzung (Linter, Tests, VCS, File-Operations), episodisches Gedächtnis und mehrschichtige Sicherheitsmechanismen (Input-Filter, Sandboxing, Quoten).\footnote{\emph{Referenzierbar} bedeutet hier, dass die Architektur dokumentiert und in anderen Projekten anwendbar ist.}
+
+Der Kern der Architektur folgt dem \emph{Sense-Plan-Act-Reflect}-Zyklus:
+
+\begin{enumerate}
+  \item \textbf{Sense:} Erfassen des aktuellen Zustands (Codebase, Fehlermeldungen, Test-Outputs)
+  \item \textbf{Plan:} Dekomposition des Ziels in ausführbare Teilschritte
+  \item \textbf{Act:} Ausführung von Tool-Aufrufen und Code-Operationen
+  \item \textbf{Reflect:} Selbstkritische Bewertung der Ergebnisse und Anpassung der Strategie
+\end{enumerate}
+
+Diese Schleife wird iterativ wiederholt, bis das Ziel erreicht ist oder eine Abbruchbedingung eintritt (max. Schritte, Timeout, Fehlerrate).
 
 \section{Architektur und Design}
 
-Das Konzept basiert auf folgenden Designprinzipien:\footnote{Diese Prinzipien orientieren sich an etablierten Softwareentwicklungs-Patterns und Best Practices.}
+Die Architektur basiert auf folgenden Designprinzipien:\footnote{Diese Prinzipien orientieren sich an etablierten Softwareentwicklungs-Patterns und Best Practices aus \cite{sommerville2015software}.}
 
 \textquote[\cite{miller2017chapter}]{Gute Architektur bedeutet, dass Komponenten modular, austauschbar und wartbar sind, um langfristig Wartungskosten zu minimieren.}
 
-\begin{itemize}
-  \item Modularität: Komponenten sind unabhängig und austauschbar
-  \item Skalierbarkeit: Das System wächst mit den Anforderungen
-  \item Wartbarkeit: Code ist verständlich und dokumentiert
-  \item Robustheit: Fehlertoleranz und Zuverlässigkeit
-\end{itemize}
+\subsection{Designprinzipien}
 
-Abbildung \ref{fig:agent-architektur} zeigt eine schematische Architektur. Der \emph{Agent Controller} erhält ein Ziel, plant Schritte, ruft Tools auf (z.\,B. \enquote{Run Tests}, \enquote{Format Code}), schreibt relevante Informationen ins Gedächtnis und bewertet Zwischenergebnisse (Selbstkritik).\footnote{Vgl. \cite{miller2017chapter} für detaillierte Architekturprinzipien.} Ein \emph{Safety Layer} erzwingt Richtlinien (z.\,B. Dateisystemzugriffe, Rate-Limits).
+\begin{description}
+  \item[Modularität:] Klare Trennung zwischen Policy-Logic, Tool-Adaptern, Gedächtnis und Safety-Layer. Komponenten kommunizieren über wohldefinierte Interfaces.
+  
+  \item[Skalierbarkeit:] Architektur unterstützt parallele Tool-Ausführung, asynchrone Operationen und Streaming für große Outputs.
+  
+  \item[Wartbarkeit:] Strukturierte Logging, Tracing und Debugging-Tools. Deterministische Reproduzierbarkeit durch Seed-Control.
+  
+  \item[Robustheit:] Fehlertoleranz durch Retry-Mechanismen, Timeouts, Circuit-Breakers. Graceful Degradation bei Teil-Ausfällen.
+  
+  \item[Sicherheit:] Defense-in-depth: Input-Validation, Sandboxing, Least-Privilege, Audit-Logging.
+\end{description}
+
+\subsection{Architekturkomponenten}
+
+Abbildung \ref{fig:agent-architektur} zeigt die Kernkomponenten der Architektur:\footnote{Vgl. \cite{miller2017chapter} für detaillierte Architekturprinzipien.}
+
+\begin{description}
+  \item[Agent Controller:] Zentrale Steuerungseinheit. Implementiert die ReAct-Loop (Reasoning, Action, Observation). Nutzt LLM-API für Planung und Reflexion.
+  
+  \item[Tool Registry:] Verwaltung verfügbarer Tools mit Metadaten (Name, Beschreibung, Schema, Permissions). Ermöglicht Tool-Discovery und dynamisches Routing.
+  
+  \item[Tool Adapters:] Wrapper für externe Tools (Tests, Linter, VCS). Standardisieren Input/Output-Formate. Implementieren Retry-Logic und Error-Handling.
+  
+  \item[Memory Manager:] Verwaltet episodisches (konkrete Ereignisse) und semantisches (Wissen) Gedächtnis. Nutzt Vektor-DB für Retrieval-Augmented Generation (RAG).
+  
+  \item[Safety Layer:] Interceptor für alle Tool-Calls. Prüft Permissions, erzwingt Rate-Limits, loggt kritische Operationen. Kann malicious Calls blockieren.
+  
+  \item[Context Manager:] Optimiert Token-Nutzung durch intelligentes Pruning, Summarization, Chunking. Kritisch für lange Codebases.
+\end{description}
 
 \begin{figure}[ht]
 \centering
+\resizebox{\textwidth}{!}{%
 \begin{tikzpicture}[
-  node distance=10mm and 14mm,
+  node distance=8mm and 10mm,
   every node/.style={font=\small},
-  box/.style={draw, rounded corners, align=center, inner sep=4pt, minimum width=35mm, minimum height=10mm},
-  io/.style={draw, align=center, inner sep=4pt, minimum width=30mm, minimum height=8mm},
+  box/.style={draw, rounded corners, align=center, inner sep=3pt, minimum width=28mm, minimum height=9mm},
+  io/.style={draw, align=center, inner sep=3pt, minimum width=24mm, minimum height=7mm},
   >={Stealth[length=2.2mm]}
 ]
 % Nodes
@@ -51,48 +86,196 @@ Abbildung \ref{fig:agent-architektur} zeigt eine schematische Architektur. Der \
 \draw[->] (controller) |- (memory);
 \draw[->] (memory) -| (controller);
 
-\end{tikzpicture}
+\end{tikzpicture}}
 \caption{Agentenarchitektur für Software Engineering mit agentic AI (TikZ-Diagramm)}
 \label{fig:agent-architektur}
 \end{figure}
 
-\section{Mathematische Grundlagen}
+\subsection{ReAct-Loop im Detail}
 
-Falls erforderlich, können mathematische Modelle dargestellt werden:
+Der Agent Controller implementiert folgende Schleife:
 
-\[
-  f(x) = \sum_{i=1}^{n} x_i \cdot w_i
-\]
+\begin{enumerate}
+  \item \textbf{Thought (Reasoning):} LLM generiert Reasoning-Step: „Was weiß ich? Was fehlt? Welcher nächste Schritt ist sinnvoll?"
+  
+  \item \textbf{Action:} Auswahl und Parametrisierung eines Tools. Beispiel: \texttt{run\_tests(module="auth")}
+  
+  \item \textbf{Observation:} Tool-Output wird strukturiert zurückgegeben. Beispiel: „3 tests failed in auth/test\_login.py"
+  
+  \item \textbf{Reflection:} Bewertung des Outputs: „Erfolgreich? Fehler? Next steps?"
+  
+  \item Wiederholung oder Terminierung (Ziel erreicht / Max-Steps / Fehler)
+\end{enumerate}
 
-wobei $x_i$ die Eingabewerte und $w_i$ die Gewichtungen darstellen.
+Dies entspricht dem in \cite{yao2023react} beschriebenen Pattern, erweitert um explizite Reflexion \cite{shinn2023reflexion}.
+
+\subsection{Tool-Interface-Design}
+
+Jedes Tool implementiert ein standardisiertes Schema:
+
+\begin{lstlisting}[style=Python, caption={Tool-Interface-Schema (Pseudocode)}, label={lst:tool-schema}]
+class Tool(Protocol):
+    name: str                    # eindeutiger Identifier
+    description: str             # human-readable Beschreibung
+    parameters: JSONSchema       # Input-Parameter als Schema
+    required_permissions: List[str]  # z.B. ["fs:read", "process:spawn"]
+    
+    def execute(self, **kwargs) -> ToolResult:
+        """Fuehrt Tool aus und gibt strukturiertes Ergebnis zurueck"""
+        pass
+
+@dataclass
+class ToolResult:
+    success: bool
+    output: str | dict
+    metadata: dict  # z.B. execution_time, tokens_used
+    error: Optional[str]
+\end{lstlisting}
+
+Diese Standardisierung ermöglicht:
+\begin{itemize}
+  \item Automatische Tool-Discovery und -Registrierung
+  \item Validation von Inputs durch JSON Schema
+  \item Permission-Checking vor Ausführung
+  \item Strukturierte Error-Handling
+\end{itemize}
 
 \section{Methodik}
 
-Abbildung \ref{fig:agent-workflow} illustriert den typischen Ablauf einer agentischen Sitzung. Der Agent empfängt ein Ziel, plant Schritte, führt Tools sequenziell aus, sammelt Feedback und entscheidet über weitere Schritte (Schleife) bis zur Fertigstellung.
+Die Entwicklung und Evaluation der Architektur folgt einem systematischen Vorgehen.
 
-\begin{figure}[ht]
+\subsection{Entwicklungsmethodik}
+
+Das Vorgehen orientiert sich an Design Science Research \cite{sommerville2015software}:
+
+\begin{enumerate}
+  \item \textbf{Anforderungsanalyse:} Ableitung konkreter Requirements aus verwandten Arbeiten und Benchmarks (SWE-bench, HumanEval)
+  
+  \item \textbf{Architekturdesign:} Entwicklung der Referenzarchitektur (Abbildung \ref{fig:agent-architektur}) mit Fokus auf Modularität
+  
+  \item \textbf{Prototyping:} Iterative Implementierung der Kernkomponenten in Python
+  
+  \item \textbf{Evaluation:} Benchmark-Tests und Metriken-Erhebung (siehe Kapitel \ref{ch:realisierung})
+  
+  \item \textbf{Refinement:} Verbesserung basierend auf Evaluationsergebnissen
+\end{enumerate}
+
+Abbildung \ref{fig:agent-workflow} illustriert den ReAct-Zyklus einer agentischen Sitzung. Der Agent empfängt ein Ziel, sammelt Kontext, plant Schritte, führt Tools aus, verarbeitet Feedback und reflektiert über Zwischenergebnisse. Diese Schleife wiederholt sich bis das Ziel erreicht oder abgebrochen wird.
+
+\begin{figure}[p!]
 \centering
-\includegraphics[width=0.9\textwidth]{images/agent-workflow.png}
-\caption{Workflow eines agentischen Systems: Planung, Tool-Ausführung, Feedback-Schleife (Mermaid-Diagramm)}
+\includegraphics[width=\textwidth, height=0.95\textheight, keepaspectratio]{images/agent-workflow.png}
+\caption{ReAct Agent Workflow: Zyklisches Reasoning und Acting Paradigma mit Fehlertoleranz}
 \label{fig:agent-workflow}
 \end{figure}
 
-Die Realisierung folgt einem systematischen Vorgehen und referenziert Tabelle \ref{tab:agententypen} sowie Abbildung \ref{fig:agent-architektur}:
+\subsection{Evaluationsmethodik}
+
+Die Evaluation erfolgt anhand mehrerer Dimensionen:
+
+\begin{description}
+  \item[Funktionale Korrektheit:] Erfolgsrate bei definierten SE-Tasks (Refactoring, Test-Fixing, Linting)
+  
+  \item[Effizienz:] Token-Verbrauch, Laufzeit, Anzahl Tool-Calls
+  
+  \item[Robustheit:] Verhalten bei fehlerhaften Tool-Outputs, malformed Inputs
+  
+  \item[Sicherheit:] Resistenz gegen Prompt-Injection, unauthorized File-Access
+\end{description}
+
+Konkrete Metriken werden in Kapitel \ref{ch:realisierung} definiert und gemessen.
+
+\subsection{Testszenarien}
+
+Drei repräsentative Szenarien wurden definiert:
 
 \begin{enumerate}
-  \item Anforderungsanalyse: Präzise Definition der Ziele
-  \item Designphase: Architektur und Schnittstellen festlegen
-  \item Implementierungsphase: Umsetzung des Designs
-  \item Testphase: Validierung und Verifikation
-  \item Optimierungsphase: Performance und Qualität verbessern
+  \item \textbf{Szenario A: Automated Refactoring}
+    \begin{itemize}
+      \item Ziel: Extract-Function auf komplexe Methode anwenden
+      \item Tools: AST-Parser, Linter, Tests
+      \item Erfolg: Refactoring korrekt + Tests bestehen
+    \end{itemize}
+  
+  \item \textbf{Szenario B: Test Failure Diagnosis}
+    \begin{itemize}
+      \item Ziel: Failing tests debuggen und fixen
+      \item Tools: Test-Runner, Debugger, Code-Editor
+      \item Erfolg: Tests grün + keine Regressionen
+    \end{itemize}
+  
+  \item \textbf{Szenario C: Code Review Automation}
+    \begin{itemize}
+      \item Ziel: PR reviewen und Feedback geben
+      \item Tools: Diff-Viewer, Static Analysis, Style-Checker
+      \item Erfolg: Relevantes Feedback + keine False-Positives
+    \end{itemize}
 \end{enumerate}
+
+\section{Sicherheits- und Safety-Mechanismen}
+
+Da Agents Code ausführen und Dateien modifizieren, sind robuste Sicherheitsmechanismen essentiell.
+
+\subsection{Input-Validation}
+
+Alle LLM-generierten Tool-Calls werden validiert:
+\begin{itemize}
+  \item JSON-Schema-Validation der Parameter
+  \item Whitelisting erlaubter File-Paths
+  \item Sanitization von Shell-Commands
+  \item Detection von Prompt-Injection-Patterns
+\end{itemize}
+
+\subsection{Sandboxing}
+
+Code-Execution erfolgt in isolierten Umgebungen:
+\begin{itemize}
+  \item Docker-Container mit restriktiven Permissions
+  \item Readonly-Filesystem (außer explizit erlaubte Directories)
+  \item Network-Isolation (kein Internet-Zugriff außer whitelisted APIs)
+  \item Resource-Limits (CPU, Memory, Disk)
+\end{itemize}
+
+\subsection{Audit-Logging}
+
+Alle kritischen Operationen werden geloggt:
+\begin{itemize}
+  \item Tool-Calls mit Timestamp, User, Parameters
+  \item File-Modifications (Before/After-Diffs)
+  \item Permission-Denials und Security-Alerts
+  \item LLM-API-Calls mit Token-Counts
+\end{itemize}
+
+\subsection{Human-in-the-Loop}
+
+Für kritische Operationen (Deployment, Datenbank-Modifikationen) wird menschliche Bestätigung eingefordert:
+
+\begin{lstlisting}[style=Python, caption={Human-Approval-Mechanismus (Pseudocode)}, label={lst:human-approval}]
+class HumanApprovalRequired(Exception):
+    pass
+
+def execute_critical_tool(tool_name, params):
+    if tool_name in CRITICAL_TOOLS:
+        print(f"Agent moechte {tool_name} ausfuehren mit {params}")
+        approval = input("Approve? [y/N]: ")
+        if approval.lower() != 'y':
+            raise HumanApprovalRequired()
+    
+    return execute_tool(tool_name, params)
+\end{lstlisting}
 
 \section{Abgrenzung zu alternativen Ansätzen}
 
 Dieser Ansatz unterscheidet sich von den in Kapitel \ref{ch:hintergrund} beschriebenen Methoden durch:
 
 \begin{itemize}
-  \item Verbesserte Effizienz durch optimierte Algorithmen
-  \item Bessere Skalierungseigenschaften
-  \item Praktischere Anwendbarkeit
+  \item \textbf{Explizite Sicherheitsmechanismen:} Während viele Forschungsprototypen Safety vernachlässigen, steht es hier im Zentrum
+  
+  \item \textbf{Referenzarchitektur:} Dokumentierte, wiederverwendbare Architektur statt monolithischem System
+  
+  \item \textbf{Praxisfokus:} Evaluation anhand realistischer SE-Workflows, nicht nur synthetische Benchmarks
+  
+  \item \textbf{Tool-Interface-Standards:} Wiederverwendbare Tool-Adapter statt ad-hoc Integrationen
 \end{itemize}
+
+Die Implementierung und empirische Validierung dieser Konzepte erfolgt in Kapitel \ref{ch:realisierung}.

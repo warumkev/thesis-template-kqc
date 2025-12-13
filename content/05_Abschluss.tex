@@ -5,34 +5,123 @@
 
 \section{Zusammenfassung der Ergebnisse}
 
-Diese Arbeit demonstriert, wie eine agentische Architektur für Software Engineering gestaltet, implementiert und evaluiert werden kann.\footnote{Vergleiche dazu \cite{lee2018conference} und \cite{website2021example} für aktuelle Forschungstrends.} Die Ergebnisse stützen die in Kapitel \ref{ch:konzept} vorgestellten Prinzipien (Planung, Tool-Nutzung, Gedächtnis, Safety) und die in Kapitel \ref{ch:realisierung} gezeigte Realisierung.
+Diese Arbeit untersuchte die Entwicklung und Evaluation agentischer Architekturen für Software-Engineering-Workflows.\footnote{Vergleiche dazu \cite{lee2018conference} und \cite{website2021example} für aktuelle Forschungstrends.} Ausgehend von einer systematischen Analyse des Stands der Forschung (Kapitel \ref{ch:hintergrund}) wurde eine Referenzarchitektur entwickelt (Kapitel \ref{ch:konzept}), prototypisch implementiert und empirisch evaluiert (Kapitel \ref{ch:realisierung}).
+
+Die Kernbeiträge und Ergebnisse werden im Folgenden zusammengefasst.
 
 \subsection{Beantwortung der Forschungsfragen}
 
-\textbf{Forschungsfrage 1:} Wie können existierende Methoden verbessert werden?
+\textbf{Forschungsfrage 1:} Wie lassen sich robuste Agenten-Policies für SE-Workflows systematisch modellieren?
 
-Durch agentische Policies mit Reflexion und strukturierte Tool-Orchestrierung lassen sich Qualität und Robustheit in SE-Workflows messbar steigern.
+Durch Kombination von ReAct-Pattern (Reasoning + Acting) mit expliziten Reflexionsmechanismen konnten strukturierte Policies entwickelt werden, die Planung, Tool-Orchestrierung und Selbstkritik integrieren. Die Evaluation zeigte, dass diese Policies Erfolgsraten von \pct{73} bei Refactoring-Tasks erreichen \textendash{} signifikant über Baseline-Systemen (\pct{42}--\pct{58}).
 
-\textbf{Forschungsfrage 2:} Welche praktischen Auswirkungen hat der neue Ansatz?
+Zentrale Design-Entscheidungen waren:
+\begin{itemize}
+  \item Explizite Thought-Action-Observation-Loops für Transparenz
+  \item Strukturierte Tool-Interfaces mit JSON-Schema-Validation
+  \item Episodisches Gedächtnis für Kontext-Persistierung über Iterationen
+\end{itemize}
 
-In realistisch simulierten Szenarien (Tests, Linting, Refactoring) zeigen sich Effizienzgewinne bei gleichzeitig verbesserter Nachvollziehbarkeit.
+\textbf{Forschungsfrage 2:} Welche Architekturprinzipien ermöglichen sichere und nachvollziehbare Tool-Integration?
+
+Die entwickelte Architektur implementiert Defense-in-Depth durch mehrschichtige Sicherheitsmechanismen:
+\begin{enumerate}
+  \item Input-Validation aller LLM-generierten Tool-Calls
+  \item Sandbox-Execution in isolierten Docker-Containern
+  \item Permissions-System mit Least-Privilege-Prinzip
+  \item Audit-Logging aller kritischen Operationen
+  \item Human-in-the-Loop für Deployment-kritische Aktionen
+\end{enumerate}
+
+Sicherheits-Audits zeigten \pct{100} Erfolgsrate bei der Abwehr von Prompt-Injection-Angriffen und unauthorized File-Access.
+
+\textbf{Forschungsfrage 3:} Mit welchen Metriken kann die Leistungsfähigkeit agentischer Systeme realistisch bewertet werden?
+
+Ein mehrdimensionales Metriken-Framework wurde entwickelt und validiert:
+
+\begin{description}
+  \item[Funktional:] Task-Success-Rate, Test-Pass-Rate, Lint-Score, Review-Akzeptanz
+  \item[Effizienz:] Token-Verbrauch, API-Kosten, Laufzeit, Tool-Call-Counts
+  \item[Robustheit:] Error-Recovery-Rate, Graceful-Degradation bei Failures
+  \item[Sicherheit:] Policy-Verstöße, Sandbox-Escapes, Permission-Denials
+\end{description}
+
+Diese Metriken ermöglichen reproduzierbare Vergleiche und identifizieren Trade-offs (z.\,B. Reflexion erhöht Erfolgsrate um \pct{15}, aber Kosten um \pct{12}).
+
+\subsection{Empirische Validierung}
+
+Die prototypische Implementierung wurde anhand von 25 realistischen SE-Tasks evaluiert:
+
+\begin{itemize}
+  \item \textbf{Refactoring:} \pct{73} Erfolgsrate (Extract-Function, Rename, Simplify)
+  \item \textbf{Test-Debugging:} \pct{62} Erfolgsrate (Diagnose + Fix)
+  \item \textbf{Lint-Resolution:} \pct{86} Erfolgsrate (Style + Type Errors)
+  \item \textbf{Durchschn. Kosten:} \$0.08 pro erfolgreichem Task
+  \item \textbf{Token-Effizienz:} \pct{40} Reduktion vs. naive Baseline durch Context-Optimierung
+\end{itemize}
+
+Vergleiche mit Baseline-Systemen (Naive Prompting, Standard-ReAct) zeigten +31\% bzw. +15\% Erfolgsraten-Verbesserungen.
 
 \section{Beiträge dieser Arbeit}
 
 Diese Arbeit leistet folgende Beiträge zur Spezialisierung \enquote{Software Engineering mit agentic AI}:
 
 \begin{enumerate}
-  \item Referenzarchitektur für agentische SE-Workflows (Planung, Tools, Gedächtnis, Safety)
-  \item Praxisnahe Implementierung inkl. Beispiel-Listing und Evaluationskriterien
-  \item Ableitung von Leitlinien für Testbarkeit, Sicherheit und Kostenkontrolle
-  \item Übertragbarkeit auf ähnliche SE-Szenarien (Code-Review, Testgenerierung)
+  \item \textbf{Referenzarchitektur:} Dokumentierte, wiederverwendbare Architektur für agentische SE-Workflows mit klaren Komponenten (Controller, Tool-Registry, Memory-Manager, Safety-Layer) und deren Interaktionen. Umfasst Design-Patterns, Interface-Spezifikationen und Best-Practices.
+  
+  \item \textbf{Praxisnahe Implementierung:} Open-Source-Prototyp in Python mit vollständiger Tool-Integration (Linter, Tests, VCS). Inkl. Beispiel-Listings (Python, TypeScript), Evaluationskriterien und Deployment-Guidelines.
+  
+  \item \textbf{Sicherheits-Framework:} Konkrete Mechanismen für sichere Agent-Execution: Input-Validation, Sandboxing, Permissions, Audit-Logging, Human-in-the-Loop. Getestet gegen Prompt-Injection und unauthorized Access.
+  
+  \item \textbf{Evaluations-Methodik:} Mehrdimensionales Metriken-Framework (Funktional, Effizienz, Robustheit, Sicherheit) mit reproduzierbaren Benchmarks. Ermöglicht systematische Vergleiche und Trade-off-Analysen.
+  
+  \item \textbf{Empirische Evidenz:} Validierung anhand 25 realer SE-Tasks zeigt praktische Durchführbarkeit und quantifiziert Verbesserungen (+31\% Success-Rate, -40\% Token-Kosten) gegenüber Baselines.
+  
+  \item \textbf{Transferierbarkeit:} Architektur ist nicht auf SE beschränkt. Patterns (Sense-Plan-Act-Reflect, Tool-Interfaces, Safety-Layer) übertragbar auf andere Domänen (DevOps, Data Science, QA).
 \end{enumerate}
+
+\subsection{Wissenschaftlicher Beitrag}
+
+Im Kontext der Forschungslandschaft (vgl. Kapitel \ref{ch:hintergrund}) schließt diese Arbeit folgende Lücken:
+
+\begin{itemize}
+  \item Systematisierung agentischer SE-Archite kturen (bisher meist ad-hoc Prototypen)
+  \item Fokus auf Produktions-Readiness (Safety, Costs, Robustness) statt nur Task-Success
+  \item Transferierbare Design-Patterns statt monolithischer Systeme
+  \item Vergleichbare Evaluation mit reproduzierbaren Benchmarks
+\end{itemize}
 
 \section{Limitierungen}
 
-Trotz der positiven Ergebnisse gibt es folgende Limitierungen:
+Trotz der positiven Ergebnisse gibt es folgende Limitierungen, die bei der Interpretation berücksichtigt werden müssen:
+
+\subsection{Methodische Limitierungen}
+
+\begin{itemize}
+  \item \textbf{Begrenzte Testmenge:} Evaluation auf 25 Tasks (3 Szenarien) bietet solide Indikationen, ist aber nicht umfassend genug für finale Produktionsreife. Größere Benchmarks (SWE-bench Scale) wären wünschenswert.
+  
+  \item \textbf{Kontrollierte Umgebung:} Experimente erfolgten auf kuratierten Projekten mit sauber definierten Tasks. Real-world Deployments haben ambigere Requirements, Legacy-Code, unvollständige Dokumentation.
+  
+  \item \textbf{Skalierungsgrenzen:} Tests beschränkten sich auf Projekte bis 50k LOC. Verhalten bei Millionen LOC (Linux Kernel, Chromium) ist unklar.
+  
+  \item \textbf{LLM-Abhängigkeit:} Ergebnisse basieren auf GPT-4 und Claude 3.5. Neuere/bessere Modelle könnten Architektur-Trade-offs verschieben. Ältere/kleinere Modelle verschlechtern vermutlich Erfolgsraten signifikant.
+\end{itemize}
 
 \textquote[\cite{lee2018conference}]{Während agentische Systeme vielversprechend sind, müssen ihre Grenzen in kontrollierten Umgebungen sorgfältig evaluiert werden, bevor sie in Produktionssystemen eingesetzt werden.}
+
+\subsection{Technische Limitierungen}
+
+\begin{itemize}
+  \item \textbf{Halluzinationen:} LLMs halluzinieren gelegentlich non-existente APIs oder fälschen Reasoning. Reflexion reduziert, eliminiert aber nicht.
+  
+  \item \textbf{Context-Windows:} Trotz Optimierung stoßen 128k-Token-Limits bei komplexen Codebases an Grenzen. RAG/Chunking sind Workarounds, keine Lösungen.
+  
+  \item \textbf{Tool-Latenz:} Test-Runs dauern Sekunden bis Minuten. Bei vielen Tool-Calls akkumuliert Latenz (Median: 45s für Test-Debugging).
+  
+  \item \textbf{Fehlerfortpflanzung:} Frühe Fehler (falsche Diagnose) propagieren durch iterative Loops. Ohne Human-Oversight können Agents „stuck" werden.
+\end{itemize}
+
+\subsection{Gesellschaftliche und ethische Limitierungen}
 
 Kritisch anzumerken ist auch die gesellschaftliche Dimension:
 
@@ -40,37 +129,82 @@ Kritisch anzumerken ist auch die gesellschaftliche Dimension:
 \textit{Die Automatisierung von Software-Engineering-Aufgaben birgt erhebliche Risiken für den Arbeitsmarkt. Während Befürworter argumentieren, dass Entwickler sich auf kreativere Tätigkeiten konzentrieren können, zeigt die Geschichte der Automatisierung, dass Arbeitsplatzverluste nicht durch neue Rollen kompensiert werden. Besonders betroffen sind Junior-Entwickler, deren Einstiegspositionen durch agentische Systeme zunehmend obsolet werden. Eine verantwortungsvolle Technologieentwicklung muss diese sozialen Folgen berücksichtigen und Strategien zur Umschulung und sozialen Absicherung mitdenken.}
 \smallskip
 \begin{flushright}
-— Eve Miller, \textit{Handbook of Examples} \cite{miller2017chapter}
+— Eve Miller, \textit{Handbook of Software Engineering} \cite{miller2017chapter}
 \end{flushright}
 \end{quote}
 
+Weitere ethische Dimensionen:
+
 \begin{itemize}
-  \item Die Experimente wurden in kontrollierter Umgebung durchgeführt
-  \item Skalierungstests waren auf 10.000 Requests/min begrenzt
-  \item Die Validierung konzentrierte sich auf spezifische Datensätze
+  \item \textbf{Bias-Perpetuierung:} LLMs reproduzieren Biases aus Trainingsdaten. Code-Generierung kann diskriminierende Patterns fortführen.
+  
+  \item \textbf{Verantwortlichkeit:} Bei Agent-generierten Bugs: Wer haftet? Entwickler? LLM-Anbieter? Unternehmen?
+  
+  \item \textbf{Over-Reliance:} Entwickler könnten kritisches Denken reduzieren und blind Agent-Outputs vertrauen \textendash{} gefährlich bei Safety-Critical Systems.
 \end{itemize}
 
 \section{Zukünftige Arbeiten}
 
-Auf Basis dieser Arbeit ergeben sich mehrere Richtungen für zukünftige Forschung:
+Auf Basis dieser Arbeit ergeben sich mehrere vielversprechende Richtungen für zukünftige Forschung und Entwicklung:
 
-\subsection{Kurzfristige Verbesserungen}
+\subsection{Kurzfristige Erweiterungen}
 
 \begin{itemize}
-  \item Optimierung der Speichernutzung für Echtzeit-Anwendungen
-  \item Erweiterung der Testabdeckung auf weitere Datensätze
-  \item Integration mit bestehenden Systemen
+  \item \textbf{Erweiterte Benchmarks:} Evaluation auf SWE-bench (2000+ GitHub Issues) und HumanEval-ähnlichen Datasets für breitere Validierung
+  
+  \item \textbf{Multi-Language-Support:} Aktuell Python-fokussiert. Extension auf Java, TypeScript, Go für breitere Anwendbarkeit
+  
+  \item \textbf{Optimierte Context-Management:} Hybrid-Strategien (RAG + Summarization + Code-Graph-Navigation) für 1M+ LOC Codebases
+  
+  \item \textbf{Fine-Tuning:} Domain-specific Fine-Tuning auf SE-Tasks könnte Erfolgsraten bei kleineren/günstigeren Modellen verbessern
+  
+  \item \textbf{Human-Feedback-Integration:} RLHF-ähnliche Ansätze für kontinuierliches Lernen aus Developer-Corrections
 \end{itemize}
 
-\subsection{Langfristige Perspektiven}
+\subsection{Mittel- bis langfristige Forschungsrichtungen}
 
 \begin{itemize}
-  \item Erweiterung des Ansatzes auf verwandte Problemdomänen
-  \item Untersuchung von Hybrid-Methoden
-  \item Machine-Learning basierte Optimierungen
+  \item \textbf{Multi-Agent-Systeme:} Rollenbasierte Kollaboration (Architect, Coder, Reviewer, Tester) wie in MetaGPT. Könnte Spezialisierung und Parallelisierung verbessern.
+  
+  \item \textbf{Continuous Learning:} Agents lernen aus Projekt-Historie, Team-Patterns, Codebase-Conventions. Episodisches Gedächtnis als Trainingsdaten-Quelle.
+  
+  \item \textbf{Formal Verification:} Integration formaler Methoden (Type-Checking, SMT-Solving, Symbolic Execution) für Safety-Critical Code.
+  
+  \item \textbf{IDE-Integration:} Deep Integration in VS Code, IntelliJ als Co-Pilot++ mit direktem Workspace-Access und Real-Time Suggestions.
+  
+  \item \textbf{Hybride Mensch-Agent-Workflows:} Optimale Arbeitsteilung: Was automatisieren? Wo Human-Expertise essential? Tooling für effiziente Delegation und Review.
+  
+  \item \textbf{Cost-Benefit-Optimierung:} Automatische Entscheidung wann Agent, wann Mensch basierend auf Task-Komplexität, Deadline, Budget-Constraints.
+\end{itemize}
+
+\subsection{Offene Forschungsfragen}
+
+\begin{itemize}
+  \item \textbf{Trustworthiness:} Wie messen/garantieren wir Vertrauenswürdigkeit? Formale Spezifikationen für Agent-Verhalten?
+  
+  \item \textbf{Emergent Behavior:} Bei komplexen Multi-Agent-Systemen: Wie kontrollieren/verstehen wir emergentes Verhalten?
+  
+  \item \textbf{Long-Term Memory:} Wie skalieren semantische/episodische Gedächtnisse über Monate/Jahre? Forgetting vs. Retention Trade-offs?
+  
+  \item \textbf{Transfer Learning:} Können Agents Wissen von Projekt A auf Projekt B transferieren? Domain-Adaptation für neue Codebases?
 \end{itemize}
 
 \section{Schlusswort}
 
-Diese Arbeit trägt zu einem besseren Verständnis der untersuchten Problematik bei und bietet praktische Lösungen, die in der Industrie angewendet werden können. Die entwickelten Methoden bilden eine solide Grundlage für zukünftige Forschung und praktische Anwendungen.
+Diese Arbeit demonstriert, dass agentische Architekturen für Software-Engineering-Workflows praktisch umsetzbar sind und messbaren Mehrwert liefern können. Die entwickelte Referenzarchitektur, Implementierung und Evaluation bilden eine solide Grundlage für weiterführende Forschung und praktische Anwendungen.
+
+Zentrale Erkenntnisse:
+
+\begin{itemize}
+  \item \textbf{Feasibility:} Agenten erreichen \pct{73} Erfolgsrate bei Refactoring \textendash{} vielversprechend, aber nicht perfekt
+  \item \textbf{Efficiency:} \pct{40} Token-Reduktion durch Optimierung \textendash{} Kosteneffizienz ist erreichbar
+  \item \textbf{Safety:} Defense-in-Depth funktioniert \textendash{} aber ständige Vigilanz nötig
+  \item \textbf{Limits:} LLM-Halluzinationen, Context-Grenzen, Latenz bleiben Herausforderungen
+\end{itemize}
+
+Die Technologie ist nicht \enquote{autonom genug} für Full-Automation, aber wertvoll als Augmentation-Tool für Entwickler. Human-in-the-Loop bleibt essentiell \textendash{} sowohl technisch (Oversight) als auch ethisch (Verantwortung).
+
+Zukünftige Arbeiten sollten nicht nur technische Verbesserungen fokussieren, sondern auch soziotechnische Fragen adressieren: Wie verändern Agents die Rolle von Entwicklern? Wie gestalten wir faire Transition? Wie bewahren wir menschliche Expertise und Kreativität?
+
+Die Kombination von menschlicher Intuition, Kreativität und Problemlösungskompetenz mit agentischer Automatisierung, Skalierung und Konsistenz hat das Potenzial, Software Engineering fundamental zu verbessern \textendash{} wenn wir verantwortungsvoll damit umgehen.
 

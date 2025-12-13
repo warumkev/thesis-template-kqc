@@ -8,61 +8,221 @@
 
 \section{Grundkonzepte}
 
-Dieses Kapitel führt in Grundbegriffe agentischer Systeme ein und bildet die theoretische Basis für Konzept und Implementierung \cite{smith2020example}.\footnote{Die Grundbegriffe basieren auf etablierten Konzepten aus der KI-Forschung, werden aber im Kontext von Software Engineering neu interpretiert.}
+Dieses Kapitel führt in Grundbegriffe agentischer Systeme ein und bildet die theoretische Basis für Konzept und Implementierung.\footnote{Die Grundbegriffe basieren auf etablierten Konzepten aus der KI-Forschung, werden aber im Kontext von Software Engineering neu interpretiert.}
+
+\subsection{Large Language Models: Grundlagen}
+
+Large Language Models (LLMs) sind neuronale Netze, die auf großen Textkorpora trainiert wurden und menschenähnliche Textgenerierung ermöglichen \cite{OpenAI2024GPT4,touvron2023llama}. Basierend auf der Transformer-Architektur \cite{vaswani2017attention} nutzen sie Selbstaufmerksamkeits-Mechanismen (self-attention), um kontextuelle Zusammenhänge über lange Sequenzen hinweg zu erfassen.
+
+Moderne LLMs wie GPT-4, Claude oder Llama 2 verfügen über Milliarden von Parametern und können durch \emph{Few-Shot-Learning} und \emph{In-Context-Learning} Aufgaben lösen, ohne explizit darauf trainiert zu werden. Dies bildet die Grundlage für agentische Anwendungen.
+
+\subsection{Von LLMs zu Agenten: Der Paradigmenwechsel}
+
+Während klassische LLMs primär auf Textvervollständigung spezialisiert sind, zeichnen sich \emph{agentische Systeme} durch folgende erweiterte Fähigkeiten aus \cite{wang2023survey}:
+
+\begin{enumerate}
+  \item \textbf{Zielgerichtetes Handeln:} Der Agent versteht übergeordnete Ziele und plant Schritte zur Zielerreichung
+  \item \textbf{Werkzeugnutzung:} Integration externer Tools (APIs, Datenbanken, Code-Execution)
+  \item \textbf{Gedächtnis:} Persistierung von Kontextinformationen über mehrere Interaktionen hinweg
+  \item \textbf{Reflexion:} Selbstkritische Bewertung eigener Outputs und iterative Verbesserung
+  \item \textbf{Mehrschrittige Planung:} Dekomposition komplexer Aufgaben in Teilschritte
+\end{enumerate}
 
 \subsection{Agentic AI: Begriffe und Bausteine}
 
-Kernbausteine agentischer Systeme sind (i) \emph{Zustand} (Kontext, Ziele, Erinnerungen), (ii) \emph{Policy} (Planung, Aktion, Selbstkritik), (iii) \emph{Werkzeuge} (Funktionen/\enquote{Tools} wie Code-Ausführung, Websuche, VCS) und (iv) \emph{Gedächtnis} (episodisch/semantisch). Orchestrierung umfasst Planung (z.\,B. ReAct), Tool-Auswahl, Fehlerbehandlung und Reflexion.
+Kernbausteine agentischer Systeme sind \cite{smith2020example,yao2023react}:
 
-\subsection{Etablierte Methoden und Frameworks}
+\begin{description}
+  \item[Zustand (State):] Umfasst aktuellen Kontext, Ziele, Erinnerungen und Tool-Status. Der Zustand wird dynamisch aktualisiert.
+  
+  \item[Policy:] Steuert Entscheidungsprozesse (Planung, Aktion, Selbstkritik). Kann regelbasiert oder LLM-gesteuert sein.
+  
+  \item[Werkzeuge (Tools):] Externe Funktionen wie Code-Ausführung, Websuche, Dateizugriff, VCS-Operationen. Tools erweitern die Fähigkeiten des Agenten über reine Textgenerierung hinaus \cite{schick2023toolformer,qin2023tool}.
+  
+  \item[Gedächtnis (Memory):] Speichert episodische (konkrete Ereignisse) und semantische (abstraktes Wissen) Informationen. Kann durch Vektor-Datenbanken oder strukturierte Speicher realisiert werden.
+\end{description}
 
-Relevante Muster sind \emph{Chain-of-Thought}, \emph{ReAct}, \emph{Tree-of-Thought}, \emph{Plan-and-Execute} sowie Graph-basierte Orchestrierung. Praxisnahe Frameworks bieten Funktionen für Tool-Anbindung, Speicherschichten und Kontrollfluss \cite{doe2019research}.\footnote{\emph{ReAct} steht für \enquote{Reasoning and Acting} und ist eines der einflussreichsten Muster für agentische Systeme in der neueren Literatur.}
+Orchestrierung koordiniert diese Komponenten durch Planung (z.\,B. ReAct-Pattern), Tool-Auswahl, Fehlerbehandlung und Reflexion \cite{yao2023react}.
+
+\subsection{Chain-of-Thought und Reasoning-Patterns}
+
+\emph{Chain-of-Thought (CoT)} Prompting \cite{wei2022chain} ermöglicht es LLMs, Zwischenschritte explizit zu formulieren. Dies verbessert die Reasoning-Qualität erheblich:
+
+\begin{quote}
+\textit{„Let's think step by step"} — Typischer CoT-Prompt, der schrittweises Denken anregt
+\end{quote}
+
+Erweiterte Patterns umfassen:
+\begin{itemize}
+  \item \textbf{ReAct} (Reasoning + Acting): Kombiniert Gedankenketten mit Tool-Aufrufen \cite{yao2023react}
+  \item \textbf{Tree-of-Thought}: Exploriert mehrere Reasoning-Pfade parallel
+  \item \textbf{Reflexion}: Self-critique und iterative Verbesserung \cite{shinn2023reflexion}
+\end{itemize}
+
+\subsection{Tool-Nutzung in LLMs}
+
+Die Fähigkeit von LLMs, externe Werkzeuge zu nutzen, ist zentral für praktische Anwendungen. \emph{Toolformer} \cite{schick2023toolformer} zeigte, dass LLMs lernen können, wann und wie Tools aufzurufen sind. ToolLLM \cite{qin2023tool} erweiterte dies auf über 16.000 reale APIs.
+
+Typischer Tool-Calling-Flow:
+\begin{enumerate}
+  \item Agent identifiziert Bedarf für externes Tool
+  \item Generierung strukturierter Tool-Aufruf-Parameter (meist JSON)
+  \item Ausführung durch Host-System
+  \item Integration des Ergebnisses in Kontext
+  \item Fortsetzung der Aufgabe
+\end{enumerate}
+
+\subsection{Etablierte Frameworks und Plattformen}
+
+Praxisnahe Frameworks bieten Abstraktionen für agentische Systeme \cite{doe2019research}:\footnote{\emph{ReAct} steht für \enquote{Reasoning and Acting} und ist eines der einflussreichsten Muster für agentische Systeme in der neueren Literatur.}
+
+\begin{itemize}
+  \item \textbf{LangChain} \cite{chase2023langchain}: Modulare Komponenten für Chains, Agents, Memory
+  \item \textbf{AutoGPT/BabyAGI}: Autonome Task-Decomposition und -Execution
+  \item \textbf{MetaGPT} \cite{hong2023metagpt}: Rollenbasierte Multi-Agent-Kollaboration
+  \item \textbf{Generative Agents} \cite{park2023generative}: Simulation menschlichen Verhaltens
+\end{itemize}
 
 \section{Verwandte Arbeiten}
 
-Es existiert umfangreiche Literatur zu Tool-Nutzung, Langkontext, Agentenplanung und Auswertung. Benchmarks adressieren Code-Qualität, Erfolgsrate (\enquote{task success}), Kosten und Sicherheit.
+Es existiert umfangreiche Literatur zu agentischen Systemen im Allgemeinen und ihrer Anwendung im Software Engineering im Besonderen. Dieser Abschnitt strukturiert relevante Arbeiten nach thematischen Schwerpunkten.
 
-\subsection{Ansatz A: ReAct-ähnliche Planung}
+\subsection{Reasoning-and-Acting-Patterns}
 
-ReAct verbindet reasoning und acting: Das Modell plant Teilschritte, ruft Tools auf und reflektiert. Vorteile: gute Transparenz, einfache Implementierung. Grenzen: längere Latenzen, potentielle Halluzinationen.
+\textbf{ReAct} \cite{yao2023react} etablierte das grundlegende Pattern, bei dem LLMs explizit zwischen Reasoning-Schritten (Denken) und Acting-Schritten (Tool-Aufrufe) alternieren. Das Paper demonstrierte signifikante Verbesserungen bei question-answering und decision-making Tasks.
 
 \textquote[\cite{doe2019research}]{Die Kombination von reasoning und acting führt zu robusteren und transparenteren Systemen, die besser nachvollziehbare Entscheidungen treffen.}
 
-\subsection{Ansatz B: Graph-/Workflow-basierte Orchestrierung}
+Die Vorteile umfassen:
+\begin{itemize}
+  \item Erhöhte Transparenz durch explizite Reasoning-Traces
+  \item Bessere Fehlerdiagnose bei fehlgeschlagenen Tool-Aufrufen
+  \item Möglichkeit zur Intervention und Korrektur
+\end{itemize}
 
-Graphen erlauben robuste Kontrollflüsse (Retry, Branching, Parallelisierung), klare Zustandsübergänge und bessere Testbarkeit. Grenzen: initialer Modellierungsaufwand, Overhead \cite{lee2018conference}.
+Grenzen sind längere Latenzen durch zusätzliche LLM-Aufrufe und potentielle Halluzinationen in Reasoning-Schritten.
+
+\textbf{Reflexion} \cite{shinn2023reflexion} erweitert ReAct um Self-Critique: Der Agent bewertet seine eigenen Outputs und lernt aus Fehlern durch verbal reinforcement. Dies verbessert die Erfolgsrate bei komplexen Tasks um bis zu \pct{20}.
+
+\subsection{Software Engineering Agents}
+
+Speziell für Software Engineering wurden mehrere agentische Systeme entwickelt:
+
+\textbf{SWE-bench} \cite{jimenez2023swe} ist ein Benchmark mit über 2.000 realen GitHub-Issues aus Python-Projekten. Es misst, ob Agenten eigenständig Pull Requests erstellen können, die die Issues lösen. Baseline-Systeme erreichen nur \pct{3}--\pct{5} Erfolgsrate, was die Schwierigkeit unterstreicht.
+
+\textbf{SWE-agent} \cite{yang2024sweagent} demonstrierte, dass optimierte Agent-Computer-Interfaces (ACIs) die Erfolgsrate auf \pct{12.5} steigern können. Zentral sind:
+\begin{itemize}
+  \item Spezialisierte Tools für Navigation, Suche und Editing
+  \item Kontextoptimierte Feedback-Formate
+  \item Iterative Refinement-Loops
+\end{itemize}
+
+\textbf{Agentless} \cite{zhang2024agentless} verfolgte einen minimalistischen Ansatz ohne persistentes Gedächtnis oder komplexe Planung und erreichte dennoch \pct{27} Erfolgsrate durch fokussierte Lokalisierung und Patching-Strategien. Dies zeigt, dass nicht immer maximale Komplexität optimal ist.
+
+\subsection{Multi-Agent-Systeme}
+
+Mehrere Ansätze nutzen rollenbasierte Kollaboration zwischen spezialisierten Agenten:
+
+\textbf{MetaGPT} \cite{hong2023metagpt} simuliert ein Software-Team mit Rollen wie ProductManager, Architect, Engineer und QA. Agents produzieren strukturierte Artefakte (PRDs, Design Docs, Code, Tests) und folgen einem definierten Workflow.
+
+\textbf{Generative Agents} \cite{park2023generative} fokussierte auf realistische Simulation menschlichen Verhaltens durch episodisches Gedächtnis, Reflexion und Planung. Obwohl primär für Simulationen konzipiert, sind die Gedächtnis-Mechanismen auch für SE-Agents relevant.
+
+\textbf{MINDSTORMS} \cite{zhuge2023mindstorms} implementiert Societies-of-Mind-Konzepte mit natürlicher Sprache: Spezialisierte Sub-Agenten lösen Teilprobleme und kommunizieren über strukturierte Protokolle.
+
+\subsection{Graph-/Workflow-basierte Orchestrierung}
+
+Graphen erlauben robuste Kontrollflüsse (Retry, Branching, Parallelisierung), klare Zustandsübergänge und bessere Testbarkeit \cite{lee2018conference}. LangGraph erweitert LangChain um zustandsbasierte Graphen mit deterministischen Übergängen.
+
+Vorteile:
+\begin{itemize}
+  \item Explizite Modellierung von Kontrollfluss
+  \item Einfaches Debugging und Visualisierung
+  \item Unterstützung für Streaming und Parallelisierung
+\end{itemize}
+
+Grenzen: Initialer Modellierungsaufwand, weniger Flexibilität als vollständig LLM-gesteuertes Routing.
+
+\subsection{Evaluations-Benchmarks}
+
+Neben SWE-bench existieren weitere Benchmarks:
+\begin{itemize}
+  \item \textbf{HumanEval/MBPP}: Code-Generierung aus Beschreibungen
+  \item \textbf{APPS}: Algorithm-Problemlösung
+  \item \textbf{CodeContests}: Competitive Programming Tasks
+\end{itemize}
+
+Diese fokussieren primär auf Code-Generierung, nicht auf vollständige agentische Workflows.
 
 \section{Vergleich und Bewertung}
 
-Tabelle \ref{tab:agententypen} vergleicht typische Agententypen. Für Software-Engineering-Aufgaben erweisen sich werkzeugnutzende Agenten mit Reflexion als besonders geeignet. Daraus leitet sich die in Kapitel \ref{ch:konzept} entwickelte Architektur ab.
+Tabelle \ref{tab:agententypen} vergleicht typische Agententypen nach ihren Kernfähigkeiten. Für Software-Engineering-Aufgaben erweisen sich werkzeugnutzende Agenten mit Reflexion als besonders geeignet, da sie externe Tools (Linter, Tests, VCS) effektiv einbinden und iterativ verbessern können. Daraus leitet sich die in Kapitel \ref{ch:konzept} entwickelte Architektur ab.
 
 \begin{table}[ht]
 \centering
-\caption{Agententypen und Fähigkeiten (Beispieltabelle)}
+\caption{Vergleich agentischer Systemtypen nach Fähigkeiten und Anwendungsbereich}
 \label{tab:agententypen}
-\begin{tabular}{L{3.5cm}L{9.5cm}}
+\begin{tabular}{L{3.5cm}L{4.5cm}L{4.5cm}}
 \toprule
-\cellcolor{headercolor}\textcolor{white}{\textbf{Agententyp}} & \cellcolor{headercolor}\textcolor{white}{\textbf{Kurzbeschreibung}} \\
+\cellcolor{headercolor}\textcolor{white}{\textbf{Agententyp}} & \cellcolor{headercolor}\textcolor{white}{\textbf{Kernfähigkeiten}} & \cellcolor{headercolor}\textcolor{white}{\textbf{Typischer Einsatz}} \\
 \midrule
-Reaktiver Agent & Einzelne Schritte ohne längerfristige Planung; geeignet für klar definierte Aufgaben mit geringer Komplexität. \\
+Reaktiver Agent & Direkte Stimulus-Response; kein Gedächtnis; schnelle Reaktionszeit & Einfache Klassifikation, FAQ-Bots, Code-Completion \\
 \rowcolor{rowcolorgray}
-Planender Agent & Erstellt und aktualisiert Pläne; gut für mehrschrittige Aufgaben mit Abhängigkeiten. \\
-Werkzeugnutzender Agent & Ruft externe Tools (z.\,B. Linter, Tests, VCS) auf; hohe praktische Nützlichkeit im Software Engineering. \\
+Planender Agent & Zieldekomposition; Schrittplanung; kein Tool-Aufruf & Aufgabenplanung, Tutorialsysteme, Brainstorming \\
+Werkzeugnutzender Agent & Tool-Integration; API-Calls; Code-Execution & Web-Search, Data Analysis, Simple Automation \\
 \rowcolor{rowcolorgray}
-Mehragentensystem & Rollenbasierte Zusammenarbeit (z.\,B. Reviewer, Coder, Tester); skaliert bei größeren Projekten. \\
+Reflektierender Agent & Selbstkritik; Iterative Verbesserung; Fehlerkorrektur & Code Review, Qualitätssicherung, Optimization \\
+Mehragentensystem & Rollenbasierte Kollaboration; Kommunikation; Spezialisierung & Komplexe SE-Workflows, Team-Simulation \\
 \bottomrule
 \end{tabular}
 \end{table}
 
+Aus der Analyse lassen sich folgende Designprinzipien für SE-Agents ableiten:
+
+\begin{enumerate}
+  \item \textbf{Tool-First Design:} SE-Tasks erfordern Zugriff auf Entwicklungsumgebung (IDEs, CLI, Tests)
+  \item \textbf{Reflexion ist essentiell:} Code-Qualität benötigt iterative Verbesserung
+  \item \textbf{Kontextmanagement:} Lange Codebases erfordern effiziente Context-Windows
+  \item \textbf{Safety Mechanisms:} Code-Execution erfordert Sandboxing und Validierung
+\end{enumerate}
+
 \section{Forschungslücke}
 
-Basierend auf der Analyse ergeben sich u.\,a. folgende Lücken:
+Basierend auf der Analyse ergeben sich folgende offene Forschungsfragen und Lücken:
+
+\subsection{Architektonische Lücken}
 
 \begin{itemize}
-  \item Fehlende Referenzarchitekturen für agentische SE-Workflows mit robustem Tooling
-  \item Skalierungs- und Kostenfragen bei langem Kontext und vielen Tool-Aufrufen
-  \item Realistische Metriken und Evals für Qualität, Sicherheit und Nachvollziehbarkeit
+  \item \textbf{Fehlende Referenzarchitekturen:} Während Frameworks wie LangChain Bausteine bieten, fehlen validierte End-to-End-Architekturen für SE-Workflows
+  \item \textbf{Tool-Interface Design:} Unklar ist, wie Tools optimal gestaltet werden sollten (granular vs. high-level, synchron vs. asynchron)
+  \item \textbf{Gedächtnis-Strategien:} Welche Informationen sollten episodisch vs. semantisch gespeichert werden?
 \end{itemize}
 
-Diese Arbeit trägt dazu bei, diese Lücken zu schließen.
+\subsection{Evaluations-Herausforderungen}
+
+\begin{itemize}
+  \item \textbf{Realistische Metriken:} SWE-bench misst nur Issue-Resolution, nicht Code-Qualität, Wartbarkeit oder Security
+  \item \textbf{Kosten-Nutzen-Analysen:} Token-Kosten vs. Entwicklerzeit-Ersparnis sind schwer zu quantifizieren
+  \item \textbf{Safety und Robustheit:} Wie messen wir Resistenz gegen Prompt-Injection oder malicious Tools?
+\end{itemize}
+
+\subsection{Skalierungs- und Kostenfragen}
+
+\begin{itemize}
+  \item \textbf{Langer Kontext:} Bei großen Codebases (\textgreater 100k LOC) stoßen selbst 1M-Token-Kontexte an Grenzen
+  \item \textbf{Viele Tool-Aufrufe:} Jeder Tool-Call erhöht Latenz und Kosten
+  \item \textbf{Parallelisierung:} Können unabhängige Teilaufgaben parallel bearbeitet werden?
+\end{itemize}
+
+\subsection{Beitrag dieser Arbeit}
+
+Diese Arbeit adressiert die identifizierten Lücken durch:
+
+\begin{enumerate}
+  \item Entwicklung einer dokumentierten Referenzarchitektur für SE-Agents
+  \item Praxisnahe Implementierung mit Tool-Interface-Guidelines
+  \item Evaluation anhand realistischer Metriken (Erfolgsrate, Qualität, Kosten, Safety)
+  \item Ableitung von Best Practices für Kontextmanagement und Kostenoptimierung
+\end{enumerate}
+
+Die folgenden Kapitel beschreiben Konzept (Kapitel~\ref{ch:konzept}), Implementierung (Kapitel~\ref{ch:realisierung}) und Evaluation im Detail.
 

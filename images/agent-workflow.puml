@@ -1,0 +1,45 @@
+@startuml
+state "Start: Ziel erhalten" as START
+state "1. SENSE: Beobachten" as SENSE
+state "2. PLAN: Planen" as PLAN
+state "3. ACTION: Handeln" as ACTION
+state "4. OBSERVE: Erkennen" as OBSERVE
+state "5. REFLECT: Reflektieren" as REFLECT
+state "Ziel erreicht?" as DECISION
+state "SUCCESS" as SUCCESS
+state "RETRY" as RETRY
+state "ERROR" as ERROR
+
+START --> SENSE
+SENSE --> PLAN
+PLAN --> ACTION
+ACTION --> OBSERVE
+OBSERVE --> REFLECT
+REFLECT --> DECISION
+
+DECISION --> SUCCESS: JA
+DECISION --> RETRY: NEIN
+RETRY --> DECISION: Retry möglich
+
+SUCCESS --> [*]
+ERROR --> [*]
+
+note right of SENSE
+Speichersysteme:
+- Event-Logs
+- Vector RAG Store
+end note
+
+note right of ACTION
+Sicherheit:
+- Input-Validierung
+- Audit-Logging
+end note
+
+note bottom of RETRY
+Fehlertoleranz:
+- Exponential Backoff
+- Circuit-Breaker
+- Token-Limits
+end note
+@enduml
