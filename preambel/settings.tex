@@ -28,73 +28,40 @@
 \KOMAoptions{%
    parskip=full%  % Deutsche Konvention: Keine Einrückung, Abstand zwischen Absätzen
 }%
+
 %%% === Table of Contents =====================================================
-\setcounter{tocdepth}{3} % Depth of TOC Display
+\setcounter{tocdepth}{3}
 \KOMAoptions{%
-   %%% Setting of 'Style' and 'Content' of TOC
-   % toc=left, %
    toc=indented,%
-   %
-   toc=bib,
-   % toc=nobib,
-   % toc=bibnumbered,
-   %
-	% toc=index,%
-   toc=noindex,
-   %
-   % toc=listof,
-   toc=nolistof
-   % toc=listofnumbered,
-   %   
-}%  
+   toc=bib,%
+   toc=noindex,%
+   toc=nolistof%
+}%
+
 %%% === Lists of figures, tables etc. =========================================
 \KOMAoptions{%
-   %%% Setting of 'Style' and 'Content' of Lists 
-   %%% (figures, tables etc)
-	% --- General List Style ---
-   listof=left, % tabular styles
-   listof=indented, % hierarchical style
-   % --- chapter highlighting ---
-   % listof=chapterentry, % ??? Chapter starts are marked in figure/table
-   % listof=chaptergapline, % New chapter starts are marked by a gap 
-      		  			   	 % of a single line
-	listof=chaptergapsmall, % New chapter starts are marked by a gap 
-   	    					   % of a smallsingle line
-   % listof=nochaptergap, % No Gap between chapters
-   %
-   % listof=leveldown, % lists are moved one level down ???
-   % --- Appearance of Lists in TOC
-   % listof=notoc, % Lists are not part of the TOC
-   listof=totoc % add Lists to TOC without number
-   % listof=totocnumbered, % add Lists to TOC with number
-}%  
+   listof=indented,%
+   listof=chaptergapsmall,%
+   listof=totoc%
+}%
+
 %%% === Bibliography ==========================================================
-%% Setting of 'Style' and 'Content' of Bibliography
 \KOMAoptions{%
-	% bibliography=oldstyle,%
    bibliography=openstyle,%
-   % bibliography=nottotoc, % Bibliography is not part of the TOC
-   % bibliography=totocnumbered, % add Bibliography to TOC with number
-   bibliography=totoc % add Bibliography to TOC without number
+   bibliography=totoc%
 }%
+
 %%% === Index =================================================================
-%% Setting of 'Style' and 'Content' of Index in TOC
 \KOMAoptions{%
-   index=nottotoc % index is not part of the TOC
-	% index=totoc, % add index to TOC without number
+   index=nottotoc%
 }%
+
 %%% === Titlepage =============================================================
 \KOMAoptions{%
-   titlepage=true %
-   %titlepage=false %
+   titlepage=true%
 }%
+
 %%% === Miscellaneous =========================================================
-\KOMAoptions{% 	
-   footnotes=multiple% nomultiple
-   %open=any,%
-   %open=left,%
-   %open=right,%
-   %chapterprefix=false,%
-   %appendixprefix=false,%
-   %chapteratlists=10pt,% entry
+\KOMAoptions{%
+   footnotes=multiple%
 }%
