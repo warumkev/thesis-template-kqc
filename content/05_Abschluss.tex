@@ -5,7 +5,8 @@
 
 \section{Zusammenfassung der Ergebnisse}
 
-Diese Arbeit untersuchte die Entwicklung und Evaluation\index{Evaluation!Agenten} agentischer Architekturen\index{Referenzarchitektur} für Software-Engineering-Workflows\index{SE-Workflows}.\footnote{Vergleiche dazu \cite{lee2018conference} und \cite{website2021example} für aktuelle Forschungstrends.} Ausgehend von einer systematischen Analyse des Stands der Forschung (Kapitel \ref{ch:hintergrund}) wurde eine Referenzarchitektur entwickelt\index{Architekturdesign} (Kapitel \ref{ch:konzept}), prototypisch implementiert und empirisch evaluiert\index{Empirische Evaluation} (Kapitel \ref{ch:realisierung}).
+Diese Arbeit untersuchte die Entwicklung und Evaluation\index{Evaluation!Agenten} agentischer Architekturen\index{Referenzarchitektur} für Software-Engineering-Workflows\index{SE-Workflows}.\footnote{Vergleiche dazu \cite{xi2023rise} und \cite{wang2023survey} für aktuelle Forschungstrends.}
+Ausgehend von einer systematischen Analyse des Stands der Forschung (Kapitel \ref{ch:hintergrund}) wurde eine Referenzarchitektur entwickelt\index{Architekturdesign} (Kapitel \ref{ch:konzept}), prototypisch implementiert und empirisch evaluiert\index{Empirische Evaluation} (Kapitel \ref{ch:realisierung}).
 
 Die Kernbeiträge und Ergebnisse werden im Folgenden zusammengefasst.
 
@@ -74,7 +75,7 @@ Diese Arbeit leistet folgende Beiträge zur Spezialisierung \enquote{Software En
 Im Kontext der Forschungslandschaft (vgl. Kapitel \ref{ch:hintergrund}) schließt diese Arbeit folgende Lücken:
 
 \begin{itemize}
-  \item Systematisierung agentischer SE-Archite kturen (bisher meist ad-hoc Prototypen)
+  \item Systematisierung agentischer SE-Architekturen (bisher meist ad-hoc Prototypen)
   \item Fokus auf Produktions-Readiness (Safety, Costs, Robustness) statt nur Task-Success
   \item Transferierbare Design-Patterns statt monolithischer Systeme
   \item Vergleichbare Evaluation mit reproduzierbaren Benchmarks
@@ -96,7 +97,7 @@ Trotz der positiven Ergebnisse gibt es folgende Limitierungen, die bei der Inter
   \item \textbf{LLM-Abhängigkeit:} Ergebnisse basieren auf GPT-4 und Claude 3.5. Neuere/bessere Modelle könnten Architektur-Trade-offs verschieben. Ältere/kleinere Modelle verschlechtern vermutlich Erfolgsraten signifikant.
 \end{itemize}
 
-\textquote[\cite{lee2018conference}]{Während agentische Systeme vielversprechend sind, müssen ihre Grenzen in kontrollierten Umgebungen sorgfältig evaluiert werden, bevor sie in Produktionssystemen eingesetzt werden.}
+\textquote[\cite{jimenez2023swe}]{Während agentische Systeme vielversprechend sind, müssen ihre Grenzen in kontrollierten Umgebungen sorgfältig evaluiert werden, bevor sie in Produktionssystemen eingesetzt werden.}
 
 \subsection{Technische Limitierungen}
 
@@ -118,7 +119,7 @@ Kritisch anzumerken ist auch die gesellschaftliche Dimension:
 \textit{Die Automatisierung von Software-Engineering-Aufgaben birgt erhebliche Risiken für den Arbeitsmarkt. Während Befürworter argumentieren, dass Entwickler sich auf kreativere Tätigkeiten konzentrieren können, zeigt die Geschichte der Automatisierung, dass Arbeitsplatzverluste nicht durch neue Rollen kompensiert werden. Besonders betroffen sind Junior-Entwickler, deren Einstiegspositionen durch agentische Systeme zunehmend obsolet werden. Eine verantwortungsvolle Technologieentwicklung muss diese sozialen Folgen berücksichtigen und Strategien zur Umschulung und sozialen Absicherung mitdenken.}
 \smallskip
 \begin{flushright}
-— Eve Miller, \textit{Handbook of Software Engineering} \cite{miller2017chapter}
+— Diskurs zur Arbeitsmarktentwicklung, vgl. Eloundou et al. \cite{eloundou2023gpts}
 \end{flushright}
 \end{quote}
 
@@ -207,4 +208,3 @@ Konkrete Empfehlungen für Praktiker:
 \end{itemize}
 
 Diese pragmatischen Schritte erleichtern den verantwortungsvollen Einsatz agentischer Systeme im Alltag und minimieren Risiken beim Übergang in produktive Umgebungen.
-

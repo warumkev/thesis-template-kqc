@@ -16,7 +16,7 @@ Der Kern der Architektur folgt dem \emph{Sense-Plan-Act-Reflect}-Zyklus\index{Se
 
 Die Architektur basiert auf folgenden Designprinzipien:\footnote{Diese Prinzipien orientieren sich an etablierten Softwareentwicklungs-Patterns und Best Practices aus \cite{sommerville2015software}.}\index{Architekturprinzipien}\index{Best Practices}
 
-\textquote[\cite{miller2017chapter}]{Gute Architektur bedeutet, dass Komponenten modular, austauschbar und wartbar sind, um langfristig Wartungskosten zu minimieren.}
+\textquote[\cite{richards2020fundamentals}]{Gute Architektur bedeutet, dass Komponenten modular, austauschbar und wartbar sind, um langfristig Wartungskosten zu minimieren.}
 
 \subsection{Designprinzipien}
 
@@ -34,7 +34,7 @@ Die Architektur basiert auf folgenden Designprinzipien:\footnote{Diese Prinzipie
 
 \subsection{Architekturkomponenten}
 
-Abbildung \ref{fig:agent-architektur} zeigt die Kernkomponenten der Architektur:\footnote{Vgl. \cite{miller2017chapter} für detaillierte Architekturprinzipien.}\index{Agentenarchitektur}
+Abbildung \ref{fig:agent-architektur} zeigt die Kernkomponenten der Architektur:\footnote{Vgl. \cite{richards2020fundamentals} für detaillierte Architekturprinzipien.}\index{Agentenarchitektur}
 
 \begin{description}
   \item[Agent Controller:] Zentrale Steuerungseinheit. Implementiert die ReAct-Loop (Reasoning, Action, Observation). Nutzt LLM-API für Planung und Reflexion.\index{ReAct}\index{LLM}
@@ -155,7 +155,8 @@ Abbildung \ref{fig:agent-workflow} illustriert den ReAct-Zyklus einer agentische
 
 \begin{figure}[p!]
 \centering
-\includegraphics[width=\textwidth, height=0.95\textheight, keepaspectratio]{images/agent-workflow.png}
+% Limit height to avoid "Float too large" errors while keeping full width
+\includegraphics[width=\linewidth,height=0.6\textheight,keepaspectratio]{images/agent-workflow.png}
 \caption{ReAct Agent Workflow: Zyklisches Reasoning und Acting Paradigma mit Fehlertoleranz}
 \label{fig:agent-workflow}
 \end{figure}

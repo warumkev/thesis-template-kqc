@@ -8,12 +8,14 @@
 
 \section{Implementierungsdetails}
 
-In diesem Kapitel werden die praktischen Aspekte der Umsetzung dokumentiert\index{Implementierungspraxis}.\footnote{Implementierungsdetails und Best Practices sind in \cite{doe2019research} dokumentiert.} Die Implementierung erfolgte iterativ\index{Iterative Entwicklung} über einen Zeitraum von 4 Monaten mit kontinuierlichem Testen\index{Continuous Testing} und Refinement.
+In diesem Kapitel werden die praktischen Aspekte der Umsetzung dokumentiert\index{Implementierungspraxis}.\footnote{Implementierungsdetails orientieren sich an Best Practices aus \cite{martin2008clean}.}
+Die Implementierung erfolgte iterativ\index{Iterative Entwicklung} über einen Zeitraum von 4 Monaten mit kontinuierlichem Testen\index{Continuous Testing} und Refinement.
 
 \subsection{Technologiestack}
 
 Folgende Technologien wurden für die Implementierung eingesetzt:
 
+\begin{sloppypar}
 \begin{description}
   \item[Programmiersprache:] Python 3.11+\index{Python} (Type Hints\index{Type Hints}, async/await\index{Async/Await} Support)
   \item[LLM-Integration:] OpenAI API (GPT-4)\index{GPT-4}, Anthropic API (Claude 3.5 Sonnet)\index{Claude}, mit Fallback-Mechanismus\index{Fallback-Mechanismus}
@@ -22,6 +24,7 @@ Folgende Technologien wurden für die Implementierung eingesetzt:
   \item[Tool-Runtime:] Docker 24.0+\index{Docker!Sandboxing} für Sandboxing, pytest für Tests, ruff/black für Linting\index{Code Linting}
   \item[Monitoring:] Prometheus für Metriken\index{Prometheus}, strukturierte Logs (JSON) mit Trace-IDs\index{Distributed Tracing}
 \end{description}
+\end{sloppypar}
 
 \subsection{Projektstruktur}
 
@@ -53,7 +56,7 @@ agent_se/
 
 Listing \ref{lst:agent-loop} zeigt einen minimalen agentischen Loop\index{Agent Loop} mit Planung\index{Planung!Implementierung}, Tool-Ausführung und Reflexion\index{Reflexion}. Die vollständige Implementierung umfasst zusätzlich Error-Handling\index{Error-Handling!Agent}, Timeouts, max-steps-Limits und strukturiertes Logging\index{Agent Logging}.
 
-\begin{lstlisting}[style=Python, caption={Minimaler agentischer Loop fuer SE-Aufgaben (Beispiel-Listing)}, label={lst:agent-loop}]
+\begin{lstlisting}[style=Python, caption={Minimaler agentischer Loop für SE-Aufgaben (Beispiel-Listing)}, label={lst:agent-loop}]
 from typing import Dict, Any
 
 class Toolset:
@@ -159,12 +162,14 @@ Die Validierung erfolgt anhand von realistischen Testszenarien, die typische Sof
 
 \subsection{Testumgebung}
 
+\begin{sloppypar}
 \begin{description}
   \item[Hardware:] MacBook Pro M2, 16GB RAM, 512GB SSD
   \item[Betriebssystem:] macOS 14.x, Docker Desktop 4.25
   \item[LLM-Modelle:] GPT-4-Turbo (0125), Claude-3.5-Sonnet, mit Temperature 0.2 für Reproduzierbarkeit
   \item[Testdaten:] 25 repräsentative Python-Projekte (5k--50k LOC), synthetische Bugs, real-world Issues
 \end{description}
+\end{sloppypar}
 
 \subsection{Benchmark-Szenarien}
 
@@ -188,18 +193,20 @@ Im Folgenden wird das Szenario \enquote{Test Failure Diagnosis} detailliert besc
 
 3) Act: Tool-Calls (Beispiel):
 \begin{itemize}
-  \item \texttt{run\\_tests(module="auth")} $\to$ Tool-Result: \texttt{"3 failed, 97 passed"}
-  \item \texttt{run\_linter(path="auth/")} $\to$ Tool-Result: Hinweise auf Stil, aber keine direkten Fehler
-  \item \texttt{search\_in\_repo(query="login", range="last-5-commits")} $\to$ Treffer: Commit 123abc \texttt{Refactor: auth flow}
+  \item \texttt{run\_tests(module="auth")} \textrightarrow\ \texttt{"3 failed, 97 passed"}
+  \item \texttt{run\_linter(path="auth/")} \textrightarrow\ Tool-Result: Hinweise auf Stil, aber keine direkten Fehler
+  \item \texttt{search\_in\_repo(query="login", range="last-5-commits")} \textrightarrow\ Treffer: Commit 123abc \texttt{Refactor: auth flow}
 \end{itemize}
 
 4) Observation: Agent parst Traceback, findet NullPointer-ähnlichen Fehler in Helper-Funktion, die neu extrahiert wurde. Memory-Manager liefert ähnlichen früheren Fall (Match on signature), Agent übernimmt learnings aus historischem Patch.
 
 5) Reflection 
+\begin{sloppypar}
 \begin{itemize}
   \item Agent generiert Patch-Vorschlag (kleine Scope-Fix im Helper), erstellt Diff und führt Tests erneut in isolierter Sandbox aus.
   \item Tests grün $\Rightarrow$ Agent eröffnet PR-Entwurf und notiert Review-Kommentare; bei Teil-Erfolg: Human-Approval-Gate vor Merge.
 \end{itemize}
+\end{sloppypar}
 
 Beispiel-Trace (gekürzt):
 \begin{verbatim}
@@ -220,11 +227,13 @@ Die durchgeführten Experimente zeigen differenzierte Ergebnisse über verschied
 
 Tabelle \ref{tab:benchmark-results} zeigt detaillierte Ergebnisse für ausgewählte Tasks:
 
+\begin{sloppypar}
 \begin{itemize}
   \item \textbf{Refactoring:} \pct{73} Erfolgsrate (11/15 Tasks erfolgreich)
   \item \textbf{Test-Fixing:} \pct{62} Erfolgsrate (5/8 Tasks erfolgreich)
   \item \textbf{Lint-Resolution:} \pct{86} Erfolgsrate (6/7 Tasks erfolgreich)
 \end{itemize}
+\end{sloppypar}
 
 Erfolg wurde definiert als: (1) Task formal korrekt gelöst (Tests grün, Lint clean), (2) keine Regressionen, (3) Code-Qualität nicht verschlechtert.
 
@@ -232,6 +241,7 @@ Erfolg wurde definiert als: (1) Task formal korrekt gelöst (Tests grün, Lint c
 
 Die entwickelte Lösung erreicht folgende Performance-Charakteristika:
 
+\begin{sloppypar}
 \begin{description}
   \item[Token-Verbrauch:] Durchschnittlich 8.4k tokens pro erfolgreichem Task (Range: 2k--25k). Kontextoptimierung reduzierte Verbrauch um \pct{40} gegenüber naivem Ansatz.
   
@@ -239,31 +249,36 @@ Die entwickelte Lösung erreicht folgende Performance-Charakteristika:
   
   \item[Tool-Calls:] Durchschnittlich 4.2 Tool-Aufrufe pro Task. Reflexion reduzierte fehlerhafte Calls um \pct{28}.
   
-  \item[Kosten:] Geschätzt \$0.08 pro Task bei GPT-4-Pricing (Jan 2024). Claude war \pct{35} günstiger bei vergleichbarer Qualität.
+  \item[Kosten:] Geschätzt $\$0.08$ pro Task bei GPT-4-Pricing (Jan 2024). Claude war \pct{35} günstiger bei vergleichbarer Qualität.
 \end{description}
+\end{sloppypar}
 
 \subsection{Qualitätsmetriken}
 
-\textquote[\cite{doe2019research}]{Die praktische Implementierung agentischer Systeme erfordert sorgfältige Planung und umfassende Tests, um Zuverlässigkeit in produktiven Umgebungen zu gewährleisten.}
+\textquote[\cite{yang2024sweagent}]{Die praktische Implementierung agentischer Systeme erfordert sorgfältige Planung und umfassende Tests, um Zuverlässigkeit in produktiven Umgebungen zu gewährleisten.}
 
 Code-Qualität wurde über mehrere Dimensionen gemessen:
 
+\begin{sloppypar}
 \begin{itemize}
   \item \textbf{Test-Pass-Rate:} \pct{98} (nur 2 von 103 Tests regressierten nach Agent-Edits)
   \item \textbf{Lint-Score:} Durchschnittlich +12 Punkte Verbesserung nach Lint-Fixes
   \item \textbf{Complexity:} Cyclomatic Complexity blieb unverändert oder verbesserte sich (Extract-Function Tasks)
   \item \textbf{Review-Akzeptanz:} Manuelle Review ergab \pct{81} „would merge" Rate
 \end{itemize}
+\end{sloppypar}
 
 \subsection{Robustheit und Fehlerbehandlung}
 
 Error-Cases wurden systematisch getestet:
 
+\begin{sloppypar}
 \begin{itemize}
   \item \textbf{Tool-Failures:} Agent erholte sich in \pct{67} der Fälle durch Retry oder Alternative-Strategie
   \item \textbf{Malformed Outputs:} JSON-Parsing-Fehler wurden durch Retry-mit-Schema-Reinforcement in \pct{89} behoben
   \item \textbf{Timeouts:} Graceful Degradation bei max-steps Limit (definiert als \pct{15} Partial-Success)
 \end{itemize}
+\end{sloppypar}
 
 \section{Vergleich mit existierenden Ansätzen}
 
@@ -289,12 +304,14 @@ Unsere Architektur & \pct{73} & 8.4k & 12.3 & \$0.08 \\
 
 Kernverbesserungen gegenüber Baselines:
 
+\begin{sloppypar}
 \begin{itemize}
   \item \textbf{+31\% Erfolgsrate} vs. Naive Prompting durch strukturierte Tool-Orchestrierung
   \item \textbf{+15\% Erfolgsrate} vs. Standard-ReAct durch optimierte Context-Management
   \item \textbf{-17\% Token-Kosten} durch intelligentes Pruning und Summarization
   \item \textbf{Robustere Error-Recovery} durch Reflexions-Mechanismen
 \end{itemize}
+\end{sloppypar}
 
 Die vorgestellten Ergebnisse werden im Folgenden kontextualisiert: Für Entwickler bedeutet eine um 31\% höhere Erfolgsrate gegenüber naivem Prompting konkret weniger manueller Nacharbeit, schnellere Durchlaufzeiten in Pull-Request-Zyklen und eine höhere Automatisierungsquote. Für Betreiber von CI/CD-Infrastrukturen bedeuten niedrigere Token-Kosten und reduzierte Fehlerraten geringere Betriebskosten. Diese praktische Perspektive ist wichtig, um Entscheidungsträgern in Unternehmen handfeste Argumente für den Einsatz agentischer Lösungen zu liefern.
 
@@ -304,11 +321,13 @@ Alle kritischen Funktionen wurden durch automatisierte Tests validiert. Die Test
 
 \subsection{Unit-Tests}
 
+\begin{sloppypar}
 \begin{itemize}
   \item Tool-Adapter: 45 Tests, \pct{95} Coverage
   \item Policy-Logic: 32 Tests, \pct{89} Coverage  
   \item Safety-Layer: 28 Tests, \pct{92} Coverage
 \end{itemize}
+\end{sloppypar}
 
 \subsection{Integration-Tests}
 
@@ -329,7 +348,9 @@ Praktische Lessons Learned: Automatisierte Tests sollten sowohl synthetische als
 \centering
 \caption{Detaillierte Benchmark-Ergebnisse: Agentische SE-Tasks mit Evaluationsmetriken}
 \label{tab:benchmark-results}
-\begin{tabular}{L{2.8cm}C{1.8cm}C{1.8cm}C{1.8cm}C{1.5cm}C{2cm}}
+\begingroup
+  \setlength{\tabcolsep}{3pt}
+  \begin{tabular}{L{2.6cm}C{1.6cm}C{1.6cm}C{1.6cm}C{1.4cm}C{1.9cm}}
 \toprule
 \cellcolor{headercolor}\textcolor{white}{\textbf{Aufgabe}} & \cellcolor{headercolor}\textcolor{white}{\textbf{Success}} & \cellcolor{headercolor}\textcolor{white}{\textbf{Token}} & \cellcolor{headercolor}\textcolor{white}{\textbf{Zeit (s)}} & \cellcolor{headercolor}\textcolor{white}{\textbf{Tools}} & \cellcolor{headercolor}\textcolor{white}{\textbf{Kosten}} \\
 \midrule
@@ -350,7 +371,8 @@ Generate Docstrings & OK & 4.5k & 9.3 & 2 & \$0.04 \\
 Fix Type Errors & OK & 11.2k & 28.4 & 5 & \$0.11 \\
 \bottomrule
 \multicolumn{6}{l}{\small \textit{Durchschnitt (erfolgreiche Tasks):} 7.1k tokens, 16.5s, 3.8 tools, \$0.07} \\
-\end{tabular}
+  \end{tabular}
+\endgroup
 \end{table}
 
 % Zusätzliche Beispiel-Tabelle für Evaluationsmetriken
@@ -358,7 +380,9 @@ Fix Type Errors & OK & 11.2k & 28.4 & 5 & \$0.11 \\
 \centering
 \caption{Evaluationsmetriken für agentische SE-Workflows (Beispieltabelle)}
 \label{tab:eval-metrics}
-\begin{tabular}{L{3.5cm}L{10.5cm}}
+\begingroup
+  \setlength{\tabcolsep}{3pt}
+  \begin{tabular}{L{3.2cm}L{10.0cm}}
 \toprule
 \cellcolor{headercolor}\textcolor{white}{\textbf{Kategorie}} & \cellcolor{headercolor}\textcolor{white}{\textbf{Metriken / Beschreibung}} \\
 \midrule
@@ -370,7 +394,6 @@ Latenz & End-to-End-Laufzeit (s), Tool-Roundtrips (\#), Wartezeit auf CI \\
 Sicherheit & Policy-Verstöße (\#), Risk Flags, sand-boxed I/O, PII-Leaks (\#) \\
 Nachvollziehbarkeit & Trace-Länge (\#Events), Artefakte (Patches, Logs), Reproduzierbarkeit (Seeds) \\
 \bottomrule
-\end{tabular}
+  \end{tabular}
+\endgroup
 \end{table}
-
-

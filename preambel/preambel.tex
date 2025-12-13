@@ -44,6 +44,11 @@
    protrusion=true
 ]{microtype}
 
+% Allow a larger emergency stretch to reduce occasional overfull boxes
+% Increasing this gives TeX more flexibility to adjust spacing before reporting
+% overfull/underfull hbox warnings; kept reasonably small to avoid poor spacing.
+\emergencystretch=2em
+
 %%% Besserer Flattersatz (Linksbündig)
 \usepackage{ragged2e}
 
