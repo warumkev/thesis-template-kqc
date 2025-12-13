@@ -90,10 +90,8 @@
 \clearpage
 \phantomsection
 \addcontentsline{toc}{chapter}{Index}
-\renewenvironment{theindex}
-  {\section*{Index}\begin{multicols}{2}\small\setlength{\parskip}{0pt}\setlength{\itemsep}{0pt}}
-  {\end{multicols}}
-\IfDefined{printindex}{\printindex{}}
+% Print the generated index (imakeidx handles columns)
+\printindex
 \IfDefined{printnomenclature}{\printnomenclature{}}
 % 'Symbolverzeichnis' ins Inhaltsverzeichnis
 \addcontentsline{toc}{chapter}{Abkürzungsverzeichnis}

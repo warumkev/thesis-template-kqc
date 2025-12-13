@@ -203,6 +203,23 @@ Drei repräsentative Szenarien wurden definiert:
     \end{itemize}
 \end{enumerate}
 
+Neben der formalen Beschreibung der Szenarien wird im Konzept auch großer Wert auf Reproduzierbarkeit und Praktikabilität gelegt: Für jedes Szenario werden Eingabedaten, erwartete Outputs und Akzeptanzkriterien exakt definiert, so dass Experimente automatisiert wiederholt und Ergebnisse vergleichbar werden. Ferner werden Metriken und Logging-Formate standardisiert, damit unterschiedliche Implementierungen derselben Architektur direkt verglichen werden können. Diese Operationalisierung erleichtert nicht nur Validierung, sondern auch Transfer in industrielle Pipelines.
+
+\subsection{Fallbeispiel: Refactoring-Flow}
+
+Das folgende kompakte Fallbeispiel illustriert den praktischen Ablauf eines Refactorings innerhalb der vorgeschlagenen Architektur. Es zeigt, wie Sensieren, Planen, Act und Reflect zusammenwirken, um ein sicheres, getestetes Refactoring durchzuführen.
+
+Beispielablauf (kompakt):
+\begin{enumerate}
+  \item \textbf{Sense:} AST-basierte Analyse identifiziert eine lange Methode mit hoher Cyclomatic-Complexity; relevante Tests werden bestimmt.
+  \item \textbf{Plan:} Agent plant Extract-Function, inklusive Call-Site-Anpassungen und Test-Updates.
+  \item \textbf{Act:} Tool-Adapter führt AST-Refactoring aus (Parameter als JSON), erstellt temporären Branch und führt Tests aus.
+  \item \textbf{Observation:} Test-Runner liefert strukturierte Ergebnisse (z. B. \texttt{"failed": ["auth/test\_login.py::test\_login"]}).
+  \item \textbf{Reflection:} Agent analysiert Fehlermeldungen, generiert einen präzisen Patch-Refinement-Vorschlag und wiederholt ggf. den Loop.
+\end{enumerate}
+
+Wichtige Praxispunkte: Diffs werden vor dem Commit automatisch formatiert und durch Linter geprüft; kritische Änderungen durchlaufen ein Human-in-the-Loop-Gate. Logs und Traces werden gespeichert, so dass das Gedächtnis zukünftige Entscheidungen informieren kann.
+
 \section{Sicherheits- und Safety-Mechanismen}
 
 Da Agents Code ausführen und Dateien modifizieren, sind robuste Sicherheitsmechanismen essentiell.
@@ -270,3 +287,5 @@ Dieser Ansatz unterscheidet sich von den in Kapitel \ref{ch:hintergrund} beschri
 \end{itemize}
 
 Die Implementierung und empirische Validierung dieser Konzepte erfolgt in Kapitel \ref{ch:realisierung}.
+
+Abschließend sei betont, dass das Konzept bewusst pragmatisch gehalten ist: Ziel ist ein praktikabler Kompromiss zwischen Forschungsidealen (maximale Generalität) und den Erfordernissen produktiver Softwareentwicklung (Wartbarkeit, Messbarkeit, Kosten). Deshalb favorisiert das Design wiederverwendbare Schnittstellen und klare Migrationspfade, anstatt ein rein prototypisches System ohne Produktionsreife zu liefern.

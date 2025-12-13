@@ -224,7 +224,8 @@
 \addbibresource{bib/BibtexDatabase.bib}
 
 %%% Index, Abkürzungen, Nomenklatur
-\usepackage{makeidx}
+% Use imakeidx for flexible index printing (supports columns)
+\usepackage{imakeidx}
 \usepackage[german]{nomencl}
 \usepackage[printonlyused]{acronym}
 
@@ -369,6 +370,7 @@
 
 %%% 10. Auszuführende Befehle
 %%% ----------------------------------------------------------------------
-\IfDefined{makeindex}{\makeindex}
+% Enable index with two columns (print with \printindex in the document)
+\makeindex[columns=2]
 \IfDefined{makenomenclature}{\makenomenclature}
 \renewcommand{\nomname}{Abkürzungsverzeichnis}

@@ -178,6 +178,40 @@ Drei Haupt-Szenarien wurden evaluiert (vgl. Kapitel \ref{ch:konzept}):
 
 Jedes Szenario wurde 5-mal mit unterschiedlichen Seeds wiederholt, um Varianz zu messen.
 
+\subsection{Beispiel: Test Failure Diagnosis — Schritt-für-Schritt}
+
+Im Folgenden wird das Szenario \enquote{Test Failure Diagnosis} detailliert beschrieben, um den praktischen Ablauf und die typischen Artefakte (Tool-Calls, Logs, Entscheidungen) zu veranschaulichen.
+
+1) Initialer Zustand: Test-Runner meldet \texttt{3 failed} in \texttt{auth/test\_login.py}. Agent sammelt Kontext (Fehlermeldung, betroffene Dateien, letzte Commits).
+
+2) Plan: Agent generiert Plan mit Schritten: (a) Reproduziere lokal (run tests), (b) Isoliere Fehlermeldung (traceback parsing), (c) Suche nach relevanten Änderungen im VCS, (d) Erstelle Minimal-PR mit Patch-Vorschlag.
+
+3) Act: Tool-Calls (Beispiel):
+\begin{itemize}
+  \item \texttt{run\\_tests(module="auth")} $\to$ Tool-Result: \texttt{"3 failed, 97 passed"}
+  \item \texttt{run\_linter(path="auth/")} $\to$ Tool-Result: Hinweise auf Stil, aber keine direkten Fehler
+  \item \texttt{search\_in\_repo(query="login", range="last-5-commits")} $\to$ Treffer: Commit 123abc \texttt{Refactor: auth flow}
+\end{itemize}
+
+4) Observation: Agent parst Traceback, findet NullPointer-ähnlichen Fehler in Helper-Funktion, die neu extrahiert wurde. Memory-Manager liefert ähnlichen früheren Fall (Match on signature), Agent übernimmt learnings aus historischem Patch.
+
+5) Reflection 
+\begin{itemize}
+  \item Agent generiert Patch-Vorschlag (kleine Scope-Fix im Helper), erstellt Diff und führt Tests erneut in isolierter Sandbox aus.
+  \item Tests grün $\Rightarrow$ Agent eröffnet PR-Entwurf und notiert Review-Kommentare; bei Teil-Erfolg: Human-Approval-Gate vor Merge.
+\end{itemize}
+
+Beispiel-Trace (gekürzt):
+\begin{verbatim}
+[Agent] run_tests -> 3 failed (auth/test_login.py::test_login)
+[Agent] search_in_repo -> found commit 123abc (Refactor auth flow)
+[Agent] generate_patch -> diff created: modify auth/helpers.py
+[Agent] run_tests (sandbox) -> 100 passed
+[Agent] open_pr -> PR #42 (Draft)
+\end{verbatim}
+
+Dieses Beispiel zeigt, wie Tool-Adapter, Memory und Safety-Layer (Sandbox, Human-Approval) zusammenwirken, um fehlerhafte Änderungen sicher zu erkennen und zu beheben. Solche Schritt-für-Schritt-Beispiele helfen bei der Operationalisierung der Architektur in realen Projekten.
+
 \section{Ergebnisse}
 
 Die durchgeführten Experimente zeigen differenzierte Ergebnisse über verschiedene Dimensionen.
@@ -262,6 +296,8 @@ Kernverbesserungen gegenüber Baselines:
   \item \textbf{Robustere Error-Recovery} durch Reflexions-Mechanismen
 \end{itemize}
 
+Die vorgestellten Ergebnisse werden im Folgenden kontextualisiert: Für Entwickler bedeutet eine um 31\% höhere Erfolgsrate gegenüber naivem Prompting konkret weniger manueller Nacharbeit, schnellere Durchlaufzeiten in Pull-Request-Zyklen und eine höhere Automatisierungsquote. Für Betreiber von CI/CD-Infrastrukturen bedeuten niedrigere Token-Kosten und reduzierte Fehlerraten geringere Betriebskosten. Diese praktische Perspektive ist wichtig, um Entscheidungsträgern in Unternehmen handfeste Argumente für den Einsatz agentischer Lösungen zu liefern.
+
 \section{Validierung und Verifikation}
 
 Alle kritischen Funktionen wurden durch automatisierte Tests validiert. Die Testabdeckung beträgt \pct{87} (Zeilen-Coverage).
@@ -277,6 +313,8 @@ Alle kritischen Funktionen wurden durch automatisierte Tests validiert. Die Test
 \subsection{Integration-Tests}
 
 End-to-End-Tests für alle 3 Benchmark-Szenarien. Deterministische Reproduzierbarkeit durch LLM-Mocking und feste Seeds.
+
+Praktische Lessons Learned: Automatisierte Tests sollten sowohl synthetische als auch realistische Repositories umfassen; Mocking allein reicht nicht aus, da Real-World-Tests unerwartete Edge-Cases aufdecken. Darüber hinaus ist Continuous Monitoring unabdingbar, um Drift in LLM-Verhalten oder Änderungen in abhängigen Tools frühzeitig zu erkennen.
 
 \subsection{Sicherheits-Audits}
 
