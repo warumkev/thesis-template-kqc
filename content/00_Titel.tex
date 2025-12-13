@@ -1,22 +1,22 @@
 % !TEX root = ../Thesis.tex
 
-\newgeometry{left=3cm,right=3cm,top=1.5cm,bottom=3cm}
+\newgeometry{left=3cm,right=3cm,top=1.5cm,bottom=2cm}
 \begin{titlepage}
 
 \vspace{-1cm}
 
 \begin{center}
-\includegraphics[width=0.8\textwidth]{images/800_iu-logo-en-black-rgb-horizontal.png}
+\includegraphics[width=0.95\textwidth]{images/800_iu-logo-d-black-rgb-horizontal.png}
 \end{center}
 
-\vspace{-0.5cm}
+\vspace{-0.8cm}
 
 \begin{center}
-\textsf{\textbf{\huge \theThesis}}\\[0.5cm]
-{\setstretch{1.8}\textsf{\Large \theTitle}\par}
+\textsf{\textbf{\huge \theThesis}}\\[0.8cm]
+{\setstretch{1.6}\textsf{\Large \theTitle}\par}
 \end{center}
 
-\vspace{0.3cm}
+\vspace{0.2cm}
 
 \begin{center}
 \ifthenelse{\equal{\lang}{ngerman}}
@@ -26,7 +26,7 @@
 \end{center}
 
 \begin{center}
-{\textsf{\large \theAcedemicTitle}}
+{\textsf{\Large \textbf{\theAcedemicTitle}}}
 \end{center}
 
 \begin{center}
@@ -37,27 +37,25 @@
 
 \begin{center}
 \ifthenelse{\equal{\lang}{ngerman}}
-{von}{by}
-\end{center}
-
-\begin{center}
+{von}{by}\\
 \theAuthor
 \\ Matrikelnummer: \theStudentID
 \\ \theStudentAddress
 \end{center}
 
+\vspace{0.25cm}
+
 \begin{center}
 \today
 \end{center}
 
-\vspace{0.5cm}
+\vspace{0.2cm}
 
 \begin{center}
 \ifthenelse{\equal{\lang}{ngerman}}
 {Referent}
 {Referee}: \theFirstReferee
-\par\vspace{0.1em}
-\ifthenelse{\equal{\lang}{ngerman}}
+\\ \ifthenelse{\equal{\lang}{ngerman}}
 {Korreferent}
 {Co-Referee}: \theSecondReferee
 \end{center}
