@@ -67,17 +67,17 @@
 % Inhaltsverzeichnis in den PDF-Links eintragen
 \pdfbookmark[1]{Inhaltsverzeichnis}{toc}
 \tableofcontents
-\cleardoublepage
+\cleardoublepage%
 
 % Abbildungs- und Tabellenverzeichnis
-\listoffigures
-\listoftables
+\listoffigures%
+\listoftables%
 \lstlistoflistings
 \cleardoublepage
 
 % Abkürzungsverzeichnis
 \input{content/00_Abkuerzungen}
-\cleardoublepage
+\cleardoublepage%
 
 % Hauptteil beginnt hier (arabische Seitenzahlen ab 1)
 \mainmatter{}
@@ -92,7 +92,7 @@
 % Anhang (Bibliographie darf im deutschen nicht in den Anhang!)
 \newpage
 \nocite{*}
-\printbibliography[heading=bibintoc, title=Literaturverzeichnis]
+\printbibliography[heading=bibintoc, title=Literaturverzeichnis]%
 
 % Index (Sachregister) inhaltlich nach dem Literaturverzeichnis und im TOC aufführen
 \clearpage
@@ -107,10 +107,10 @@
 \input{content/Z-Anhang}
 
 % Erklärungen am Ende der Arbeit
-\cleardoublepage
-\printGenerativeAIDeclaration
-\cleardoublepage
-\printDeclarationOfIndependence
+\cleardoublepage%
+\printGenerativeAIDeclaration%
+\cleardoublepage%
+\printDeclarationOfIndependence%
 
 %% Dokument ENDE %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \end{document}

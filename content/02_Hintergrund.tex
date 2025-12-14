@@ -1,10 +1,10 @@
 % !TEX root = ../Thesis.tex
 
 \chapter{Theoretischer Hintergrund}
-\label{ch:hintergrund}
-\index{Agenten-Architektur}
-\index{Tool-Nutzung}
-\index{Langkontext}
+\label{ch:hintergrund}%
+\index{Agenten-Architektur}%
+\index{Tool-Nutzung}%
+\index{Langkontext}%
 
 \section{Grundkonzepte}
 
@@ -12,14 +12,14 @@ Das Kapitel führt in Grundbegriffe agentischer Systeme ein und bildet die theor
 
 \subsection{Large Language Models: Grundlagen}
 
-Large Language Models (LLMs)\index{Large Language Models!Grundlagen} sind neuronale Netze, die auf großen Textkorpora\index{Textkorpora!Training} trainiert wurden und menschenähnliche Textgenerierung ermöglichen \cite{OpenAI2024GPT4,touvron2023llama}. Basierend auf der Transformer-Architektur\index{Transformer!Architektur} \cite{vaswani2017attention} nutzen sie Selbstaufmerksamkeits-Mechanismen\index{Self-Attention} (Self-Attention), um kontextuelle Zusammenhänge über lange Sequenzen hinweg zu erfassen.
+Large Language Models (LLMs)\index{Large Language Models!Grundlagen} sind neuronale Netze, die auf großen Textkorpora\index{Textkorpora!Training} trainiert wurden und menschenähnliche Textgenerierung ermöglichen~\cite{OpenAI2024GPT4,touvron2023llama}. Basierend auf der Transformer-Architektur\index{Transformer!Architektur}~\cite{vaswani2017attention} nutzen sie Selbstaufmerksamkeits-Mechanismen\index{Self-Attention} (Self-Attention), um kontextuelle Zusammenhänge über lange Sequenzen hinweg zu erfassen.
 
 Moderne LLMs wie GPT-4, Claude 3.5 oder Llama 3 verfügen über Milliarden von Parametern und können durch \emph{Few-Shot-Learning}\index{Few-Shot-Learning} und \emph{In-Context-Learning}\index{In-Context-Learning} Aufgaben lösen, ohne explizit darauf trainiert zu werden. Das bildet die Grundlage für agentische Anwendungen\index{Agentische Anwendungen}.
 
 \subsection{Von LLMs zu Agenten: Der Paradigmenwechsel}
 
-Während klassische LLMs primär auf Textvervollständigung spezialisiert sind, zeichnen sich \emph{agentische Systeme} durch erweiterte Fähigkeiten aus \cite{wang2023survey}. Zentral ist das \textbf{zielgerichtete Handeln}\index{Agent!Zielgerichtetheit}: Der Agent versteht übergeordnete Ziele und plant systematisch Schritte zur Zielerreichung\index{Zielerreichung}. Die \textbf{Werkzeugnutzung}\index{Externe Tools} ermöglicht die Integration externer Tools wie APIs, Datenbanken und Code-Execution\index{Code-Execution}, wodurch die Fähigkeiten über reine Textgenerierung hinausgehen. Ein persistentes \textbf{Gedächtnis}\index{Kontextpersistierung} speichert Kontextinformationen über mehrere Interaktionen hinweg und ermöglicht kontextbewusstes Arbeiten. Durch \textbf{Reflexion}\index{Selbstbewertung} erfolgt eine selbstkritische Bewertung eigener Outputs mit iterativer Verbesserung. Schließlich unterstützt \textbf{mehrschrittige Planung}\index{Task-Dekomposition} die Dekomposition komplexer Aufgaben in ausführbare Teilschritte.
-Während klassische LLMs primär auf Textvervollständigung spezialisiert sind, zeichnen sich \emph{agentische Systeme} durch erweiterte Fähigkeiten aus \cite{wang2023survey}. Zentral ist das \textbf{zielgerichtete Handeln}\index{Agent!Zielgerichtetheit}: Der Agent versteht übergeordnete Ziele und plant systematisch Schritte zur Zielerreichung\index{Zielerreichung}. Die \textbf{Werkzeugnutzung}\index{Externe Tools} ermöglicht die Integration externer Tools wie APIs, Datenbanken und Code-Ausführung\index{Code-Ausführung}, wodurch die Fähigkeiten über reine Textgenerierung hinausgehen. Ein persistentes \textbf{Gedächtnis}\index{Kontextpersistierung} speichert Kontextinformationen über mehrere Interaktionen hinweg und ermöglicht kontextbewusstes Arbeiten. Durch \textbf{Reflexion}\index{Selbstbewertung} erfolgt eine selbstkritische Bewertung eigener Outputs mit iterativer Verbesserung. Schließlich unterstützt \textbf{mehrschrittige Planung}\index{Task-Dekomposition} die Dekomposition komplexer Aufgaben in ausführbare Teilschritte.
+Während klassische LLMs primär auf Textvervollständigung spezialisiert sind, zeichnen sich \emph{agentische Systeme} durch erweiterte Fähigkeiten aus~\cite{wang2023survey}. Zentral ist das \textbf{zielgerichtete Handeln}\index{Agent!Zielgerichtetheit}: Der Agent versteht übergeordnete Ziele und plant systematisch Schritte zur Zielerreichung\index{Zielerreichung}. Die \textbf{Werkzeugnutzung}\index{Externe Tools} ermöglicht die Integration externer Tools wie APIs, Datenbanken und Code-Execution\index{Code-Execution}, wodurch die Fähigkeiten über reine Textgenerierung hinausgehen. Ein persistentes \textbf{Gedächtnis}\index{Kontextpersistierung} speichert Kontextinformationen über mehrere Interaktionen hinweg und ermöglicht kontextbewusstes Arbeiten. Durch \textbf{Reflexion}\index{Selbstbewertung} erfolgt eine selbstkritische Bewertung eigener Outputs mit iterativer Verbesserung. Schließlich unterstützt \textbf{mehrschrittige Planung}\index{Task-Dekomposition} die Dekomposition komplexer Aufgaben in ausführbare Teilschritte.
+Während klassische LLMs primär auf Textvervollständigung spezialisiert sind, zeichnen sich \emph{agentische Systeme} durch erweiterte Fähigkeiten aus~\cite{wang2023survey}. Zentral ist das \textbf{zielgerichtete Handeln}\index{Agent!Zielgerichtetheit}: Der Agent versteht übergeordnete Ziele und plant systematisch Schritte zur Zielerreichung\index{Zielerreichung}. Die \textbf{Werkzeugnutzung}\index{Externe Tools} ermöglicht die Integration externer Tools wie APIs, Datenbanken und Code-Ausführung\index{Code-Ausführung}, wodurch die Fähigkeiten über reine Textgenerierung hinausgehen. Ein persistentes \textbf{Gedächtnis}\index{Kontextpersistierung} speichert Kontextinformationen über mehrere Interaktionen hinweg und ermöglicht kontextbewusstes Arbeiten. Durch \textbf{Reflexion}\index{Selbstbewertung} erfolgt eine selbstkritische Bewertung eigener Outputs mit iterativer Verbesserung. Schließlich unterstützt \textbf{mehrschrittige Planung}\index{Task-Dekomposition} die Dekomposition komplexer Aufgaben in ausführbare Teilschritte.
 
 \subsection{Agentic AI: Begriffe und Bausteine}
 
@@ -30,31 +30,31 @@ Kernbausteine agentischer Systeme sind \cite{weng2023prompt,yao2023react}:
   
   \item[Policy:] Steuert Entscheidungsprozesse (Planung, Aktion, Selbstkritik)\index{Policy!Entscheidungsfindung}. Kann regelbasiert\index{Regelbasierte Policy} oder LLM-gesteuert\index{LLM-gesteuerte Policy} sein.
   
-  \item[Werkzeuge (Tools):] Externe Funktionen wie Code-Ausführung, Websuche\index{Websuche}, Dateizugriff, VCS-Operationen\index{VCS-Operationen}. Tools erweitern die Fähigkeiten des Agenten über reine Textgenerierung hinaus \cite{schick2023toolformer,qin2023tool}.
+  \item[Werkzeuge (Tools):] Externe Funktionen wie Code-Ausführung, Websuche\index{Websuche}, Dateizugriff, VCS-Operationen\index{VCS-Operationen}. Tools erweitern die Fähigkeiten des Agenten über reine Textgenerierung hinaus~\cite{schick2023toolformer,qin2023tool}.
   
   \item[Gedächtnis (Memory):] Speichert episodische (konkrete Ereignisse) und semantische (abstraktes Wissen) Informationen. Kann durch Vektor-Datenbanken oder strukturierte Speicher realisiert werden.
 \end{description}
 
-Orchestrierung koordiniert diese Komponenten durch Planung (z.\,B. ReAct-Pattern), Tool-Auswahl, Fehlerbehandlung und Reflexion \cite{yao2023react}. Typische Artefakte in SE-Workflows sind strukturierte Schnittstellen über \textbf{JSON} und \textbf{YAML}, Datenpersistenz mittels \textbf{SQL}-Datenbanken sowie sichere Remote-Operationen über \textbf{SSH}. Darüber hinaus basieren viele Komponenten auf \textbf{ML}-Methoden und \textbf{NLP} für Code- und Textverstehen; Wissensrepräsentation erfolgt in \textbf{KB} (Wissensdatenbanken) und \textbf{KG} (Wissensgraphen). API-Interaktionen erfolgen üblicherweise über \textbf{HTTP} und \textbf{REST}, teils mit Fallbacks auf \textbf{XML}.
+Orchestrierung koordiniert diese Komponenten durch Planung (z.\,B. ReAct-Pattern), Tool-Auswahl, Fehlerbehandlung und Reflexion~\cite{yao2023react}. Typische Artefakte in SE-Workflows sind strukturierte Schnittstellen über \textbf{JSON} und \textbf{YAML}, Datenpersistenz mittels \textbf{SQL}-Datenbanken sowie sichere Remote-Operationen über \textbf{SSH}. Darüber hinaus basieren viele Komponenten auf \textbf{ML}-Methoden und \textbf{NLP} für Code- und Textverstehen; Wissensrepräsentation erfolgt in \textbf{KB} (Wissensdatenbanken) und \textbf{KG} (Wissensgraphen). API-Interaktionen erfolgen üblicherweise über \textbf{HTTP} und \textbf{REST}, teils mit Fallbacks auf \textbf{XML}.
 
 \subsection{Chain-of-Thought und Reasoning-Patterns}
 
-\emph{Chain-of-Thought (CoT)} Prompting \cite{wei2022chain} ermöglicht es LLMs, Zwischenschritte explizit zu formulieren. Das verbessert die Reasoning-Qualität erheblich:
+\emph{Chain-of-Thought (CoT)} Prompting~\cite{wei2022chain} ermöglicht es LLMs, Zwischenschritte explizit zu formulieren. Das verbessert die Reasoning-Qualität erheblich:
 
 \begin{quote}
-\textit{„Let's think step by step"} — Typischer CoT-Prompt, der schrittweises Denken anregt
+\textit{\enquote{Let's think step by step}} — Typischer CoT-Prompt, der schrittweises Denken anregt
 \end{quote}
 
 Erweiterte Muster umfassen:
 \begin{itemize}
-  \item \textbf{ReAct} (Reasoning + Acting): Kombiniert Gedankenketten mit Tool-Aufrufen \cite{yao2023react}
+  \item \textbf{ReAct} (Reasoning + Acting): Kombiniert Gedankenketten mit Tool-Aufrufen~\cite{yao2023react}
   \item \textbf{Tree-of-Thought}: Exploriert mehrere Reasoning-Pfade parallel
-  \item \textbf{Reflexion}: Self-critique und iterative Verbesserung \cite{shinn2023reflexion}
+  \item \textbf{Reflexion}: Self-critique und iterative Verbesserung~\cite{shinn2023reflexion}
 \end{itemize}
 
 \subsection{Tool-Nutzung in LLMs}
 
-Die Fähigkeit von LLMs, externe Werkzeuge zu nutzen, ist zentral für praktische Anwendungen. \emph{Toolformer} \cite{schick2023toolformer} zeigte, dass LLMs lernen können, wann und wie Tools aufzurufen sind. ToolLLM \cite{qin2023tool} erweiterte dies auf über 16.000 reale APIs.
+Die Fähigkeit von LLMs, externe Werkzeuge zu nutzen, ist zentral für praktische Anwendungen. \emph{Toolformer}~\cite{schick2023toolformer} zeigte, dass LLMs lernen können, wann und wie Tools aufzurufen sind. ToolLLM~\cite{qin2023tool} erweiterte dies auf über 16.000 reale APIs.
 
 Typischer Tool-Calling-Flow:
 \begin{enumerate}
@@ -67,13 +67,13 @@ Typischer Tool-Calling-Flow:
 
 \subsection{Etablierte Frameworks und Plattformen}
 
-Praxisnahe Frameworks bieten Abstraktionen für agentische Systeme \cite{wu2023autogen}:\footnote{\emph{ReAct} steht für \enquote{Reasoning and Acting} und ist eines der einflussreichsten Muster für agentische Systeme in der neueren Literatur.}
+Praxisnahe Frameworks bieten Abstraktionen für agentische Systeme~\cite{wu2023autogen}:\footnote{\emph{ReAct} steht für \enquote{Reasoning and Acting} und ist eines der einflussreichsten Muster für agentische Systeme in der neueren Literatur.}
 
 \begin{itemize}
-  \item \textbf{LangChain} \cite{chase2023langchain}: Modulare Komponenten für Chains, Agents, Memory
+  \item \textbf{LangChain}~\cite{chase2023langchain}: Modulare Komponenten für Chains, Agents, Memory
   \item \textbf{AutoGPT/BabyAGI}: Autonome Task-Decomposition und -Execution
-  \item \textbf{MetaGPT} \cite{hong2023metagpt}: Rollenbasierte Multi-Agent-Kollaboration
-  \item \textbf{Generative Agents} \cite{park2023generative}: Simulation menschlichen Verhaltens
+  \item \textbf{MetaGPT}~\cite{hong2023metagpt}: Rollenbasierte Multi-Agent-Kollaboration
+  \item \textbf{Generative Agents}~\cite{park2023generative}: Simulation menschlichen Verhaltens
 \end{itemize}
 
 \section{Verwandte Arbeiten}
@@ -82,8 +82,8 @@ Es existiert umfangreiche Literatur zu agentischen Systemen im Allgemeinen und i
 
 \subsection{Reasoning-and-Acting-Patterns}
 
-\textbf{ReAct} \cite{yao2023react} etablierte das grundlegende Pattern, bei dem LLMs explizit zwischen Reasoning-Schritten (Denken) und Acting-Schritten (Tool-Aufrufe) alternieren. Das Paper demonstrierte signifikante Verbesserungen bei question-answering und decision-making Tasks.
-\textbf{ReAct} \cite{yao2023react} etablierte das grundlegende Pattern, bei dem LLMs explizit zwischen Reasoning-Schritten (Denken) und Acting-Schritten (Tool-Aufrufe) alternieren. Das Paper demonstrierte signifikante Verbesserungen bei Question-Answering und Decision-Making-Tasks.
+\textbf{ReAct}~\cite{yao2023react} etablierte das grundlegende Pattern, bei dem LLMs explizit zwischen Reasoning-Schritten (Denken) und Acting-Schritten (Tool-Aufrufe) alternieren. Das Paper demonstrierte signifikante Verbesserungen bei question-answering und decision-making Tasks.
+\textbf{ReAct}~\cite{yao2023react} etablierte das grundlegende Pattern, bei dem LLMs explizit zwischen Reasoning-Schritten (Denken) und Acting-Schritten (Tool-Aufrufe) alternieren. Das Paper demonstrierte signifikante Verbesserungen bei Question-Answering und Decision-Making-Tasks.
 
 \textquote[\cite{yao2023react}]{Die Kombination von reasoning und acting führt zu robusteren und transparenteren Systemen, die besser nachvollziehbare Entscheidungen treffen.}
 
@@ -96,36 +96,36 @@ Die Vorteile umfassen:
 
 Grenzen sind längere Latenzen durch zusätzliche LLM-Aufrufe und potentielle Halluzinationen in Reasoning-Schritten.
 
-\textbf{Reflexion} \cite{shinn2023reflexion} erweitert ReAct um Self-Critique: Der Agent bewertet seine eigenen Outputs und lernt aus Fehlern durch verbale Bestärkung. Das verbessert die Erfolgsrate bei komplexen Tasks um bis zu \pct{20}.
+\textbf{Reflexion}~\cite{shinn2023reflexion} erweitert ReAct um Self-Critique: Der Agent bewertet seine eigenen Outputs und lernt aus Fehlern durch verbale Bestärkung. Das verbessert die Erfolgsrate bei komplexen Tasks um bis zu \pct{20}.
 
 \subsection{Software Engineering Agents}
 
 Speziell für Software Engineering wurden mehrere agentische Systeme entwickelt:
 
-\textbf{SWE-bench} \cite{jimenez2023swe} ist ein Benchmark mit über 2.000 realen GitHub-Issues aus Python-Projekten. Es misst, ob Agenten eigenständig Pull Requests erstellen können, die die Issues lösen. Baseline-Systeme erreichen nur \pct{3}--\pct{5} Erfolgsrate, was die Schwierigkeit unterstreicht.
+\textbf{SWE-bench}~\cite{jimenez2023swe} ist ein Benchmark mit über 2.000 realen GitHub-Issues aus Python-Projekten. Es misst, ob Agenten eigenständig Pull Requests erstellen können, die die Issues lösen. Baseline-Systeme erreichen nur \pct{3}--\pct{5} Erfolgsrate, was die Schwierigkeit unterstreicht.
 
-\textbf{SWE-agent} \cite{yang2024sweagent} demonstrierte, dass optimierte Agent-Computer-Interfaces (ACIs) die Erfolgsrate auf \pct{12.5} steigern können. Zentral sind:
+\textbf{SWE-agent}~\cite{yang2024sweagent} demonstrierte, dass optimierte Agent-Computer-Interfaces (ACIs) die Erfolgsrate auf \pct{12.5} steigern können. Zentral sind:
 \begin{itemize}
   \item Spezialisierte Tools für Navigation, Suche und Editieren
   \item Kontextoptimierte Feedback-Formate
   \item Iterative Verfeinerungsschleifen
 \end{itemize}
 
-\textbf{Agentless} \cite{zhang2024agentless} verfolgte einen minimalistischen Ansatz ohne persistentes Gedächtnis oder komplexe Planung und erreichte dennoch \pct{27} Erfolgsrate durch fokussierte Lokalisierung und Patching-Strategien. Das zeigt, dass nicht immer maximale Komplexität optimal ist.
+\textbf{Agentless}~\cite{zhang2024agentless} verfolgte einen minimalistischen Ansatz ohne persistentes Gedächtnis oder komplexe Planung und erreichte dennoch \pct{27} Erfolgsrate durch fokussierte Lokalisierung und Patching-Strategien. Das zeigt, dass nicht immer maximale Komplexität optimal ist.
 
 \subsection{Multi-Agent-Systeme}
 
 Mehrere Ansätze nutzen rollenbasierte Kollaboration zwischen spezialisierten Agenten:
 
-\textbf{MetaGPT} \cite{hong2023metagpt} simuliert ein Software-Team mit Rollen wie Produktmanager, Architekt, Entwickler und QS. Agents produzieren strukturierte Artefakte (PRDs, Designdokumente, Code, Tests) und folgen einem definierten Workflow.
+\textbf{MetaGPT}~\cite{hong2023metagpt} simuliert ein Software-Team mit Rollen wie Produktmanager, Architekt, Entwickler und QS. Agents produzieren strukturierte Artefakte (PRDs, Designdokumente, Code, Tests) und folgen einem definierten Workflow.
 
-\textbf{Generative Agents} \cite{park2023generative} fokussierte auf realistische Simulation menschlichen Verhaltens durch episodisches Gedächtnis, Reflexion und Planung. Obwohl primär für Simulationen konzipiert, sind die Gedächtnis-Mechanismen auch für SE-Agents relevant.
+\textbf{Generative Agents}~\cite{park2023generative} fokussierte auf realistische Simulation menschlichen Verhaltens durch episodisches Gedächtnis, Reflexion und Planung. Obwohl primär für Simulationen konzipiert, sind die Gedächtnis-Mechanismen auch für SE-Agents relevant.
 
-\textbf{MINDSTORMS} \cite{zhuge2023mindstorms} implementiert Societies-of-Mind-Konzepte mit natürlicher Sprache: Spezialisierte Sub-Agenten lösen Teilprobleme und kommunizieren über strukturierte Protokolle.
+\textbf{MINDSTORMS}~\cite{zhuge2023mindstorms} implementiert Societies-of-Mind-Konzepte mit natürlicher Sprache: Spezialisierte Sub-Agenten lösen Teilprobleme und kommunizieren über strukturierte Protokolle.
 
 \subsection{Graph-/Workflow-basierte Orchestrierung}
 
-Graphen erlauben robuste Kontrollflüsse (Retry, Branching, Parallelisierung), klare Zustandsübergänge und bessere Testbarkeit \cite{wu2023autogen}. LangGraph erweitert LangChain um zustandsbasierte Graphen mit deterministischen Übergängen.
+Graphen erlauben robuste Kontrollflüsse (Retry, Branching, Parallelisierung), klare Zustandsübergänge und bessere Testbarkeit~\cite{wu2023autogen}. LangGraph erweitert LangChain um zustandsbasierte Graphen mit deterministischen Übergängen.
 
 Vorteile:
 \begin{itemize}

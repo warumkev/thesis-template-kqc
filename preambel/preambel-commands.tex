@@ -8,16 +8,16 @@
 
 % Hilfsbefehle für bedingte Ausführung
 \providecommand{\IfDefined}[2]{%
-\ifcsname #1\endcsname #2 \fi
+\ifcsname #1\endcsname #2 \fi%
 }
 
 \providecommand{\IfElseDefined}[3]{%
-\ifcsname #1\endcsname #2 \else #3 \fi
+\ifcsname #1\endcsname #2 \else #3 \fi%
 }
 
 % Frontmatter, Mainmatter, Backmatter definieren
 \@ifundefined{frontmatter}{%
-   \newcommand{\frontmatter}{\pagenumbering{roman}}
+   \newcommand{\frontmatter}{\pagenumbering{roman}}%
 }{}
 \@ifundefined{mainmatter}{%
    \newif\if@mainmatter\@mainmattertrue
@@ -57,12 +57,12 @@ I reviewed and edited the content as needed and take full responsibility for the
 \newcommand*\printGenderDisclaimer{%
 \ifthenelse{\equal{\lang}{ngerman}}%
 {%
-\section*{Gender-Disclaimer}
+\section*{Gender-Disclaimer}%
 \thispagestyle{empty}
 In dieser Arbeit wird aus Gründen der besseren Lesbarkeit das generische Maskulinum verwendet.
 }
 {%
-\section*{Gender Disclaimer}
+\section*{Gender Disclaimer}%
 For reasons of better readability, the generic masculine is used in this work.
 }
 }
@@ -72,7 +72,7 @@ For reasons of better readability, the generic masculine is used in this work.
 \clearpage
 \ifthenelse{\equal{\lang}{ngerman}}%
 {%
-\section*{Erklärung der Selbstständigkeit}
+\section*{Erklärung der Selbstständigkeit}%
 \thispagestyle{empty}
 Hiermit versichere ich, die vorliegende Arbeit selbstständig verfasst und keine anderen als die angegebenen Quellen und Hilfsmittel benutzt zu haben.
 
@@ -81,7 +81,7 @@ Hiermit versichere ich, die vorliegende Arbeit selbstständig verfasst und keine
 \vspace{4\baselineskip}
 }
 {%
-\section*{Declaration of Independence}
+\section*{Declaration of Independence}%
 \thispagestyle{empty}
 I hereby declare that I have composed the present work independently and have not used any sources or aids other than those cited.
 

@@ -1,9 +1,9 @@
 % !TEX root = ../Thesis.tex
 
 \chapter{Konzept und Methodik}
-\index{Design!Architektur-Design}
-\index{Planung!Agent-Planung}
-\index{Sicherheit}
+\index{Design!Architektur-Design}%
+\index{Planung!Agent-Planung}%
+\index{Sicherheit}%
 \label{ch:konzept}
 
 \section{Übersicht des Lösungsansatzes}
@@ -14,7 +14,7 @@ Der Kern der Architektur folgt dem \emph{Sense-Plan-Act-Reflect}-Zyklus\index{Se
 
 \section{Architektur und Design}
 
-Die Architektur basiert auf folgenden Designprinzipien:\footnote{Die Prinzipien orientieren sich an etablierten Softwareentwicklungs-Mustern und Best Practices aus \cite{sommerville2015software}.}\index{Architekturprinzipien}\index{Best Practices}
+Die Architektur basiert auf folgenden Designprinzipien:\footnote{Die Prinzipien orientieren sich an etablierten Softwareentwicklungs-Mustern und Best Practices aus~\cite{sommerville2015software}.}\index{Architekturprinzipien}\index{Best Practices}
 
 \textquote[\cite{richards2020fundamentals}]{Gute Architektur bedeutet, dass Komponenten modular, austauschbar und wartbar sind, um langfristig Wartungskosten zu minimieren.}
 
@@ -91,18 +91,18 @@ Abbildung \ref{fig:agent-architektur} zeigt die Kernkomponenten der Architektur:
 Der Agent Controller implementiert folgende Schleife:
 
 \begin{enumerate}
-  \item \textbf{Thought (Reasoning):} LLM generiert Reasoning-Schritt: „Was weiß ich? Was fehlt? Welcher nächste Schritt ist sinnvoll?"
+  \item \textbf{Thought (Reasoning):} LLM generiert Reasoning-Schritt: \enquote{Was weiß ich? Was fehlt? Welcher nächste Schritt ist sinnvoll?}
   
   \item \textbf{Action:} Auswahl und Parametrisierung eines Tools. Beispiel: \texttt{run\_tests(module="auth")}
   
-  \item \textbf{Observation:} Werkzeugausgabe wird strukturiert zurückgegeben. Beispiel: „3 tests failed in auth/test\_login.py"
+  \item \textbf{Observation:} Werkzeugausgabe wird strukturiert zurückgegeben. Beispiel: \enquote{3 tests failed in auth/test\_login.py}
   
-  \item \textbf{Reflection:} Bewertung des Outputs: „Erfolgreich? Fehler? Next steps?"
+  \item \textbf{Reflection:} Bewertung des Outputs: \enquote{Erfolgreich? Fehler? Next steps?}
   
   \item Wiederholung oder Terminierung (Ziel erreicht / Max-Steps / Fehler)
 \end{enumerate}
 
-Dies entspricht dem in \cite{yao2023react} beschriebenen Pattern, erweitert um explizite Reflexion \cite{shinn2023reflexion}.
+Dies entspricht dem in~\cite{yao2023react} beschriebenen Pattern, erweitert um explizite Reflexion~\cite{shinn2023reflexion}.
 
 \subsection{Tool-Interface-Design}
 
@@ -148,16 +148,16 @@ Das Vorgehen orientiert sich an Design Science Research \cite{sommerville2015sof
 \begin{enumerate}
   \item \textbf{Anforderungsanalyse:} Ableitung konkreter Requirements aus verwandten Arbeiten und Benchmarks (SWE-bench, HumanEval)
   
-  \item \textbf{Architekturdesign:} Entwicklung der Referenzarchitektur (Abbildung \ref{fig:agent-architektur}) mit Fokus auf Modularität
+  \item \textbf{Architekturdesign:} Entwicklung der Referenzarchitektur (Abbildung~\ref{fig:agent-architektur}) mit Fokus auf Modularität
   
   \item \textbf{Prototyping:} Iterative Implementierung der Kernkomponenten in Python
   
-  \item \textbf{Evaluation:} Benchmark-Tests und Metriken-Erhebung (siehe Kapitel \ref{ch:realisierung})
+  \item \textbf{Evaluation:} Benchmark-Tests und Metriken-Erhebung (siehe Kapitel~\ref{ch:realisierung})
   
   \item \textbf{Refinement:} Verbesserung basierend auf Evaluationsergebnissen
 \end{enumerate}
 
-Abbildung \ref{fig:agent-workflow} illustriert den ReAct-Zyklus einer agentischen Sitzung. Der Agent empfängt ein Ziel, sammelt Kontext, plant Schritte, führt Tools aus, verarbeitet Feedback und reflektiert über Zwischenergebnisse. Die Schleife wiederholt sich bis das Ziel erreicht oder abgebrochen wird.
+Abbildung~\ref{fig:agent-workflow} illustriert den ReAct-Zyklus einer agentischen Sitzung. Der Agent empfängt ein Ziel, sammelt Kontext, plant Schritte, führt Tools aus, verarbeitet Feedback und reflektiert über Zwischenergebnisse. Die Schleife wiederholt sich bis das Ziel erreicht oder abgebrochen wird.
 
 \begin{figure}[p!]
 \centering
