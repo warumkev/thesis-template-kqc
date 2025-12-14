@@ -301,6 +301,7 @@ Das war's!
 ```text
 thesis-template/
 ├── Thesis.tex                   # Hauptdatei
+├── build.sh                     # Build-Skript
 ├── preambel/
 │   ├── settings.tex             # KOMA-Script Konfiguration
 │   ├── preambel.tex             # Paket-Definitionen
@@ -308,15 +309,24 @@ thesis-template/
 │   ├── Fonts.tex                # Schriftarten-Auswahl
 │   ├── Hyphenation.tex          # Deutsche Silbentrennung
 │   └── (Fonts.tex)              # Schriftarten-Alternativen
+│   └── Hyphenation.tex          # Deutsche Silbentrennung
 ├── content/
 │   ├── 00_Titel.tex             # Titelseite
 │   ├── 00_Abstract.tex          # Abstract/Kurzfassung
+│   ├── 00_Abkuerzungen.tex      # Abkürzungsverzeichnis
+│   ├── 00_KIErklaerung.tex      # KI-Erklärung
 │   ├── 01_Einfuehrung.tex       # Kapitel: Einführung
 │   ├── 02_Hintergrund.tex       # Kapitel: Theoretischer Hintergrund
 │   ├── 03_Konzept.tex           # Kapitel: Konzept/Methode
 │   ├── 04_Realisierung.tex      # Kapitel: Implementierung/Ergebnisse
 │   ├── 05_Abschluss.tex         # Kapitel: Fazit/Ausblick
-│   └── Z-Anhang.tex             # Anhang (optional)
+│   └── Z-Anhang.tex             # Anhang: KI-Nutzung
+├── docs/                        # KI-generierte Artefakte
+│   ├── Audio-Podcast.m4a        # Podcast
+│   ├── Video-Podcast.mp4        # Podcast
+│   ├── Folien-Präsentation.pdf  # Präsentationsfolien
+│   ├── Mind-Map.png             # Strukturübersicht
+│   └── Poster.png               # Visuelle Zusammenfassung
 ├── bib/
 │   ├── BibtexDatabase.bib       # Literaturquellen
 │   └── bst/
@@ -562,6 +572,18 @@ brew install --cask mactex-no-gui
 
 - Fragen Sie Ihre Hochschule nach Thesis-Richtlinien (Formatierung, Seitenzahlen etc.)
 - Die Vorlage ist allgemein gehalten und sollte passen
+
+## 🤖 KI-generierte Darstellungen der Thesis
+
+Ergänzend zur schriftlichen Fassung stehen verschiedene KI-generierte Aufbereitungen der Inhalte zur Verfügung. **Alle diese Artefakte wurden mit NotebookLM generiert** und basieren vollständig auf den Quellen dieser Thesis.
+
+Im Ordner `docs/` finden Sie folgende 5 Artefakte:
+
+1. Audio Overview.wav – Audio-Podcast: Deep-Dive-Gespräch.
+2. Video Overview.mp4 – Video-Podcast: Kompakte Video-Präsentation der Kerninhalte.
+3. Slides.pdf – Folien-Präsentation: Kompakte Folien-Präsentation fürs Kolloquium.
+4. Mind-Map.png – Mind-Map: Grafische Darstellung der Themenzusammenhänge.
+5. Poster.png – Poster: Die wichtigsten Punkte auf einem Blick.
 
 ## Lizenz
 
