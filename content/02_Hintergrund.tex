@@ -150,6 +150,7 @@ Sie fokussieren primär auf Code-Generierung, nicht auf vollständige agentische
 \section{Vergleich und Bewertung}
 
 Tabelle \ref{tab:agententypen} vergleicht typische Agententypen nach ihren Kernfähigkeiten. Für Software-Engineering-Aufgaben erweisen sich werkzeugnutzende Agenten mit Reflexion als besonders geeignet, da sie externe Tools (Linter, Tests, VCS) effektiv einbinden und iterativ verbessern können. Daraus leitet sich die in Kapitel \ref{ch:konzept} entwickelte Architektur ab.
+Tabelle \ref{tab:agententypen} vergleicht typische Agententypen nach ihren Kernfähigkeiten. Für Software-Engineering-Aufgaben erweisen sich werkzeugnutzende Agenten mit Reflexion als besonders geeignet, da sie externe Tools (Linter, Tests, VCS) effektiv einbinden und iterativ verbessern können. Daraus leitet sich die in Kapitel~\ref{ch:konzept} entwickelte Architektur ab.
 
 \begin{table}[ht]
 \centering
@@ -202,7 +203,7 @@ Basierend auf der Analyse ergeben sich folgende offene Forschungsfragen und Lüc
 \subsection{Skalierungs- und Kostenfragen}
 
 \begin{itemize}
-  \item \textbf{Langer Kontext:} Bei großen Codebases (\textgreater 100k LOC) stoßen selbst 1M-Token-Kontextfenster an Grenzen
+  \item \textbf{Langer Kontext:} Bei großen Codebases (\textgreater 100\,k LOC) stoßen selbst 1\,M-Token-Kontextfenster an Grenzen
   \item \textbf{Viele Tool-Aufrufe:} Jeder Tool-Call erhöht Latenz und Kosten
   \item \textbf{Parallelisierung:} Können unabhängige Teilaufgaben parallel bearbeitet werden?
 \end{itemize}

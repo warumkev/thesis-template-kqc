@@ -6,7 +6,7 @@
 \section{Zusammenfassung der Ergebnisse}
 
 Die Arbeit untersuchte die Entwicklung und Evaluation\index{Evaluation!Agenten} agentischer Architekturen\index{Referenzarchitektur} für Software-Engineering-Workflows\index{SE-Workflows}.\footnote{Vergleiche dazu \cite{xi2023rise} und \cite{wang2023survey} für aktuelle Forschungstrends.}
-Ausgehend von einer systematischen Analyse des Stands der Forschung (Kapitel \ref{ch:hintergrund}) wurde eine Referenzarchitektur entwickelt\index{Architekturdesign} (Kapitel \ref{ch:konzept}), prototypisch implementiert und empirisch evaluiert\index{Empirische Evaluation} (Kapitel \ref{ch:realisierung}).
+Ausgehend von einer systematischen Analyse des Stands der Forschung (Kapitel~\ref{ch:hintergrund}) wurde eine Referenzarchitektur entwickelt\index{Architekturdesign} (Kapitel~\ref{ch:konzept}), prototypisch implementiert und empirisch evaluiert\index{Empirische Evaluation} (Kapitel~\ref{ch:realisierung}).
 
 Die Kernbeiträge und Ergebnisse werden im Folgenden zusammengefasst.
 
@@ -72,7 +72,7 @@ Die Arbeit leistet folgende Beiträge zur Spezialisierung \enquote{Software Engi
 
 \subsection{Wissenschaftlicher Beitrag}
 
-Im Kontext der Forschungslandschaft (vgl. Kapitel \ref{ch:hintergrund}) schließt die Arbeit folgende Lücken:
+Im Kontext der Forschungslandschaft (vgl. Kapitel~\ref{ch:hintergrund}) schließt die Arbeit folgende Lücken:
 
 \begin{itemize}
   \item Systematisierung agentischer SE-Architekturen (bisher meist ad-hoc Prototypen)
@@ -104,7 +104,7 @@ Trotz der positiven Ergebnisse gibt es folgende Limitierungen, die bei der Inter
 \begin{itemize}
   \item \textbf{Halluzinationen:} LLMs halluzinieren gelegentlich non-existente APIs oder fälschen Reasoning. Reflexion reduziert, eliminiert aber nicht.
   
-  \item \textbf{Kontextfenster:} Trotz Optimierung stoßen 128k-Token-Limits bei komplexen Codebasen an Grenzen. RAG/Chunking sind Workarounds, keine Lösungen.
+  \item \textbf{Kontextfenster:} Trotz Optimierung stoßen 128\,k-Token-Limits bei komplexen Codebasen an Grenzen. RAG/Chunking sind Workarounds, keine Lösungen.
   
   \item \textbf{Werkzeuglatenz:} Testläufe dauern Sekunden bis Minuten. Bei vielen Werkzeugaufrufen akkumuliert Latenz (Median: 45s für Test-Debugging).
   
@@ -144,7 +144,7 @@ Auf Basis dieser Arbeit ergeben sich mehrere vielversprechende Richtungen für z
   
   \item \textbf{Mehrsprachenunterstützung:} Aktuell Python-fokussiert. Erweiterung auf Java, TypeScript, Go für breitere Anwendbarkeit
   
-  \item \textbf{Optimiertes Kontextmanagement:} Hybrid-Strategien (RAG + Summarization + Code-Graph-Navigation) für 1M+ LOC Codebasen
+  \item \textbf{Optimiertes Kontextmanagement:} Hybrid-Strategien (RAG + Summarization + Code-Graph-Navigation) für 1\,M+ LOC Codebasen
   
   \item \textbf{Fine-Tuning:} Domänenspezifisches Fein-Tuning auf SE-Tasks könnte Erfolgsraten bei kleineren/günstigeren Modellen verbessern
   

@@ -164,16 +164,16 @@ Die Validierung erfolgt anhand von realistischen Testszenarien, die typische Sof
 
 \begin{sloppypar}
 \begin{description}
-  \item[Hardware:] MacBook Pro M2, 16GB RAM, 512GB SSD
+  \item[Hardware:] MacBook Pro M2, 16\,GB RAM, 512\,GB SSD
   \item[Betriebssystem:] macOS 14.x, Docker Desktop 4.25
   \item[LLM-Modelle:] GPT-4-Turbo (0125), Claude 3.5 Sonnet, mit Temperatur 0.2 für Reproduzierbarkeit
-  \item[Testdaten:] 25 repräsentative Python-Projekte (5k--50k LOC), synthetische Bugs, real-world Issues
+  \item[Testdaten:] 25 repräsentative Python-Projekte (5\,k--50\,k LOC), synthetische Bugs, real-world Issues
 \end{description}
 \end{sloppypar}
 
 \subsection{Benchmark-Szenarien}
 
-Drei Haupt-Szenarien wurden evaluiert (vgl. Kapitel \ref{ch:konzept}):
+Drei Haupt-Szenarien wurden evaluiert (vgl. Kapitel~\ref{ch:konzept}):
 
 \begin{enumerate}
   \item \textbf{Automated Refactoring} (10 Tasks): Extract-Function, Rename-Variable, Simplify-Conditional
@@ -243,13 +243,13 @@ Die entwickelte Lösung erreicht folgende Performance-Charakteristika:
 
 \begin{sloppypar}
 \begin{description}
-  \item[Token-Verbrauch:] Durchschnittlich 8.4k Tokens pro erfolgreichem Task (Range: 2k--25k). Kontextoptimierung reduzierte Verbrauch um \pct{40} gegenüber naivem Ansatz.
+  \item[Token-Verbrauch:] Durchschnittlich 8.4\,k Tokens pro erfolgreichem Task (Range: 2\,k--25\,k). Kontextoptimierung reduzierte Verbrauch um \pct{40} gegenüber naivem Ansatz.
   
-  \item[Laufzeit:] Median 12.3 Sekunden pro Task (ohne Tool-Execution). Mit Test-Runs: 45s--180s je nach Testsuite-Größe.
+  \item[Laufzeit:] Median 12.3 Sekunden pro Task (ohne Tool-Execution). Mit Test-Runs: 45\,s--180\,s je nach Testsuite-Größe.
   
   \item[Tool-Calls:] Durchschnittlich 4.2 Werkzeugaufrufe pro Task. Reflexion reduzierte fehlerhafte Aufrufe um \pct{28}.
   
-  \item[Kosten:] Geschätzt $\$0.08$ pro Task bei GPT-4-Pricing (Jan 2024). Claude war \pct{35} günstiger bei vergleichbarer Qualität.
+  \item[Kosten:] Geschätzt \$\,0.08 pro Task bei GPT-4-Pricing (Jan 2024). Claude war \pct{35} günstiger bei vergleichbarer Qualität.
 \end{description}
 \end{sloppypar}
 
@@ -292,12 +292,12 @@ Die entwickelte Lösung wurde mit Baselines verglichen:
 \toprule
 \cellcolor{headercolor}\textcolor{white}{\textbf{Ansatz}} & \cellcolor{headercolor}\textcolor{white}{\textbf{Success}} & \cellcolor{headercolor}\textcolor{white}{\textbf{Token}} & \cellcolor{headercolor}\textcolor{white}{\textbf{Zeit (s)}} & \cellcolor{headercolor}\textcolor{white}{\textbf{Kosten}} \\
 \midrule
-Naive Prompting & \pct{42} & 12.3k & 8.5 & \$0.12 \\
+Naive Prompting & \pct{42} & 12.3\,k & 8.5 & \$\,0.12 \\
 \rowcolor{rowcolorgray}
-ReAct (Baseline) & \pct{58} & 10.1k & 15.2 & \$0.10 \\
-Unsere Architektur & \pct{73} & 8.4k & 12.3 & \$0.08 \\
+ReAct (Baseline) & \pct{58} & 10.1\,k & 15.2 & \$\,0.10 \\
+Unsere Architektur & \pct{73} & 8.4\,k & 12.3 & \$\,0.08 \\
 \rowcolor{rowcolorgray}
-+ Reflexion & \pct{73} & 8.9k & 14.1 & \$0.09 \\
++ Reflexion & \pct{73} & 8.9\,k & 14.1 & \$\,0.09 \\
 \bottomrule
 \end{tabular}
 \end{table}
@@ -354,23 +354,23 @@ Praktische Erkenntnisse: Automatisierte Tests sollten sowohl synthetische als au
 \toprule
 \cellcolor{headercolor}\textcolor{white}{\textbf{Aufgabe}} & \cellcolor{headercolor}\textcolor{white}{\textbf{Success}} & \cellcolor{headercolor}\textcolor{white}{\textbf{Token}} & \cellcolor{headercolor}\textcolor{white}{\textbf{Zeit (s)}} & \cellcolor{headercolor}\textcolor{white}{\textbf{Tools}} & \cellcolor{headercolor}\textcolor{white}{\textbf{Kosten}} \\
 \midrule
-Extract Function & OK & 7.2k & 18.5 & 4 & \$0.07 \\
+Extract Function & OK & 7.2\,k & 18.5 & 4 & \$\,0.07 \\
 \rowcolor{rowcolorgray}
-Fix Lint Errors & OK & 3.1k & 8.2 & 3 & \$0.03 \\
-Debug Test Failure & OK & 12.5k & 45.3 & 6 & \$0.12 \\
+Fix Lint Errors & OK & 3.1\,k & 8.2 & 3 & \$\,0.03 \\
+Debug Test Failure & OK & 12.5\,k & 45.3 & 6 & \$\,0.12 \\
 \rowcolor{rowcolorgray}
-Format Code & OK & 2.8k & 5.1 & 2 & \$0.03 \\
-Rename Variable & OK & 5.4k & 12.8 & 3 & \$0.05 \\
+Format Code & OK & 2.8\,k & 5.1 & 2 & \$\,0.03 \\
+Rename Variable & OK & 5.4\,k & 12.8 & 3 & \$\,0.05 \\
 \rowcolor{rowcolorgray}
-Remove Deadcode & OK & 8.9k & 22.1 & 5 & \$0.09 \\
-Update Mocks & FAIL & 9.7k & 38.2 & 7 & \$0.10 \\
+Remove Deadcode & OK & 8.9\,k & 22.1 & 5 & \$\,0.09 \\
+Update Mocks & FAIL & 9.7\,k & 38.2 & 7 & \$\,0.10 \\
 \rowcolor{rowcolorgray}
-Simplify Conditional & OK & 6.3k & 15.7 & 4 & \$0.06 \\
-Generate Docstrings & OK & 4.5k & 9.3 & 2 & \$0.04 \\
+Simplify Conditional & OK & 6.3\,k & 15.7 & 4 & \$\,0.06 \\
+Generate Docstrings & OK & 4.5\,k & 9.3 & 2 & \$\,0.04 \\
 \rowcolor{rowcolorgray}
-Fix Type Errors & OK & 11.2k & 28.4 & 5 & \$0.11 \\
+Fix Type Errors & OK & 11.2\,k & 28.4 & 5 & \$\,0.11 \\
 \bottomrule
-\multicolumn{6}{l}{\small \textit{Durchschnitt (erfolgreiche Tasks):} 7.1k tokens, 16.5s, 3.8 tools, \$0.07} \\
+\multicolumn{6}{l}{\small \textit{Durchschnitt (erfolgreiche Tasks):} 7.1\,k tokens, 16.5\,s, 3.8 tools, \$\,0.07} \\
   \end{tabular}
 \endgroup
 \end{table}

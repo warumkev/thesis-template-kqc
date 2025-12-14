@@ -8,7 +8,7 @@
 
 \section{Übersicht des Lösungsansatzes}
 
-Aus Kapitel \ref{ch:hintergrund} abgeleitet entwerfen wir eine referenzierbare Agentenarchitektur für Software Engineering\index{Agentenarchitektur!Entwurf}. Sie kombiniert Planung (ReAct-basierte Policy)\index{Policy-Engine}, Werkzeugnutzung (Linter, Tests, VCS, Dateioperationen)\index{Tool-Integration}, episodisches Gedächtnis und mehrschichtige Sicherheitsmechanismen (Eingabefilter, Sandboxing, Quoten).\footnote{\emph{Referenzierbar} bedeutet hier, dass die Architektur dokumentiert und in anderen Projekten anwendbar ist.}
+Aus Kapitel~\ref{ch:hintergrund} abgeleitet entwerfen wir eine referenzierbare Agentenarchitektur für Software Engineering\index{Agentenarchitektur!Entwurf}. Sie kombiniert Planung (ReAct-basierte Policy)\index{Policy-Engine}, Werkzeugnutzung (Linter, Tests, VCS, Dateioperationen)\index{Tool-Integration}, episodisches Gedächtnis und mehrschichtige Sicherheitsmechanismen (Eingabefilter, Sandboxing, Quoten).\footnote{\emph{Referenzierbar} bedeutet hier, dass die Architektur dokumentiert und in anderen Projekten anwendbar ist.}
 
 Der Kern der Architektur folgt dem \emph{Sense-Plan-Act-Reflect}-Zyklus\index{Sense-Plan-Act-Reflect}: Zunächst wird in der \textbf{Sense}-Phase der aktuelle Zustand erfasst, einschließlich Codebase, Fehlermeldungen und Test-Outputs. Darauf aufbauend erfolgt die \textbf{Plan}-Phase mit der Dekomposition des Ziels in ausführbare Teilschritte. In der \textbf{Act}-Phase werden Tool-Aufrufe und Code-Operationen ausgeführt. Abschließend bewertet die \textbf{Reflect}-Phase selbstkritisch die Ergebnisse und passt die Strategie an. Die Schleife wird iterativ wiederholt, bis das Ziel erreicht ist oder eine Abbruchbedingung eintritt (maximale Schritte, Timeout oder Fehlerrate).
 
@@ -289,7 +289,7 @@ def execute_critical_tool(tool_name, params):
 
 \section{Abgrenzung zu alternativen Ansätzen}
 
-Der Ansatz unterscheidet sich von den in Kapitel \ref{ch:hintergrund} beschriebenen Methoden durch:
+Der Ansatz unterscheidet sich von den in Kapitel~\ref{ch:hintergrund} beschriebenen Methoden durch:
 
 \begin{sloppypar}
 \begin{itemize}
@@ -303,6 +303,6 @@ Der Ansatz unterscheidet sich von den in Kapitel \ref{ch:hintergrund} beschriebe
 \end{itemize}
 \end{sloppypar}
 
-Die Implementierung und empirische Validierung dieser Konzepte erfolgt in Kapitel \ref{ch:realisierung}.
+Die Implementierung und empirische Validierung dieser Konzepte erfolgt in Kapitel~\ref{ch:realisierung}.
 
 Abschließend sei betont, dass das Konzept bewusst pragmatisch gehalten ist: Ziel ist ein praktikabler Kompromiss zwischen Forschungsidealen (maximale Generalität) und den Erfordernissen produktiver Softwareentwicklung (Wartbarkeit, Messbarkeit, Kosten). Deshalb favorisiert das Design wiederverwendbare Schnittstellen und klare Migrationspfade, anstatt ein rein prototypisches System ohne Produktionsreife zu liefern.
