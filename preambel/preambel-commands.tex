@@ -27,29 +27,12 @@
    \newcommand{\backmatter}{\pagenumbering{roman}}
 }{}
 
-% KI-Deklaration
-\newcommand*{\printGenerativeAIDeclaration}{%
-\ifcsdef{declareUseOfGenerativeAITool}{%
-\ifthenelse{\equal{\lang}{ngerman}}%
-{%
-\section*{Erklärung zur Nutzung von KI-basierten Werkzeugen}
-Bei der Erstellung der vorliegenden Arbeit habe ich KI-basierte Anwendungen bzw.~Werkzeuge als Hilfsmittel verwendet.
-Die verwendeten Tools (\declareUseOfGenerativeAITool) sowie Art und Umfang der Nutzung sind im Anhang A
-„Verzeichnis der KI-Nutzung" (siehe \autoref{ch:ki-nutzung}) tabellarisch dokumentiert.
-
-Ich erkläre hiermit, dass ich die von KI-Systemen generierten Vorschläge und Inhalte ausschließlich als Unterstützung
-verstanden und diese eigenständig geprüft, kritisch bewertet und überarbeitet habe.
-Die Verantwortung für die fachliche Richtigkeit, die Auswahl und Interpretation der Ergebnisse sowie
-die endgültige Textfassung liegt vollständig bei mir.
-
-}
-{%
-\section*{Declaration of the use of Generative AI}
-During the preparation of this work I used \declareUseOfGenerativeAITool\ to improve readability and language.
-I reviewed and edited the content as needed and take full responsibility for the content of this thesis.
-}
-}{}
-}
+% KI-Deklaration (Text in Anhang: content/Z-Anhang-declaration.tex)
+% Das eigentliche Deklarationstext wurde in den Anhang verschoben, damit er nur
+% einmal an der gewünschten Stelle erscheint. Dieses Makro bleibt bestehen,
+% damit bestehende Aufrufe im Dokument weiterhin funktionieren, gibt jedoch
+% keinen Text mehr aus.
+\newcommand*{\printGenerativeAIDeclaration}{}%
 
 % Geschlechter-Disclaimer
 \newcommand*\printGenderDisclaimer{%
