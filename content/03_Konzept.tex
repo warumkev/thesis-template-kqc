@@ -10,12 +10,11 @@
 
 Aus Kapitel \ref{ch:hintergrund} abgeleitet entwerfen wir eine referenzierbare Agentenarchitektur für Software Engineering\index{Agentenarchitektur!Entwurf}. Sie kombiniert Planung (ReAct-basierte Policy)\index{Policy-Engine}, Werkzeugnutzung (Linter, Tests, VCS, Dateioperationen)\index{Tool-Integration}, episodisches Gedächtnis und mehrschichtige Sicherheitsmechanismen (Eingabefilter, Sandboxing, Quoten).\footnote{\emph{Referenzierbar} bedeutet hier, dass die Architektur dokumentiert und in anderen Projekten anwendbar ist.}
 
-Der Kern der Architektur folgt dem \emph{Sense-Plan-Act-Reflect}-Zyklus\index{Sense-Plan-Act-Reflect}: Zunächst wird in der \textbf{Sense}-Phase der aktuelle Zustand erfasst, einschließlich Codebase, Fehlermeldungen und Test-Outputs. Darauf aufbauend erfolgt die \textbf{Plan}-Phase mit der Dekomposition des Ziels in ausführbare Teilschritte. In der \textbf{Act}-Phase werden Tool-Aufrufe und Code-Operationen ausgeführt. Abschließend bewertet die \textbf{Reflect}-Phase selbstkritisch die Ergebnisse und passt die Strategie an. Diese Schleife wird iterativ wiederholt, bis das Ziel erreicht ist oder eine Abbruchbedingung eintritt (maximale Schritte, Timeout oder Fehlerrate).
 Der Kern der Architektur folgt dem \emph{Sense-Plan-Act-Reflect}-Zyklus\index{Sense-Plan-Act-Reflect}: Zunächst wird in der \textbf{Sense}-Phase der aktuelle Zustand erfasst, einschließlich Codebase, Fehlermeldungen und Test-Outputs. Darauf aufbauend erfolgt die \textbf{Plan}-Phase mit der Dekomposition des Ziels in ausführbare Teilschritte. In der \textbf{Act}-Phase werden Tool-Aufrufe und Code-Operationen ausgeführt. Abschließend bewertet die \textbf{Reflect}-Phase selbstkritisch die Ergebnisse und passt die Strategie an. Die Schleife wird iterativ wiederholt, bis das Ziel erreicht ist oder eine Abbruchbedingung eintritt (maximale Schritte, Timeout oder Fehlerrate).
 
 \section{Architektur und Design}
 
-Die Architektur basiert auf folgenden Designprinzipien:\footnote{Die Prinzipien orientieren sich an etablierten Softwareentwicklungs-Patterns und Best Practices aus \cite{sommerville2015software}.}\index{Architekturprinzipien}\index{Best Practices}
+Die Architektur basiert auf folgenden Designprinzipien:\footnote{Die Prinzipien orientieren sich an etablierten Softwareentwicklungs-Mustern und Best Practices aus \cite{sommerville2015software}.}\index{Architekturprinzipien}\index{Best Practices}
 
 \textquote[\cite{richards2020fundamentals}]{Gute Architektur bedeutet, dass Komponenten modular, austauschbar und wartbar sind, um langfristig Wartungskosten zu minimieren.}
 
@@ -158,7 +157,7 @@ Das Vorgehen orientiert sich an Design Science Research \cite{sommerville2015sof
   \item \textbf{Refinement:} Verbesserung basierend auf Evaluationsergebnissen
 \end{enumerate}
 
-Abbildung \ref{fig:agent-workflow} illustriert den ReAct-Zyklus einer agentischen Sitzung. Der Agent empfängt ein Ziel, sammelt Kontext, plant Schritte, führt Tools aus, verarbeitet Feedback und reflektiert über Zwischenergebnisse. Diese Schleife wiederholt sich bis das Ziel erreicht oder abgebrochen wird.
+Abbildung \ref{fig:agent-workflow} illustriert den ReAct-Zyklus einer agentischen Sitzung. Der Agent empfängt ein Ziel, sammelt Kontext, plant Schritte, führt Tools aus, verarbeitet Feedback und reflektiert über Zwischenergebnisse. Die Schleife wiederholt sich bis das Ziel erreicht oder abgebrochen wird.
 
 \begin{figure}[p!]
 \centering
@@ -219,7 +218,7 @@ Drei repräsentative Szenarien wurden definiert:
     \end{sloppypar}
 \end{enumerate}
 
-Neben der formalen Beschreibung der Szenarien wird im Konzept auch großer Wert auf Reproduzierbarkeit und Praktikabilität gelegt: Für jedes Szenario werden Eingabedaten, erwartete Outputs und Akzeptanzkriterien exakt definiert, so dass Experimente automatisiert wiederholt und Ergebnisse vergleichbar werden. Ferner werden Metriken und Logging-Formate standardisiert, damit unterschiedliche Implementierungen derselben Architektur direkt verglichen werden können. Diese Operationalisierung erleichtert nicht nur Validierung, sondern auch Transfer in industrielle Pipelines.
+Neben der formalen Beschreibung der Szenarien wird im Konzept auch großer Wert auf Reproduzierbarkeit und Praktikabilität gelegt: Für jedes Szenario werden Eingabedaten, erwartete Outputs und Akzeptanzkriterien exakt definiert, so dass Experimente automatisiert wiederholt und Ergebnisse vergleichbar werden. Ferner werden Metriken und Logging-Formate standardisiert, damit unterschiedliche Implementierungen derselben Architektur direkt verglichen werden können. Die Operationalisierung erleichtert nicht nur Validierung, sondern auch Transfer in industrielle Pipelines.
 
 \subsection{Fallbeispiel: Refactoring-Flow}
 

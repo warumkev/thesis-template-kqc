@@ -88,7 +88,7 @@ Das war's! Der Automat läuft jetzt.
 
 #### ✅ Test: Funktioniert alles?
 
-1. Öffnen Sie diese Vorlage in VS Code: `Datei` → `Ordner öffnen` → `thesis-template`
+1. Öffnen Sie die Vorlage in VS Code: `Datei` → `Ordner öffnen` → `thesis-template`
 2. Öffnen Sie `Thesis.tex`
 3. Drücken Sie `Cmd+S` (Mac) oder `Ctrl+S` (Windows/Linux)
 4. Warten Sie 10 Sekunden...
@@ -100,7 +100,7 @@ Wenn nein: Siehe Abschnitt "Troubleshooting" unten.
 
 ## ⚙️ WICHTIG: `build.sh` — Bedeutung & Nutzung
 
-Diese Vorlage enthält ein kleines, zuverlässiges Build-Skript namens `build.sh`, das alle notwendigen Schritte automatisch ausführt, um die PDF-Ausgabe vollständig und konsistent zu erzeugen.
+Die Vorlage enthält ein kleines, zuverlässiges Build-Skript namens `build.sh`, das alle notwendigen Schritte automatisch ausführt, um die PDF-Ausgabe vollständig und konsistent zu erzeugen.
 
 - **Wozu dient `build.sh`?**
    - Es automatisiert die mehrstufige Kompilierung, die LaTeX für Kapitel-, Verzeichnis- und Literaturverweise benötigt.
@@ -152,7 +152,7 @@ rm -f *.aux *.bbl *.bcf *.blg *.toc *.lof *.lot *.idx *.ilg *.ind *.out
 
 Hinweis: `build.sh` ist bewusst einfach gehalten und funktioniert in den meisten lokalen Setups; für CI/CD-Pipelines oder spezielle TeX-Umgebungen können Sie die Schritte aus dem Skript bei Bedarf anpassen.
 
-### Wie benutze ich diese Vorlage jetzt?
+### Wie benutze ich die Vorlage jetzt?
 
 ### Workflow in VS Code
 
@@ -173,7 +173,7 @@ Hinweis: `build.sh` ist bewusst einfach gehalten und funktioniert in den meisten
 
 ## Features & Highlights
 
-Diese Vorlage ist **produktionsreif** für Bachelor- und Masterarbeiten:
+Die Vorlage ist **produktionsreif** für Bachelor- und Masterarbeiten:
 
 ✅ **Alles ist vorkonfiguriert**
 
@@ -218,7 +218,7 @@ Das war's. Keine weiteren Abhängigkeiten nötig!
 
 **Nein?** → Folgen Sie der Setup-Anleitung oben (5 Minuten)
 
-### 1. Diese Vorlage herunterladen
+### 1. Die Vorlage herunterladen
 
 Option A: **Mit Git** (empfohlen):
 
@@ -561,7 +561,7 @@ brew install --cask mactex-no-gui
 **Deutsche Hochschul-Richtlinien:**
 
 - Fragen Sie Ihre Hochschule nach Thesis-Richtlinien (Formatierung, Seitenzahlen etc.)
-- Diese Vorlage ist allgemein gehalten und sollte passen
+- Die Vorlage ist allgemein gehalten und sollte passen
 
 ## Lizenz
 

@@ -15,13 +15,13 @@
 
 Software Engineering erlebt derzeit einen Paradigmenwechsel: \emph{agentic AI} \textendash{} also KI-Systeme, die Ziele verstehen, Pläne erstellen, Werkzeuge verwenden und Ergebnisse eigenständig verifizieren \textendash{} ergänzt klassische Automatisierung um adaptive, mehrschrittige Problemlösung.\footnote{Der Begriff \emph{Agentic AI} wird derzeit von führenden Forschungsteams geprägt und bezieht sich auf Systeme, die über mehrere Schritte selbstständig komplexe Aufgaben bewältigen können.}
  
-Darüber hinaus verlangt die praktische Anwendung agentischer Systeme oft einen ausgewogenen Kompromiss zwischen Automatisierung und menschlicher Kontrolle. In vielen Entwicklungsprozessen sind Schritte, die bisher rein manuell durchgeführt wurden (Code-Reviews, Testgenerierung, Release-Checks), gute Kandidaten für assistierte Workflows. Agenten können Routinearbeit übernehmen, erlauben dadurch jedoch auch neue Prüfpfade: So müssen Validierungsstrategien entworfen werden, die automatisierte Entscheidungen nachvollziehbar machen und menschliche Reviewer bei Bedarf schnell eingreifen lassen. Die Arbeit nimmt genau diesen Balanceakt in den Blick und liefert pragmatische Designprinzipien für den produktiven Einsatz.
+Darüber hinaus verlangt die praktische Anwendung agentischer Systeme oft einen ausgewogenen Kompromiss zwischen Automatisierung und menschlicher Kontrolle. In vielen Entwicklungsprozessen sind Schritte, die bisher rein manuell durchgeführt wurden (Code-Reviews, Testgenerierung, Release-Checks), gute Kandidaten für assistierte Workflows. Agenten können Routinearbeit übernehmen, erlauben dadurch jedoch auch neue Prüfpfade: So müssen Validierungsstrategien entworfen werden, die automatisierte Entscheidungen nachvollziehbar machen und menschliche Reviewer bei Bedarf schnell eingreifen lassen. Die Arbeit nimmt genau den Balanceakt in den Blick und liefert pragmatische Designprinzipien für den produktiven Einsatz.
 Wie Richards und Ford betonen, \textquote[\cite{richards2020fundamentals}]{müssen Architekturprinzipien auf Skalierbarkeit und Wartbarkeit ausgelegt sein}, um praktischen Anforderungen gerecht zu werden.
-Für Informatikstudierende der Fachrichtung \enquote{Software Engineering mit agentic AI} eröffnet dies neue Architektur- und Methodikfragen: Wie entwirft man robuste Agenten-Workflows? Wie orchestriert man Tool-Nutzung, Gedächtnis und Langkontext? Und wie integriert man Sicherheit, Nachvollziehbarkeit und Tests in agentische Systeme?\footnote{Praktische Orchestrierung bedeutet hier die Koordination von Planungsschritten, Werkzeugaufrufen und Gedächtniszugriffen in einer strukturierten Abfolge.}
+Für Informatikstudierende der Fachrichtung \enquote{Software Engineering mit agentic AI} eröffnet das neue Architektur- und Methodikfragen: Wie entwirft man robuste Agenten-Workflows? Wie orchestriert man Tool-Nutzung, Gedächtnis und Langkontext? Und wie integriert man Sicherheit, Nachvollziehbarkeit und Tests in agentische Systeme?\footnote{Praktische Orchestrierung bedeutet hier die Koordination von Planungsschritten, Werkzeugaufrufen und Gedächtniszugriffen in einer strukturierten Abfolge.}
 
 \section{Problemstellung}
 
-Vor diesem Hintergrund adressiert die Arbeit exemplarisch die Entwicklung und Evaluation eines agentischen Systems für Softwareentwicklungsaufgaben (z.\,B. Refactoring, Code-Review, Generierung von Tests). Zentrale Fragen sind:
+Vor dem Hintergrund adressiert die Arbeit exemplarisch die Entwicklung und Evaluation eines agentischen Systems für Softwareentwicklungsaufgaben (z.\,B. Refactoring, Code-Review, Generierung von Tests). Zentrale Fragen sind:
 
 \begin{itemize}
   \item Wie lassen sich Agentenstrategien (Planen, Werkzeugaufrufe, Selbstkritik) systematisch modellieren?
@@ -47,7 +47,7 @@ Kurz gefasst zielt die Arbeit darauf ab, aus Praxisproblemen generalisierbare L�
 Die Arbeit fokussiert Agenten für Softwareentwicklungsaufgaben. Nicht im Fokus sind z.\,B. Reinforcement Learning from Human Feedback (RLHF) im Detail, Trainingsmethoden auf Rohdaten oder proprietäre Interna von Foundation Models. Ebenso werden Domänen außerhalb der Softwareentwicklung (z.\,B. Robotik) nicht betrachtet.
 
 \begin{itemize}
-  \item Zu komplexe Spezialfälle, die für diese Arbeit nicht relevant sind
+  \item Zu komplexe Spezialfälle, die für die Arbeit nicht relevant sind
   \item Historische Entwicklungen vor einem bestimmten Zeitpunkt
   \item Randbereiche, die außerhalb des Fokus liegen
 \end{itemize}
