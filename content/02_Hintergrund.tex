@@ -19,22 +19,23 @@ Moderne LLMs wie GPT-4, Claude oder Llama 2 verfügen über Milliarden von Param
 \subsection{Von LLMs zu Agenten: Der Paradigmenwechsel}
 
 Während klassische LLMs primär auf Textvervollständigung spezialisiert sind, zeichnen sich \emph{agentische Systeme} durch erweiterte Fähigkeiten aus \cite{wang2023survey}. Zentral ist das \textbf{zielgerichtete Handeln}\index{Agent!Zielgerichtetheit}: Der Agent versteht übergeordnete Ziele und plant systematisch Schritte zur Zielerreichung\index{Zielerreichung}. Die \textbf{Werkzeugnutzung}\index{Externe Tools} ermöglicht die Integration externer Tools wie APIs, Datenbanken und Code-Execution\index{Code-Execution}, wodurch die Fähigkeiten über reine Textgenerierung hinausgehen. Ein persistentes \textbf{Gedächtnis}\index{Kontextpersistierung} speichert Kontextinformationen über mehrere Interaktionen hinweg und ermöglicht kontextbewusstes Arbeiten. Durch \textbf{Reflexion}\index{Selbstbewertung} erfolgt eine selbstkritische Bewertung eigener Outputs mit iterativer Verbesserung. Schließlich unterstützt \textbf{mehrschrittige Planung}\index{Task-Dekomposition} die Dekomposition komplexer Aufgaben in ausführbare Teilschritte.
+Während klassische LLMs primär auf Textvervollständigung spezialisiert sind, zeichnen sich \emph{agentische Systeme} durch erweiterte Fähigkeiten aus \cite{wang2023survey}. Zentral ist das \textbf{zielgerichtete Handeln}\index{Agent!Zielgerichtetheit}: Der Agent versteht übergeordnete Ziele und plant systematisch Schritte zur Zielerreichung\index{Zielerreichung}. Die \textbf{Werkzeugnutzung}\index{Externe Tools} ermöglicht die Integration externer Tools wie APIs, Datenbanken und Code-Ausführung\index{Code-Ausführung}, wodurch die Fähigkeiten über reine Textgenerierung hinausgehen. Ein persistentes \textbf{Gedächtnis}\index{Kontextpersistierung} speichert Kontextinformationen über mehrere Interaktionen hinweg und ermöglicht kontextbewusstes Arbeiten. Durch \textbf{Reflexion}\index{Selbstbewertung} erfolgt eine selbstkritische Bewertung eigener Outputs mit iterativer Verbesserung. Schließlich unterstützt \textbf{mehrschrittige Planung}\index{Task-Dekomposition} die Dekomposition komplexer Aufgaben in ausführbare Teilschritte.
 
 \subsection{Agentic AI: Begriffe und Bausteine}
 
 Kernbausteine agentischer Systeme sind \cite{weng2023prompt,yao2023react}:
 
 \begin{description}
-  \item[Zustand (State):] Umfasst aktuellen Kontext\index{State Management}, Ziele, Erinnerungen und Tool-Status\index{Tool-Status}. Der Zustand wird dynamisch aktualisiert\index{State Updates}.
+  \item[Zustand (State):] Umfasst aktuellen Kontext\index{State Management}, Ziele, Erinnerungen und Tool-Status\index{Tool-Status}. Der Zustand wird dynamisch aktualisiert\index{Zustandsaktualisierungen}.
   
-  \item[Policy:] Steuert Entscheidungsprozesse (Planung, Aktion, Selbstkritik)\index{Policy!Decision-Making}. Kann regelbasiert\index{Regelbasierte Policy} oder LLM-gesteuert\index{LLM-gesteuerte Policy} sein.
+  \item[Policy:] Steuert Entscheidungsprozesse (Planung, Aktion, Selbstkritik)\index{Policy!Entscheidungsfindung}. Kann regelbasiert\index{Regelbasierte Policy} oder LLM-gesteuert\index{LLM-gesteuerte Policy} sein.
   
   \item[Werkzeuge (Tools):] Externe Funktionen wie Code-Ausführung, Websuche\index{Websuche}, Dateizugriff, VCS-Operationen\index{VCS-Operationen}. Tools erweitern die Fähigkeiten des Agenten über reine Textgenerierung hinaus \cite{schick2023toolformer,qin2023tool}.
   
   \item[Gedächtnis (Memory):] Speichert episodische (konkrete Ereignisse) und semantische (abstraktes Wissen) Informationen. Kann durch Vektor-Datenbanken oder strukturierte Speicher realisiert werden.
 \end{description}
 
-Orchestrierung koordiniert diese Komponenten durch Planung (z.\,B. ReAct-Pattern), Tool-Auswahl, Fehlerbehandlung und Reflexion \cite{yao2023react}. Typische Artefakte in SE-Workflows sind strukturierte Schnittstellen über \textbf{JSON} und \textbf{YAML}, Datenpersistenz mittels \textbf{SQL}-Datenbanken sowie sichere Remote-Operationen über \textbf{SSH}. Darüber hinaus basieren viele Komponenten auf \textbf{ML}-Methoden und \textbf{NLP} für Code- und Textverstehen; Wissensrepräsentation erfolgt in \textbf{KB} (Knowledge Bases) und \textbf{KG} (Knowledge Graphs). API-Interaktionen erfolgen üblicherweise über \textbf{HTTP} und \textbf{REST}, teils mit Fallbacks auf \textbf{XML}.
+Orchestrierung koordiniert diese Komponenten durch Planung (z.\,B. ReAct-Pattern), Tool-Auswahl, Fehlerbehandlung und Reflexion \cite{yao2023react}. Typische Artefakte in SE-Workflows sind strukturierte Schnittstellen über \textbf{JSON} und \textbf{YAML}, Datenpersistenz mittels \textbf{SQL}-Datenbanken sowie sichere Remote-Operationen über \textbf{SSH}. Darüber hinaus basieren viele Komponenten auf \textbf{ML}-Methoden und \textbf{NLP} für Code- und Textverstehen; Wissensrepräsentation erfolgt in \textbf{KB} (Wissensdatenbanken) und \textbf{KG} (Wissensgraphen). API-Interaktionen erfolgen üblicherweise über \textbf{HTTP} und \textbf{REST}, teils mit Fallbacks auf \textbf{XML}.
 
 \subsection{Chain-of-Thought und Reasoning-Patterns}
 
@@ -82,6 +83,7 @@ Es existiert umfangreiche Literatur zu agentischen Systemen im Allgemeinen und i
 \subsection{Reasoning-and-Acting-Patterns}
 
 \textbf{ReAct} \cite{yao2023react} etablierte das grundlegende Pattern, bei dem LLMs explizit zwischen Reasoning-Schritten (Denken) und Acting-Schritten (Tool-Aufrufe) alternieren. Das Paper demonstrierte signifikante Verbesserungen bei question-answering und decision-making Tasks.
+\textbf{ReAct} \cite{yao2023react} etablierte das grundlegende Pattern, bei dem LLMs explizit zwischen Reasoning-Schritten (Denken) und Acting-Schritten (Tool-Aufrufe) alternieren. Das Paper demonstrierte signifikante Verbesserungen bei Question-Answering und Decision-Making-Tasks.
 
 \textquote[\cite{yao2023react}]{Die Kombination von reasoning und acting führt zu robusteren und transparenteren Systemen, die besser nachvollziehbare Entscheidungen treffen.}
 
@@ -92,9 +94,9 @@ Die Vorteile umfassen:
   \item Möglichkeit zur Intervention und Korrektur
 \end{itemize}
 
-Grenzen sind längere Latenzen durch zusätzliche LLM-Aufrufe und potentielle Halluzinationen in Reasoning-Schritten.
+Grenzen sind längere Latenzen durch zusätzliche LLM-Aufrufe und potentielle Halluzinationen in Reasoning-Traces.
 
-\textbf{Reflexion} \cite{shinn2023reflexion} erweitert ReAct um Self-Critique: Der Agent bewertet seine eigenen Outputs und lernt aus Fehlern durch verbal reinforcement. Dies verbessert die Erfolgsrate bei komplexen Tasks um bis zu \pct{20}.
+\textbf{Reflexion} \cite{shinn2023reflexion} erweitert ReAct um Self-Critique: Der Agent bewertet seine eigenen Outputs und lernt aus Fehlern durch Verbal Reinforcement. Dies verbessert die Erfolgsrate bei komplexen Tasks um bis zu \pct{20}.
 
 \subsection{Software Engineering Agents}
 
@@ -104,9 +106,9 @@ Speziell für Software Engineering wurden mehrere agentische Systeme entwickelt:
 
 \textbf{SWE-agent} \cite{yang2024sweagent} demonstrierte, dass optimierte Agent-Computer-Interfaces (ACIs) die Erfolgsrate auf \pct{12.5} steigern können. Zentral sind:
 \begin{itemize}
-  \item Spezialisierte Tools für Navigation, Suche und Editing
+  \item Spezialisierte Tools für Navigation, Suche und Editieren
   \item Kontextoptimierte Feedback-Formate
-  \item Iterative Refinement-Loops
+  \item Iterative Verfeinerungsschleifen
 \end{itemize}
 
 \textbf{Agentless} \cite{zhang2024agentless} verfolgte einen minimalistischen Ansatz ohne persistentes Gedächtnis oder komplexe Planung und erreichte dennoch \pct{27} Erfolgsrate durch fokussierte Lokalisierung und Patching-Strategien. Dies zeigt, dass nicht immer maximale Komplexität optimal ist.
@@ -115,7 +117,7 @@ Speziell für Software Engineering wurden mehrere agentische Systeme entwickelt:
 
 Mehrere Ansätze nutzen rollenbasierte Kollaboration zwischen spezialisierten Agenten:
 
-\textbf{MetaGPT} \cite{hong2023metagpt} simuliert ein Software-Team mit Rollen wie ProductManager, Architect, Engineer und QA. Agents produzieren strukturierte Artefakte (PRDs, Design Docs, Code, Tests) und folgen einem definierten Workflow.
+\textbf{MetaGPT} \cite{hong2023metagpt} simuliert ein Software-Team mit Rollen wie Product Manager, Architekt, Entwickler und QS. Agents produzieren strukturierte Artefakte (PRDs, Design-Dokumente, Code, Tests) und folgen einem definierten Workflow.
 
 \textbf{Generative Agents} \cite{park2023generative} fokussierte auf realistische Simulation menschlichen Verhaltens durch episodisches Gedächtnis, Reflexion und Planung. Obwohl primär für Simulationen konzipiert, sind die Gedächtnis-Mechanismen auch für SE-Agents relevant.
 
@@ -171,10 +173,10 @@ Mehragentensystem & Rollenbasierte Kollaboration; Kommunikation; Spezialisierung
 Aus der Analyse lassen sich folgende Designprinzipien für SE-Agents ableiten:
 
 \begin{enumerate}
-  \item \textbf{Tool-First Design:} SE-Tasks erfordern Zugriff auf Entwicklungsumgebung (IDEs, CLI, Tests)
+  \item \textbf{Tool-First-Design:} SE-Tasks erfordern Zugriff auf Entwicklungsumgebung (IDEs, CLI, Tests)
   \item \textbf{Reflexion ist essentiell:} Code-Qualität benötigt iterative Verbesserung
-  \item \textbf{Kontextmanagement:} Lange Codebases erfordern effiziente Context-Windows
-  \item \textbf{Safety Mechanisms:} Code-Execution erfordert Sandboxing und Validierung
+  \item \textbf{Kontextmanagement:} Lange Codebases erfordern effiziente Kontextfenster
+  \item \textbf{Sicherheitsmechanismen:} Code-Ausführung erfordert Sandboxing und Validierung
 \end{enumerate}
 
 \section{Forschungslücke}
@@ -185,7 +187,7 @@ Basierend auf der Analyse ergeben sich folgende offene Forschungsfragen und Lüc
 
 \begin{itemize}
   \item \textbf{Fehlende Referenzarchitekturen:} Während Frameworks wie LangChain Bausteine bieten, fehlen validierte End-to-End-Architekturen für SE-Workflows
-  \item \textbf{Tool-Interface Design:} Unklar ist, wie Tools optimal gestaltet werden sollten (granular vs. high-level, synchron vs. asynchron)
+  \item \textbf{Tool-Interface-Design:} Unklar ist, wie Tools optimal gestaltet werden sollten (granular vs. high-level, synchron vs. asynchron)
   \item \textbf{Gedächtnis-Strategien:} Welche Informationen sollten episodisch vs. semantisch gespeichert werden?
 \end{itemize}
 
@@ -194,13 +196,13 @@ Basierend auf der Analyse ergeben sich folgende offene Forschungsfragen und Lüc
 \begin{itemize}
   \item \textbf{Realistische Metriken:} SWE-bench misst nur Issue-Resolution, nicht Code-Qualität, Wartbarkeit oder Security
   \item \textbf{Kosten-Nutzen-Analysen:} Token-Kosten vs. Entwicklerzeit-Ersparnis sind schwer zu quantifizieren
-  \item \textbf{Safety und Robustheit:} Wie messen wir Resistenz gegen Prompt-Injection oder malicious Tools?
+  \item \textbf{Sicherheit und Robustheit:} Wie messen wir Resistenz gegen Prompt-Injection oder schädliche Tools?
 \end{itemize}
 
 \subsection{Skalierungs- und Kostenfragen}
 
 \begin{itemize}
-  \item \textbf{Langer Kontext:} Bei großen Codebases (\textgreater 100k LOC) stoßen selbst 1M-Token-Kontexte an Grenzen
+  \item \textbf{Langer Kontext:} Bei großen Codebases (\textgreater 100k LOC) stoßen selbst 1M-Token-Kontextfenster an Grenzen
   \item \textbf{Viele Tool-Aufrufe:} Jeder Tool-Call erhöht Latenz und Kosten
   \item \textbf{Parallelisierung:} Können unabhängige Teilaufgaben parallel bearbeitet werden?
 \end{itemize}
@@ -211,7 +213,7 @@ Diese Arbeit adressiert die identifizierten Lücken durch:
 
 \begin{enumerate}
   \item Entwicklung einer dokumentierten Referenzarchitektur für SE-Agents
-  \item Praxisnahe Implementierung mit Tool-Interface-Guidelines
+  \item Praxisnahe Implementierung mit Tool-Interface-Richtlinien
   \item Evaluation anhand realistischer Metriken (Erfolgsrate, Qualität, Kosten, Safety)
   \item Ableitung von Best Practices für Kontextmanagement und Kostenoptimierung
 \end{enumerate}

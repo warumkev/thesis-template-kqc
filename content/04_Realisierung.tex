@@ -9,7 +9,7 @@
 \section{Implementierungsdetails}
 
 In diesem Kapitel werden die praktischen Aspekte der Umsetzung dokumentiert\index{Implementierungspraxis}.\footnote{Implementierungsdetails orientieren sich an Best Practices aus \cite{martin2008clean}.}
-Die Implementierung erfolgte iterativ\index{Iterative Entwicklung} über einen Zeitraum von 4 Monaten mit kontinuierlichem Testen\index{Continuous Testing} und Refinement.
+Die Implementierung erfolgte iterativ\index{Iterative Entwicklung} über einen Zeitraum von 4 Monaten mit kontinuierlichem Testen\index{Continuous Testing} und Verfeinerung.
 
 \subsection{Technologiestack}
 
@@ -19,7 +19,7 @@ Folgende Technologien wurden für die Implementierung eingesetzt:
 \begin{description}
   \item[Programmiersprache:] Python 3.11+\index{Python} (Type Hints\index{Type Hints}, async/await\index{Async/Await} Support)
   \item[LLM-Integration:] OpenAI API (GPT-4)\index{GPT-4}, Anthropic API (Claude 3.5 Sonnet)\index{Claude}, mit Fallback-Mechanismus\index{Fallback-Mechanismus}
-  \item[Orchestrierung:] LangChain 0.1.x für Basis-Komponenten\index{LangChain}, custom Extensions für SE-specific Tools; strukturierte Tool-Calls über \textbf{JSON}-Schemas und Konfigurationen per \textbf{YAML}.
+  \item[Orchestrierung:] LangChain 0.1.x für Basis-Komponenten\index{LangChain}, benutzerdefinierte Erweiterungen für SE-spezifische Tools; strukturierte Tool-Calls über \textbf{JSON}-Schemas und Konfigurationen per \textbf{YAML}.
   \item[Gedächtnis:] Chroma\index{Chroma Vector-DB} Vector-DB für semantisches Retrieval, SQLite für episodische Logs\index{Event-Logging}
   \item[Tool-Runtime:] Docker 24.0+\index{Docker!Sandboxing} für Sandboxing, pytest für Tests, ruff/black für Linting\index{Code Linting}
   \item[Monitoring:] Prometheus für Metriken\index{Prometheus}, strukturierte Logs (JSON) mit Trace-IDs\index{Distributed Tracing}
@@ -166,7 +166,7 @@ Die Validierung erfolgt anhand von realistischen Testszenarien, die typische Sof
 \begin{description}
   \item[Hardware:] MacBook Pro M2, 16GB RAM, 512GB SSD
   \item[Betriebssystem:] macOS 14.x, Docker Desktop 4.25
-  \item[LLM-Modelle:] GPT-4-Turbo (0125), Claude-3.5-Sonnet, mit Temperature 0.2 für Reproduzierbarkeit
+  \item[LLM-Modelle:] GPT-4-Turbo (0125), Claude-3.5-Sonnet, mit Temperatur 0.2 für Reproduzierbarkeit
   \item[Testdaten:] 25 repräsentative Python-Projekte (5k--50k LOC), synthetische Bugs, real-world Issues
 \end{description}
 \end{sloppypar}
@@ -198,12 +198,12 @@ Im Folgenden wird das Szenario \enquote{Test Failure Diagnosis} detailliert besc
   \item \texttt{search\_in\_repo(query="login", range="last-5-commits")} \textrightarrow\ Treffer: Commit 123abc \texttt{Refactor: auth flow}
 \end{itemize}
 
-4) Observation: Agent parst Traceback, findet NullPointer-ähnlichen Fehler in Helper-Funktion, die neu extrahiert wurde. Memory-Manager liefert ähnlichen früheren Fall (Match on signature), Agent übernimmt learnings aus historischem Patch.
+4) Observation: Agent parst Traceback, findet NullPointer-ähnlichen Fehler in Helper-Funktion, die neu extrahiert wurde. Memory-Manager liefert ähnlichen früheren Fall (Match on signature), Agent übernimmt Erkenntnisse aus historischem Patch.
 
 5) Reflection 
 \begin{sloppypar}
 \begin{itemize}
-  \item Agent generiert Patch-Vorschlag (kleine Scope-Fix im Helper), erstellt Diff und führt Tests erneut in isolierter Sandbox aus.
+  \item Agent generiert Patch-Vorschlag (kleinen Scope-Fix im Helper), erstellt Diff und führt Tests erneut in isolierter Sandbox aus.
   \item Tests grün $\Rightarrow$ Agent eröffnet PR-Entwurf und notiert Review-Kommentare; bei Teil-Erfolg: Human-Approval-Gate vor Merge.
 \end{itemize}
 \end{sloppypar}
@@ -243,7 +243,7 @@ Die entwickelte Lösung erreicht folgende Performance-Charakteristika:
 
 \begin{sloppypar}
 \begin{description}
-  \item[Token-Verbrauch:] Durchschnittlich 8.4k tokens pro erfolgreichem Task (Range: 2k--25k). Kontextoptimierung reduzierte Verbrauch um \pct{40} gegenüber naivem Ansatz.
+  \item[Token-Verbrauch:] Durchschnittlich 8.4k Tokens pro erfolgreichem Task (Range: 2k--25k). Kontextoptimierung reduzierte Verbrauch um \pct{40} gegenüber naivem Ansatz.
   
   \item[Laufzeit:] Median 12.3 Sekunden pro Task (ohne Tool-Execution). Mit Test-Runs: 45s--180s je nach Testsuite-Größe.
   
@@ -264,7 +264,7 @@ Code-Qualität wurde über mehrere Dimensionen gemessen:
   \item \textbf{Test-Pass-Rate:} \pct{98} (nur 2 von 103 Tests regressierten nach Agent-Edits)
   \item \textbf{Lint-Score:} Durchschnittlich +12 Punkte Verbesserung nach Lint-Fixes
   \item \textbf{Complexity:} Cyclomatic Complexity blieb unverändert oder verbesserte sich (Extract-Function Tasks)
-  \item \textbf{Review-Akzeptanz:} Manuelle Review ergab \pct{81} „would merge" Rate
+  \item \textbf{Review-Akzeptanz:} Manuelles Review ergab \pct{81} „would merge“-Rate
 \end{itemize}
 \end{sloppypar}
 
@@ -275,7 +275,7 @@ Error-Cases wurden systematisch getestet:
 \begin{sloppypar}
 \begin{itemize}
   \item \textbf{Tool-Failures:} Agent erholte sich in \pct{67} der Fälle durch Retry oder Alternative-Strategie
-  \item \textbf{Malformed Outputs:} JSON-Parsing-Fehler wurden durch Retry-mit-Schema-Reinforcement in \pct{89} behoben
+  \item \textbf{Malformed Outputs:} JSON-Parsing-Fehler wurden durch Wiederholungen mit Schema-Validierung in \pct{89} behoben
   \item \textbf{Timeouts:} Graceful Degradation bei max-steps Limit (definiert als \pct{15} Partial-Success)
 \end{itemize}
 \end{sloppypar}
@@ -307,9 +307,9 @@ Kernverbesserungen gegenüber Baselines:
 \begin{sloppypar}
 \begin{itemize}
   \item \textbf{+31\% Erfolgsrate} vs. Naive Prompting durch strukturierte Tool-Orchestrierung
-  \item \textbf{+15\% Erfolgsrate} vs. Standard-ReAct durch optimierte Context-Management
-  \item \textbf{-17\% Token-Kosten} durch intelligentes Pruning und Summarization
-  \item \textbf{Robustere Error-Recovery} durch Reflexions-Mechanismen
+  \item \textbf{+15\% Erfolgsrate} vs. Standard-ReAct durch optimiertes Kontextmanagement
+  \item \textbf{-17\% Token-Kosten} durch intelligentes Pruning und Zusammenfassung
+  \item \textbf{Robustere Fehlerbehebung} durch Reflexions-Mechanismen
 \end{itemize}
 \end{sloppypar}
 
@@ -323,17 +323,17 @@ Alle kritischen Funktionen wurden durch automatisierte Tests validiert. Die Test
 
 \begin{sloppypar}
 \begin{itemize}
-  \item Tool-Adapter: 45 Tests, \pct{95} Coverage
-  \item Policy-Logic: 32 Tests, \pct{89} Coverage  
-  \item Safety-Layer: 28 Tests, \pct{92} Coverage
+  \item Tool-Adapter: 45 Tests, \pct{95} Abdeckung
+  \item Policy-Logic: 32 Tests, \pct{89} Abdeckung
+  \item Safety-Layer: 28 Tests, \pct{92} Abdeckung
 \end{itemize}
 \end{sloppypar}
 
-\subsection{Integration-Tests}
+\subsection{Integrationstests}
 
 End-to-End-Tests für alle 3 Benchmark-Szenarien. Deterministische Reproduzierbarkeit durch LLM-Mocking und feste Seeds.
 
-Praktische Lessons Learned: Automatisierte Tests sollten sowohl synthetische als auch realistische Repositories umfassen; Mocking allein reicht nicht aus, da Real-World-Tests unerwartete Edge-Cases aufdecken. Darüber hinaus ist Continuous Monitoring unabdingbar, um Drift in LLM-Verhalten oder Änderungen in abhängigen Tools frühzeitig zu erkennen.
+Praktische Erkenntnisse: Automatisierte Tests sollten sowohl synthetische als auch realistische Repositories umfassen; Mocking allein reicht nicht aus, da Tests in realen Umgebungen unerwartete Randfälle aufdecken. Darüber hinaus ist kontinuierliche Überwachung unabdingbar, um Drift in LLM-Verhalten oder Änderungen in abhängigen Tools frühzeitig zu erkennen.
 
 \subsection{Sicherheits-Audits}
 

@@ -4,7 +4,7 @@
 
 % Längeres abgesetztes Zitat
 \begin{quote}
-\textit{\textquote[\cite{karpathy2023intro}]{Wir erleben die Entstehung eines neuen Betriebssystems: Das LLM fungiert als Kernel-Prozess, das Kontext-Fenster als Arbeitsspeicher und externe Werkzeuge als I/O-Schnittstellen. Dies markiert einen fundamentalen Wandel in der Art und Weise, wie wir Computerinstruktionen komponieren und Software-Architekturen denken.}}
+\textit{\textquote[\cite{karpathy2023intro}]{Wir erleben die Entstehung eines neuen Betriebssystems: Das LLM fungiert als Kernel-Prozess, das Kontextfenster als Arbeitsspeicher und externe Werkzeuge als E/A-Schnittstellen. Dies markiert einen fundamentalen Wandel in der Art und Weise, wie wir Computer-Instruktionen komponieren und Softwarearchitekturen denken.}}
 \smallskip
 \begin{flushright}
 — Andrej Karpathy, \textit{Intro to Large Language Models}, 2023
@@ -25,11 +25,11 @@ Vor diesem Hintergrund adressiert diese Arbeit exemplarisch die Entwicklung und 
 
 \begin{itemize}
   \item Wie lassen sich Agenten-Policies (Planen, Tool-Aufrufe, Selbstkritik) systematisch modellieren?
-  \item Wie werden externe Werkzeuge (VCS, CI, linters, Issue-Tracker) sicher und nachvollziehbar eingebunden?
+  \item Wie werden externe Werkzeuge (VCS, CI, Linters, Issue-Tracker) sicher und nachvollziehbar eingebunden?
   \item Welche Metriken messen Fortschritt, Qualität und Sicherheit realistisch?
 \end{itemize}
  
-Die hier formulierten Probleme sind sowohl konzeptioneller als auch praktischer Natur: Es geht nicht nur um abstrakte Modellierung von Policies, sondern ebenso um konkrete Implementationsfragen (Schnittstellen, Serialisierung, Fehlerbehandlung) und Evaluationsdesign (Benchmarks, Messgrößen, Reproduzierbarkeit). Die Ergebnisse sollen Entwicklerteams konkrete Handlungsempfehlungen geben, wie agentische Automatisierung schrittweise, sicher und messtechnisch abgesichert eingeführt werden kann.\index{Evaluation}
+Die hier formulierten Probleme sind sowohl konzeptioneller als auch praktischer Natur: Es geht nicht nur um abstrakte Modellierung von Policies, sondern ebenso um konkrete Implementierungsfragen (Schnittstellen, Serialisierung, Fehlerbehandlung) und Evaluationsdesign (Benchmarks, Messgrößen, Reproduzierbarkeit). Die Ergebnisse sollen Entwicklerteams konkrete Handlungsempfehlungen geben, wie agentische Automatisierung schrittweise, sicher und messtechnisch abgesichert eingeführt werden kann.\index{Evaluation}
 \section{Zielsetzung}
 
 Die Ziele dieser Arbeit sind auf die Spezialisierung \enquote{Software Engineering mit agentic AI} zugeschnitten:\footnote{Siehe auch \cite{wang2023survey} für verwandte Arbeiten zu Agentenarchitekturen.}

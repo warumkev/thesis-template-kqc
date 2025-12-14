@@ -23,7 +23,7 @@ Ein wichtiger Punkt ist...
 
 **PDF mit:**
 - Automatisch nummerierten Kapiteln
-- Schönen Abstände und Schriftgrößen
+- Schönen Abständen und Schriftgrößen
 - Automatischem Inhaltsverzeichnis
 - Professionellem Aussehen (ohne dass Sie was daran drehen!)
 
@@ -163,7 +163,7 @@ Hinweis: `build.sh` ist bewusst einfach gehalten und funktioniert in den meisten
 5. **Speichern:** `Cmd+S` (Mac) oder `Ctrl+S` (Windows/Linux)
    - ✅ LaTeX Workshop kompiliert **automatisch im Hintergrund**
    - ✅ PDF wird **rechts angezeigt** (oder klicken Sie auf PDF-Icon oben rechts)
-6. **Das wars!** Beim nächsten Speichern wird alles automatisch aktualisiert
+6. **Das war's!** Beim nächsten Speichern wird alles automatisch aktualisiert
 
 **Tipp:** Wenn ein Fehler auftritt:
 
@@ -475,7 +475,7 @@ pdflatex Thesis.tex
 
 - Schauen Sie unten im "Problems"-Panel (rot/gelb Warnungen)
 - Klicken Sie auf eine Warnung → VS Code springt zur fehlerhaften Zeile
-- Fixer Sie das Problem (Tippfehler, `\` vergessen etc.)
+- Beheben Sie das Problem (Tippfehler, `\` vergessen etc.)
 - Speichern Sie nochmal
 
 ### Problem: "Inhaltsverzeichnis / Tabellenverzeichnis ist leer"
@@ -507,7 +507,7 @@ Schauen Sie im Problems-Panel, welche Zeile der Fehler ist, und überprüfen Sie
 
 ### Problem: "Literatur wird nicht angezeigt"
 
-Das ist normal! LaTeX braucht Zeit zu verarbeiten.
+Das ist normal! LaTeX benötigt Zeit für die Verarbeitung.
 
 **Lösung:**
 
@@ -546,7 +546,7 @@ brew install --cask mactex-no-gui
 2. **Speichern:** `Cmd+S` ein letztes Mal
 3. **PDF speichern:** Machen Sie einen Rechtsklick auf das PDF → "Speichern unter" → auf Ihren Computer
 
-### Sie brauchen Help?
+### Sie brauchen Hilfe?
 
 **Fragen zur Vorlage:**
 
@@ -571,13 +571,13 @@ MIT License - siehe [LICENSE](LICENSE) Datei.
 
 Verbesserungen sind willkommen! Bitte:
 
-1. Fork das Repo
-2. Feature Branch erstellen (`git checkout -b feature/amazing`)
-3. Änderungen committen (`git commit -m 'Add amazing feature'`)
-4. Push zum Branch (`git push origin feature/amazing`)
-5. Pull Request öffnen
+1. Forken Sie das Repository
+2. Erstellen Sie einen Feature-Branch (`git checkout -b feature/amazing`)
+3. Committen Sie Ihre Änderungen (`git commit -m 'Add amazing feature'`)
+4. Pushen Sie in den Branch (`git push origin feature/amazing`)
+5. Öffnen Sie einen Pull Request
 
-## Dankbarkeiten
+## Danksagung
 
 - **KOMA-Script Team** - Exzellente Dokumentenklasse
 - **Markus Kohm** - KOMA-Script Dokumentation
