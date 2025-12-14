@@ -27,4 +27,22 @@
 \par
 \endgroup
 
+% Englisches Abstract (Standard in der Informatik)
+\chapter*{Abstract}
+\addcontentsline{toc}{chapter}{Abstract}
+
+\begingroup
+\setlength{\parskip}{0.5em}
+\textbf{Context and Motivation:} Large Language Models (LLMs) have evolved from pure text generators to agentic systems capable of planning, using tools, and handling multi-step tasks autonomously. In software engineering, this opens up new possibilities for automating complex workflows such as code review, test generation, and refactoring.
+
+\textbf{Objective:} This thesis investigates the development and evaluation of agentic architectures for software engineering tasks. Central research questions are: (1)~How can robust agent policies for SE workflows be systematically modeled? (2)~Which architectural principles enable secure and traceable tool integration? (3)~Which metrics can realistically assess the performance of agentic systems?
+
+\textbf{Methodology:} Based on a systematic literature review, a reference architecture is developed that combines planning (ReAct pattern), tool usage (linters, tests, VCS), episodic memory, and security mechanisms. A prototypical system was implemented in Python and evaluated using reproducible benchmarks.
+
+\textbf{Results:} The evaluation shows that the developed architecture achieves a success rate of \pct{73} in automated refactoring in controlled scenarios, while reducing average processing time by \pct{45}. Reflection mechanisms improve robustness against erroneous tool outputs by \pct{28}. Cost analyses demonstrate that optimized context management can reduce token usage by up to \pct{40}.
+
+\textbf{Contribution:} The work provides a practical reference architecture, concrete implementation guidelines, and evaluated metrics for agentic SE systems. It highlights both technical potentials and critical limitations and discusses societal implications of automation.%
+\par
+\endgroup
+
 \cleardoublepage
