@@ -17,14 +17,14 @@
 
 % Frontmatter, Mainmatter, Backmatter definieren
 \@ifundefined{frontmatter}{%
-   \newcommand{\frontmatter}{\pagenumbering{roman}}%
+   \newcommand{\frontmatter}{\cleardoubleoddpage\pagenumbering{roman}}%
 }{}
 \@ifundefined{mainmatter}{%
    \newif\if@mainmatter\@mainmattertrue
-   \newcommand{\mainmatter}{\pagenumbering{arabic}\setcounter{page}{1}}
+   \newcommand{\mainmatter}{\cleardoubleoddpage\pagenumbering{arabic}}
 }{}
 \@ifundefined{backmatter}{%
-   \newcommand{\backmatter}{\pagenumbering{roman}}
+   \newcommand{\backmatter}{\cleardoubleoddpage\pagenumbering{roman}}
 }{}
 
 % KI-Deklaration (Text in Anhang: content/Z-Anhang-declaration.tex)
