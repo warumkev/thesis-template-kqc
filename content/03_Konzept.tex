@@ -93,7 +93,9 @@ Der Agent Controller implementiert folgende Schleife:
 \begin{enumerate}
   \item \textbf{Thought (Reasoning):} LLM generiert Reasoning-Schritt: \enquote{Was weiß ich? Was fehlt? Welcher nächste Schritt ist sinnvoll?}
   
-  \item \textbf{Action:} Auswahl und Parametrisierung eines Tools. Beispiel: \texttt{run\_tests(module="auth")}
+  \item \textbf{Action:} Auswahl und Parametrisierung eines Tools. Beispiel:
+  
+  \texttt{run\_tests(module="auth")}
   
   \item \textbf{Observation:} Werkzeugausgabe wird strukturiert zurückgegeben. Beispiel: \enquote{3 tests failed in auth/test\_login.py}
   
@@ -161,8 +163,8 @@ Abbildung~\ref{fig:agent-workflow} illustriert den ReAct-Zyklus einer agentische
 
 \begin{figure}[p!]
 \centering
-% Limit height to avoid "Float too large" errors while keeping full width
-\includegraphics[width=\linewidth,height=0.6\textheight,keepaspectratio]{images/agent-workflow.png}
+% Ganzseitige Abbildung
+\includegraphics[width=\linewidth,height=0.9\textheight,keepaspectratio]{images/agent-workflow.png}
 \caption{ReAct Agent Workflow: Zyklisches Reasoning und Acting Paradigma mit Fehlertoleranz}
 \label{fig:agent-workflow}
 \end{figure}
@@ -229,7 +231,9 @@ Beispielablauf (kompakt):
   \item \textbf{Sense:} AST-basierte Analyse identifiziert eine lange Methode mit hoher Cyclomatic-Complexity; relevante Tests werden bestimmt.
   \item \textbf{Plan:} Agent plant Extract-Function, inklusive Aufrufer-Anpassungen und Test-Aktualisierungen.
   \item \textbf{Act:} Tool-Adapter führt AST-Refactoring aus (Parameter als JSON), erstellt temporären Branch und führt Tests aus.
-  \item \textbf{Observation:} Test-Runner liefert strukturierte Ergebnisse (z. B. \texttt{"failed": ["auth/test\_login.py::test\_login"]}).
+  \item \textbf{Observation:} Test-Runner liefert strukturierte Ergebnisse, z.\,B.:
+  
+  \texttt{"failed": ["auth/test\_login.py::test\_login"]}
   \item \textbf{Reflection:} Agent analysiert Fehlermeldungen, generiert einen präzisen Patch-Verfeinerungsvorschlag und wiederholt ggf. die Schleife.
 \end{enumerate}
 

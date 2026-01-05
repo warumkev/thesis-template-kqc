@@ -30,7 +30,7 @@ Folgende Technologien wurden für die Implementierung eingesetzt:
 
 Das Projekt folgt einer modularen Architektur:
 
-\begin{verbatim}
+\begin{lstlisting}[breaklines=true, basicstyle=\ttfamily\small]
 agent_se/
 +-- core/
 |   +-- agent.py           # Agent Controller (ReAct-Loop)
@@ -50,7 +50,7 @@ agent_se/
 +-- evaluation/
     +-- benchmarks.py      # Test Scenarios
     +-- metrics.py         # Success Rate, Costs, Latency
-\end{verbatim}
+\end{lstlisting}
 
 \subsection{Kernimplementierung: Agent-Controller}\index{Agent Controller!Implementierung}
 
@@ -211,13 +211,13 @@ Im Folgenden wird das Szenario \enquote{Test Failure Diagnosis} detailliert besc
 \end{sloppypar}
 
 Beispiel-Trace (gekürzt):
-\begin{verbatim}
+\begin{lstlisting}[breaklines=true, basicstyle=\ttfamily\small]
 [Agent] run_tests -> 3 failed (auth/test_login.py::test_login)
 [Agent] search_in_repo -> found commit 123abc (Refactor auth flow)
 [Agent] generate_patch -> diff created: modify auth/helpers.py
 [Agent] run_tests (sandbox) -> 100 passed
 [Agent] open_pr -> PR #42 (Draft)
-\end{verbatim}
+\end{lstlisting}
 
 Das Beispiel zeigt, wie Tool-Adapter, Memory und Safety-Layer (Sandbox, Human-Approval) zusammenwirken, um fehlerhafte Änderungen sicher zu erkennen und zu beheben. Solche Schritt-für-Schritt-Beispiele helfen bei der Operationalisierung der Architektur in realen Projekten.
 
