@@ -113,6 +113,28 @@ Bilder im Ordner `images/` ablegen:
 \end{figure}
 ```
 
+### Tabellen einfügen
+
+Für einfache Tabellen verwenden Sie die Standard-LaTeX-Syntax mit `booktabs`:
+
+```tex
+\begin{table}[ht]
+  \centering
+  \begin{tabular}{lcc}
+    \toprule
+    Name & Wert A & Wert B \\
+    \midrule
+    Zeile 1 & 10 & 20 \\
+    Zeile 2 & 15 & 25 \\
+    \bottomrule
+  \end{tabular}
+  \caption{Beschreibung der Tabelle}
+  \label{tab:beispiel}
+\end{table}
+```
+
+> **Tipp:** Für längere Tabellen oder mehrseitige Übersichten steht `longtable` zur Verfügung. Weitere LaTeX-Tabellen-Anleitungen finden Sie in der [Overleaf-Dokumentation](https://www.overleaf.com/learn/latex/Tables).
+
 ### Literatur zitieren
 
 1. Literaturquellen in `bib/BibtexDatabase.bib` im BibTeX-Format eintragen.
