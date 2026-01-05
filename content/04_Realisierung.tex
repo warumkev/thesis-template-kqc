@@ -291,7 +291,7 @@ Die entwickelte Lösung wurde mit Baselines verglichen:
 \centering
 \caption{Vergleich mit Baseline-Systemen (auf gleichem Benchmark-Set)}
 \label{tab:comparison}
-\begin{tabular}{L{3cm}C{2cm}C{2cm}C{2.5cm}C{2cm}}
+\begin{tabularx}{\textwidth}{Xcccc}
 \toprule
 \cellcolor{headercolor}\textcolor{white}{\textbf{Ansatz}} & \cellcolor{headercolor}\textcolor{white}{\textbf{Success}} & \cellcolor{headercolor}\textcolor{white}{\textbf{Token}} & \cellcolor{headercolor}\textcolor{white}{\textbf{Zeit (s)}} & \cellcolor{headercolor}\textcolor{white}{\textbf{Kosten}} \\
 \midrule
@@ -302,7 +302,7 @@ Unsere Architektur & \pct{73} & 8.4\,k & 12.3 & \$\,0.08 \\
 \rowcolor{rowcolorgray}
 + Reflexion & \pct{73} & 8.9\,k & 14.1 & \$\,0.09 \\
 \bottomrule
-\end{tabular}
+\end{tabularx}
 \end{table}
 
 Kernverbesserungen gegenüber Baselines:
@@ -351,9 +351,7 @@ Praktische Erkenntnisse: Automatisierte Tests sollten sowohl synthetische als au
 \centering
 \caption{Detaillierte Benchmark-Ergebnisse: Agentische SE-Tasks mit Evaluationsmetriken}
 \label{tab:benchmark-results}
-\begingroup
-  \setlength{\tabcolsep}{3pt}
-  \begin{tabular}{L{2.6cm}C{1.6cm}C{1.6cm}C{1.6cm}C{1.4cm}C{1.9cm}}
+\begin{tabularx}{\textwidth}{Xccccc}
 \toprule
 \cellcolor{headercolor}\textcolor{white}{\textbf{Aufgabe}} & \cellcolor{headercolor}\textcolor{white}{\textbf{Success}} & \cellcolor{headercolor}\textcolor{white}{\textbf{Token}} & \cellcolor{headercolor}\textcolor{white}{\textbf{Zeit (s)}} & \cellcolor{headercolor}\textcolor{white}{\textbf{Tools}} & \cellcolor{headercolor}\textcolor{white}{\textbf{Kosten}} \\
 \midrule
@@ -374,8 +372,7 @@ Generate Docstrings & OK & 4.5\,k & 9.3 & 2 & \$\,0.04 \\
 Fix Type Errors & OK & 11.2\,k & 28.4 & 5 & \$\,0.11 \\
 \bottomrule
 \multicolumn{6}{l}{\small \textit{Durchschnitt (erfolgreiche Tasks):} 7.1\,k Tokens, 16.5\,s, 3.8\,Tools, \$\,0.07} \\
-  \end{tabular}
-\endgroup
+\end{tabularx}
 \end{table}
 
 Tabelle~\ref{tab:eval-metrics} fasst die verwendeten Evaluationsmetriken zusammen.
@@ -385,9 +382,7 @@ Tabelle~\ref{tab:eval-metrics} fasst die verwendeten Evaluationsmetriken zusamme
 \centering
 \caption{Evaluationsmetriken für agentische SE-Workflows (Beispieltabelle)}
 \label{tab:eval-metrics}
-\begingroup
-  \setlength{\tabcolsep}{3pt}
-  \begin{tabular}{L{3.2cm}L{10.0cm}}
+\begin{tabularx}{\textwidth}{lX}
 \toprule
 \cellcolor{headercolor}\textcolor{white}{\textbf{Kategorie}} & \cellcolor{headercolor}\textcolor{white}{\textbf{Metriken / Beschreibung}} \\
 \midrule
@@ -399,6 +394,5 @@ Latenz & End-to-End-Laufzeit (s), Tool-Roundtrips (\#), Wartezeit auf CI \\
 Sicherheit & Policy-Verstöße (\#), Risk Flags, sand-boxed I/O, PII-Leaks (\#) \\
 Nachvollziehbarkeit & Trace-Länge (\#Events), Artefakte (Patches, Logs), Reproduzierbarkeit (Seeds) \\
 \bottomrule
-  \end{tabular}
-\endgroup
+\end{tabularx}
 \end{table}
