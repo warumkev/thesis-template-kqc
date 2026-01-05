@@ -2,6 +2,17 @@
 
 Diese Vorlage bietet ein professionelles LaTeX-Setup für Bachelor- und Masterarbeiten im deutschsprachigen Raum. Sie ist nach akademischen und typografischen Konventionen optimiert und besonders für MINT-Themen geeignet.
 
+> **📝 Artikel-Template verfügbar!**  
+> Für kürzere Seminararbeiten oder populärwissenschaftliche Artikel gibt es den Branch [`referat-template`](../../tree/referat-template) mit einem zweispaltigen Artikel-Layout (~10 Seiten).
+>
+> ```bash
+> # Zum Artikel-Template wechseln:
+> git checkout referat-template
+>
+> # Zurück zur Thesis-Vorlage:
+> git checkout main
+> ```
+
 ## Inhaltsverzeichnis
 
 1. [Features](#features)
