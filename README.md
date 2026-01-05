@@ -12,6 +12,8 @@ Diese Vorlage bietet ein professionelles LaTeX-Setup für Bachelor- und Masterar
 > # Zurück zur Thesis-Vorlage:
 > git checkout main
 > ```
+>
+> ⚠️ **Nicht mergen!** Die Branches sind eigenständige Templates und sollten nicht zusammengeführt werden.
 
 ## Inhaltsverzeichnis
 
