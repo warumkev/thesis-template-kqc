@@ -4,15 +4,15 @@ Diese Vorlage bietet ein professionelles LaTeX-Setup für Bachelor- und Masterar
 
 ## Inhaltsverzeichnis
 
-1. Features
-2. Voraussetzungen
-3. Schnelleinstieg
-4. Kompilierung
-5. Verwendung
-6. Projektstruktur
-7. Häufige Anpassungen
-8. Troubleshooting
-9. Lizenz
+1. [Features](#features)
+2. [Voraussetzungen](#voraussetzungen)
+3. [Schnelleinstieg](#schnelleinstieg)
+4. [Kompilierung](#kompilierung)
+5. [Verwendung](#verwendung)
+6. [Projektstruktur](#projektstruktur)
+7. [Häufige Anpassungen](#häufige-anpassungen)
+8. [Troubleshooting](#troubleshooting)
+9. [Lizenz](#lizenz)
 
 ## Features
 
