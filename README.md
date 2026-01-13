@@ -108,7 +108,7 @@ Diese Anleitung richtet sich an Personen ohne jede Erfahrung mit Installation, K
 ### 1. Projekt herunterladen
 
 ```bash
-git clone -b referat-template https://github.com/thm-mni-ii/thesis-template.git artikel-vorlage
+git clone -b referat-template https://github.com/kqc-real/thesis-template.git artikel-vorlage
 cd artikel-vorlage
 ```
 
