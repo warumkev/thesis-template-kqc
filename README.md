@@ -2,6 +2,10 @@
 
 Diese Vorlage bietet ein professionelles LaTeX-Setup für Bachelor- und Masterarbeiten im deutschsprachigen Raum. Sie ist nach akademischen und typografischen Konventionen optimiert und besonders für MINT-Themen geeignet.
 
+### 📄 [Vollständige Beispiel-Thesis ansehen (PDF)](Thesis.pdf)
+
+![Vorschau des Layouts](screenshot.jpg)
+
 > **📝 Artikel-Template verfügbar!**  
 > Für kürzere Seminararbeiten oder populärwissenschaftliche Artikel gibt es den Branch [`referat-template`](../../tree/referat-template) mit einem zweispaltigen Artikel-Layout (~10 Seiten).
 >
